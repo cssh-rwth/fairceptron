@@ -1,6 +1,6 @@
 <template>
-  <div class="relative max-w-6xl h-screen bg-gray-400 mx-auto">
-    <RatingBar class="absolute bottom-0 bg-gray-600" />
+  <div class="relative max-w-6xl h-screen mx-auto">
+    <RatingBar class="absolute bottom-0" />
   </div>
 </template>
 
