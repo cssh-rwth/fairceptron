@@ -1,8 +1,8 @@
 <template>
-  <div class="max-w-6xl min-h-screen mx-auto grid-cols-1 grid-rows-3">
-    <QuestionDescription />
-    <SelectionPersonas />
-    <RatingBar />
+  <div class="max-w-6xl min-h-screen mx-auto grid grid-cols-1">
+    <QuestionDescription class="self-start" />
+    <SelectionPersonas class="self-center" />
+    <RatingBar class="self-end" />
   </div>
 </template>
 
