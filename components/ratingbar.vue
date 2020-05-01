@@ -10,6 +10,7 @@
           class="text-center flex-grow flex-1 z-10"
         >
           <div
+            style="min-width: 3.7rem"
             class="mx-1 mb-2 text-xs sm:text-sm cursor-pointer text-gray-700"
             @click="ratingSelected = n"
           >
