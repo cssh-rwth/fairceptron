@@ -20,7 +20,7 @@
       <svg
         v-if="n[1]"
         style="max-width: 20%"
-        class="fill-current text-green-600 absolute bottom-0 right-0 mr-2 mb-2 w-4 sm:w-8 sm:mb-4 sm:mr-4 lg:w-10 lg:mb-8 lg:mr-8 bg-white rounded-full"
+        class="fill-current text-green-600 absolute bottom-0 right-0 mr-2 mb-2 w-full sm:mb-4 sm:mr-4 lg:mb-8 lg:mr-8 bg-white rounded-full"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
       >
