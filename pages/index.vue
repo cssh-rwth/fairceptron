@@ -1,11 +1,11 @@
 <template>
   <div class="max-w-6xl min-h-screen mx-auto flex flex-col justify-center">
     <h1
-      class="self-end text-4xl font-semibold text-gray-700 w-full text-center mb-8"
+      class="self-end text-4xl font-semibold text-gray-700 w-full text-center my-16"
     >
       FairCeptron
     </h1>
-    <div class="text-gray-700 mb-16">
+    <div class="text-gray-700 p-4">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tempor
       tempor congue consequat. Quisque maximus est enim, eget elementum sapien
       egestas vitae. Curabitur et est eu sem vestibulum vulputate. Nulla
@@ -25,7 +25,7 @@
       amet. Aenean ac condimentum dui, sit amet vulputate ante. Etiam eros ante,
       ultrices quis tellus in, laoreet laoreet nunc. Quisque a blandit tortor.
     </div>
-    <div class="w-full text-center">
+    <div class="w-full text-center my-16">
       <button
         type="submit"
         class="bg-green-600 hover:bg-green-700 text-white rounded px-4 py-2"
