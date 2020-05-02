@@ -1,12 +1,18 @@
 <template>
-  <div class="min-w-full md:min-w-0 md:w-lg mx-auto divide-y divide-gray-400">
-    <div v-for="(p, index) in personas" :key="index" class="flex flex-no-wrap">
+  <div
+    class="min-w-full sm:min-w-0 sm:w-xl mx-auto divide-y divide-gray-400 px-4"
+  >
+    <div
+      v-for="(p, index) in personas"
+      :key="index"
+      class="flex flex-no-wrap justify-around"
+    >
       <div class="text-gray-700 m-2 text-lg w-4 text-right self-center">
-        <span class="align-middle">{{ index }}</span>
+        <span class="align-middle">{{ index + 1 + '.' }}</span>
       </div>
       <svg
         :class="colors[p.group]"
-        class="fill-current w-8 lg:w-12 my-4 ml-16 mr-8"
+        class="fill-current w-8 sm:w-10 lg:w-12 my-4 mx-12"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
       >
