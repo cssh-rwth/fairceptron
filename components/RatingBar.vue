@@ -1,6 +1,8 @@
 <template>
   <div class="w-full sm:px-8">
     <form
+      :action="(parseInt(this.$route.params.id) + 1).toString()"
+      method="post"
       class="w-full max-w-4xl p-4 mb-4 sm:mb-8 lg:mb-16 xl:mb-32 mx-auto flex flex-wrap items-end justify-center"
     >
       <div class="flex flex-grow items-end relative justify-center">
