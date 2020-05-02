@@ -3,7 +3,7 @@
     class="grid gap-2 p-2 grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7"
   >
     <div
-      v-for="(p, _, index) in personas"
+      v-for="(p, index) in personas"
       :key="index"
       :class="p.selected ? 'bg-green-100' : 'border-none'"
       class="p-2 m-2 sm:p-4 sm:m-4 lg:m-8 relative rounded-lg border-4 border-green-400"

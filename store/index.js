@@ -62,11 +62,6 @@ export const state = () => ({
       group: 0,
       selected: false,
       value: 0.25
-    },
-    {
-      group: 0,
-      selected: false,
-      value: 0.57
     }
   ]
 })
