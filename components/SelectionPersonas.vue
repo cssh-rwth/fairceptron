@@ -1,6 +1,6 @@
 <template>
   <div
-    class="grid gap-2 p-2 my-12 grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7"
+    class="grid gap-2 p-2 grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7"
   >
     <div
       v-for="(p, _, index) in personas"
