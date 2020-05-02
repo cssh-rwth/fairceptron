@@ -1,8 +1,8 @@
 const comparePersonas = (a, b) => {
   const valueA = a.value
   const valueB = b.value
-  if (valueA > valueB) return 1
-  if (valueB > valueA) return -1
+  if (valueA > valueB) return -1
+  if (valueB > valueA) return 1
   else return 0
 }
 
