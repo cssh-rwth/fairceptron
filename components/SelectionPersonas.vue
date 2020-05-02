@@ -18,6 +18,16 @@
           d="M5 5a5 5 0 0 1 10 0v2A5 5 0 0 1 5 7V5zM0 16.68A19.9 19.9 0 0 1 10 14c3.64 0 7.06.97 10 2.68V20H0v-3.32z"
         />
       </svg>
+      <div
+        v-if="showScores"
+        class="absolute bottom-0 left-0 w-full text-center"
+      >
+        <div
+          class="bg-gray-600 inline-block px-2 rounded-full text-xs lg:text-sm text-white"
+        >
+          {{ p.value }}
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -39,6 +49,10 @@ export default {
         'text-yellow-300',
         'text-purple-300'
       ]
+    },
+    showScores: {
+      type: Boolean,
+      default: true
     }
   }
 }
