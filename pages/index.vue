@@ -1,7 +1,10 @@
 <template>
   <div class="max-w-6xl min-h-screen mx-auto grid grid-cols-1">
     <QuestionDescription class="self-start" />
-    <SelectionPersonas class="self-center" />
+    <SelectionPersonas
+      :personas="this.$store.getters.personas"
+      class="self-center"
+    />
     <RatingBar class="self-end" />
   </div>
 </template>
