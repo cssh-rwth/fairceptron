@@ -1,6 +1,10 @@
 <template>
   <div class="max-w-6xl min-h-screen mx-auto grid grid-cols-1">
-    <QuestionDescription class="self-start" />
+    <QuestionDescription
+      class="self-start"
+      :personas="this.$store.getters.personas"
+      :question-type="questionType"
+    />
     <SelectionPersonas
       v-if="questionType === 'selection'"
       :personas="this.$store.getters.personas"
