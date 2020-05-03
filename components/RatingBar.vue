@@ -71,7 +71,7 @@ export default {
   @apply bg-gray-200;
   @apply cursor-default;
 }
-.button:hover {
+.button:enabled:hover {
   @apply bg-gray-700;
 }
 </style>
