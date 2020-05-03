@@ -32,10 +32,7 @@ export default {
     ...mapGetters(['questionType'])
   },
   beforeCreate() {
-    this.$store.commit(
-      'questionType',
-      this.$route.params.id % 2 === 1 ? 'selection' : 'ranking'
-    )
+    this.$store.dispatch('generateQuestion')
   },
   validate({ params }) {
     // Must be a number

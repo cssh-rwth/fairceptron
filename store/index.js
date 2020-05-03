@@ -7,36 +7,17 @@ const comparePersonas = (a, b) => {
 }
 
 export const state = () => ({
-  personas: [
-    { group: 1, selected: false, value: 0.34 },
-    { group: 0, selected: false, value: 0.56 },
-    { group: 0, selected: true, value: 0.92 },
-    { group: 1, selected: false, value: 0.87 },
-    { group: 0, selected: true, value: 0.83 },
-    { group: 0, selected: false, value: 0.54 },
-    { group: 0, selected: false, value: 0.23 },
-    { group: 1, selected: true, value: 0.81 },
-    { group: 0, selected: false, value: 0.31 },
-    { group: 1, selected: false, value: 0.31 },
-    { group: 0, selected: false, value: 0.25 }
-  ],
+  personas: [],
   question: {
-    type: 'ranking',
+    type: '',
     showScores: true,
     colors: [
       'text-teal-300',
       'text-orange-300',
-      'text-pink-300',
       'text-yellow-300',
       'text-purple-300'
     ],
-    groupNames: [
-      'Personen in Gruppe 1',
-      'Personen in Gruppe 2',
-      'Personen in Gruppe 3',
-      'Personen in Gruppe 4',
-      'Personen in Gruppe 5'
-    ]
+    groupNames: []
   }
 })
 
@@ -74,7 +55,42 @@ export const getters = {
 }
 
 export const mutations = {
-  questionType(state, type) {
+  changeQuestionType(state, type) {
     state.question.type = type
+  },
+  changeScoreVisibility(state, visible) {
+    state.question.showScores = visible
+  },
+  clearPersonas(state) {
+    state.personas.length = 0
+  },
+  pushPersona(state, persona) {
+    state.personas.push(persona)
+  },
+  selectPersona(state, id) {
+    state.personas[id].selected = true
+  }
+}
+
+export const actions = {
+  generateQuestion({ commit, getters }) {
+    commit('clearPersonas')
+    const noOfPersonas = Math.floor(Math.random() * 12) + 3
+    const noOfGroups = Math.floor(Math.random() * 3) + 1
+    const noSelected = Math.floor(Math.random() * noOfPersonas * 0.3) + 1
+    for (let i = 0; i < noOfPersonas; i++) {
+      let group = i
+      if (i > noOfGroups) group = Math.floor(Math.random() * noOfGroups)
+      const value = Math.floor(Math.random() * 100)
+      commit('pushPersona', { group, selected: false, value })
+    }
+    for (let i = 0; i < noSelected; i++) {
+      commit('selectPersona', Math.floor(Math.random() * noOfPersonas))
+    }
+    const type = Math.random() > 0.5 ? 'selection' : 'ranking'
+    if (type !== getters.questionType) commit('changeQuestionType', type)
+    const scoreVisibility = Math.random() > 0.5
+    if (scoreVisibility !== getters.showScores)
+      commit('changeScoreVisibility', scoreVisibility)
   }
 }
