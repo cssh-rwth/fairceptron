@@ -24,7 +24,7 @@
         v-if="showScores"
         class="self-center bg-gray-600 inline-block px-2 rounded-full text-xs lg:text-sm text-white"
       >
-        {{ p.value }}
+        {{ p.value }} %
       </div>
     </div>
   </div>
@@ -36,7 +36,11 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'RankingPersonas',
   computed: {
-    ...mapGetters(['personas', 'colors', 'showScores'])
+    ...mapGetters({
+      personas: 'personasSorted',
+      colors: 'colors',
+      showScores: 'showScores'
+    })
   }
 }
 </script>
