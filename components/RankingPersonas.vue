@@ -31,27 +31,12 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'RankingPersonas',
-  props: {
-    personas: {
-      type: Array,
-      required: true
-    },
-    colors: {
-      type: Array,
-      default: () => [
-        'text-teal-300',
-        'text-orange-300',
-        'text-pink-300',
-        'text-yellow-300',
-        'text-purple-300'
-      ]
-    },
-    showScores: {
-      type: Boolean,
-      default: true
-    }
+  computed: {
+    ...mapGetters(['personas', 'colors', 'showScores'])
   }
 }
 </script>

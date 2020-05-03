@@ -1,18 +1,12 @@
 <template>
   <div class="max-w-6xl min-h-screen mx-auto grid grid-cols-1">
-    <QuestionDescription
-      class="self-start"
-      :personas="this.$store.getters.personas"
-      :question-type="questionType"
-    />
+    <QuestionDescription class="self-start" />
     <SelectionPersonas
       v-if="questionType === 'selection'"
-      :personas="this.$store.getters.personas"
       class="self-center my-12"
     />
     <RankingPersonas
       v-if="questionType === 'ranking'"
-      :personas="this.$store.getters.personasSorted"
       class="self-center my-12"
     />
     <RatingBar class="self-end" />
@@ -20,6 +14,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import RatingBar from '~/components/RatingBar.vue'
 import SelectionPersonas from '~/components/SelectionPersonas.vue'
 import QuestionDescription from '~/components/QuestionDescription.vue'
@@ -32,15 +28,14 @@ export default {
     RankingPersonas,
     QuestionDescription
   },
-  data() {
-    return {
-      id: this.$route.params.id
-    }
-  },
   computed: {
-    questionType() {
-      return this.id % 2 === 0 ? 'ranking' : 'selection'
-    }
+    ...mapGetters(['questionType'])
+  },
+  beforeCreate() {
+    this.$store.commit(
+      'questionType',
+      this.$route.params.id % 2 === 1 ? 'selection' : 'ranking'
+    )
   },
   validate({ params }) {
     // Must be a number

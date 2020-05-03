@@ -35,43 +35,18 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'QuestionDescription',
-  props: {
-    personas: {
-      type: Array,
-      required: true
-    },
-    questionType: {
-      type: String,
-      required: true
-    },
-    colors: {
-      type: Array,
-      default: () => [
-        'text-teal-300',
-        'text-orange-300',
-        'text-pink-300',
-        'text-yellow-300',
-        'text-purple-300'
-      ]
-    },
-    showScores: {
-      type: Boolean,
-      default: true
-    },
-    groupNames: {
-      type: Array,
-      default: () => [
-        'Personen in Gruppe 1',
-        'Personen in Gruppe 2',
-        'Personen in Gruppe 3',
-        'Personen in Gruppe 4',
-        'Personen in Gruppe 5'
-      ]
-    }
-  },
   computed: {
+    ...mapGetters([
+      'personas',
+      'colors',
+      'showScores',
+      'groupNames',
+      'questionType'
+    ]),
     personasPerGroup() {
       const groupCount = []
       for (let i = 0; i < 5; i++)
