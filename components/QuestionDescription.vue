@@ -32,6 +32,10 @@
     Für wie fair empfindest du
     <span v-if="questionType === 'selection'">die Auswahl</span>
     <span v-else-if="questionType === 'ranking'">das Ranking</span>?
+    <!-- force postcss to load classes -->
+    <div
+      class="text-teal-300 text-orange-300 text-yellow-300 text-purple-300"
+    ></div>
   </div>
 </template>
 
