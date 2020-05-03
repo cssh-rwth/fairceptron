@@ -45,20 +45,11 @@ export default {
       'colors',
       'showScores',
       'groupNames',
-      'questionType'
-    ]),
-    personasPerGroup() {
-      const groupCount = []
-      for (let i = 0; i < 5; i++)
-        groupCount.push(this.personas.filter((p) => p.group === i).length)
-      return groupCount
-    },
-    noOfGroups() {
-      return this.personasPerGroup.filter((g) => g !== 0).length
-    },
-    noSelected() {
-      return this.personas.filter((p) => p.selected).length
-    }
+      'questionType',
+      'personasPerGroup',
+      'noOfGroups',
+      'noSelected'
+    ])
   }
 }
 </script>

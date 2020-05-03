@@ -58,6 +58,18 @@ export const getters = {
   },
   groupNames(state) {
     return state.question.groupNames
+  },
+  personasPerGroup(state) {
+    const groupCount = []
+    for (let i = 0; i < 5; i++)
+      groupCount.push(state.personas.filter((p) => p.group === i).length)
+    return groupCount
+  },
+  noOfGroups(_, getters) {
+    return getters.personasPerGroup.filter((g) => g !== 0).length
+  },
+  noSelected(state) {
+    return state.personas.filter((p) => p.selected).length
   }
 }
 
