@@ -14,8 +14,8 @@
     <span v-if="questionType === 'selection'">
       <span v-if="noSelected > 1">Es werden {{ noSelected }} Personen</span>
       <span v-else>Es wird eine Person</span>
-      <span class="border-2 p-px px-1 border-green-500 rounded bg-green-100">
-        ausgewählt</span
+      <span class="border-2 p-px px-1 border-green-500 rounded bg-green-100"
+        >ausgewählt</span
       >.
     </span>
     <span v-else-if="questionType === 'ranking'">
@@ -23,8 +23,8 @@
     </span>
     <span v-if="showScores">
       Zusätzlich wird die
-      <span class="text-white bg-gray-600 rounded-full px-2 py-px">
-        Qualifikation</span
+      <span class="text-white bg-gray-600 rounded-full px-2 py-px"
+        >Qualifikation</span
       >
       jeder Person neben ihr angezeigt.
     </span>
