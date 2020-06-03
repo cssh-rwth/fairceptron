@@ -43,14 +43,20 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    '@nuxtjs/proxy'
   ],
   serverMiddleware: ['~/api/index'],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    proxy: process.env.NODE_ENV !== 'production'
+  },
+  proxy: {
+    '/api': 'https://fairceptron.ahnert.dev/api'
+  },
   /*
    ** Build configuration
    */
