@@ -7,8 +7,8 @@ const comparePersonas = (a, b) => {
 }
 
 export const state = () => ({
-  personas: [],
   question: {
+    personas: [],
     type: '',
     showScores: true,
     colors: [
@@ -23,10 +23,10 @@ export const state = () => ({
 
 export const getters = {
   personasSorted(state) {
-    return [...state.personas].sort(comparePersonas)
+    return [...state.question.personas].sort(comparePersonas)
   },
   personas(state) {
-    return state.personas
+    return state.question.personas
   },
   questionType(state) {
     return state.question.type
@@ -43,54 +43,29 @@ export const getters = {
   personasPerGroup(state) {
     const groupCount = []
     for (let i = 0; i < 5; i++)
-      groupCount.push(state.personas.filter((p) => p.group === i).length)
+      groupCount.push(
+        state.question.personas.filter((p) => p.group === i).length
+      )
     return groupCount
   },
   noOfGroups(_, getters) {
     return getters.personasPerGroup.filter((g) => g !== 0).length
   },
   noSelected(state) {
-    return state.personas.filter((p) => p.selected).length
+    return state.question.personas.filter((p) => p.selected).length
   }
 }
 
 export const mutations = {
-  changeQuestionType(state, type) {
-    state.question.type = type
-  },
-  changeScoreVisibility(state, visible) {
-    state.question.showScores = visible
-  },
-  clearPersonas(state) {
-    state.personas.length = 0
-  },
-  pushPersona(state, persona) {
-    state.personas.push(persona)
-  },
-  selectPersona(state, id) {
-    state.personas[id].selected = true
+  setQuestion(state, question) {
+    state.question = question
   }
 }
 
 export const actions = {
-  generateQuestion({ commit, getters }) {
-    commit('clearPersonas')
-    const noOfPersonas = Math.floor(Math.random() * 12) + 3
-    const noOfGroups = Math.floor(Math.random() * 3) + 1
-    const noSelected = Math.floor(Math.random() * noOfPersonas * 0.3) + 1
-    for (let i = 0; i < noOfPersonas; i++) {
-      let group = i
-      if (i > noOfGroups) group = Math.floor(Math.random() * noOfGroups)
-      const value = Math.floor(Math.random() * 100)
-      commit('pushPersona', { group, selected: false, value })
-    }
-    for (let i = 0; i < noSelected; i++) {
-      commit('selectPersona', Math.floor(Math.random() * noOfPersonas))
-    }
-    const type = Math.random() > 0.5 ? 'selection' : 'ranking'
-    if (type !== getters.questionType) commit('changeQuestionType', type)
-    const scoreVisibility = Math.random() > 0.5
-    if (scoreVisibility !== getters.showScores)
-      commit('changeScoreVisibility', scoreVisibility)
+  getRandomQuestion({ commit }) {
+    this.$axios.get('api/random').then((response) => {
+      commit('setQuestion', response.data)
+    })
   }
 }

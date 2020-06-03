@@ -32,7 +32,7 @@ export default {
     ...mapGetters(['questionType'])
   },
   beforeCreate() {
-    this.$store.dispatch('generateQuestion')
+    this.$store.dispatch('getRandomQuestion')
   },
   validate({ params }) {
     // Must be a number
