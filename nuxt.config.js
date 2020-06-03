@@ -45,6 +45,7 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/pwa'
   ],
+  serverMiddleware: ['~/api/index'],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
