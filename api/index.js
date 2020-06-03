@@ -1,8 +1,10 @@
+import { generateRandomQuestion } from './generateQuestion'
+
 const express = require('express')
 const app = express()
 
-app.get('/', function(req, res) {
-  res.send('Hello World')
+app.get('/random', (req, res) => {
+  res.json(generateRandomQuestion())
 })
 
 module.exports = {
