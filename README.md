@@ -1,6 +1,6 @@
 # fairceptron
 
-> Frontend for measuring perceptions of algorithmic fairness
+> Frontend and server for measuring perceptions of algorithmic fairness
 
 ## Build Setup
 
