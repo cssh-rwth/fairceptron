@@ -10,7 +10,9 @@
         :max="ratingMax"
         :value="ratingValue"
         :step="ratingStep"
+        :class="ratingSelected ? 'range-visible' : 'range-invisible'"
         class="mr-4"
+        @mousedown="enterSelection"
       />
       <button
         type="submit"
@@ -40,12 +42,17 @@ export default {
   methods: {
     handleSubmit() {
       this.$router.push((parseInt(this.$route.params.id) + 1).toString())
+    },
+    enterSelection() {
+      this.ratingSelected = true
     }
   }
 }
 </script>
 
 <style scoped>
+@import '~assets/css/range.css';
+
 .button {
   @apply bg-gray-600;
 }
@@ -55,5 +62,24 @@ export default {
 }
 .button:enabled:hover {
   @apply bg-gray-700;
+}
+
+.range-visible::-moz-range-thumb {
+  visibility: visible;
+}
+.range-visible::-webkit-slider-thumb {
+  visibility: visible;
+}
+.range-visible::-ms-thumb {
+  visibility: visible;
+}
+.range-invisible::-moz-range-thumb {
+  visibility: hidden;
+}
+.range-invisible::-webkit-slider-thumb {
+  visibility: hidden;
+}
+.range-invisible::-ms-thumb {
+  visibility: hidden;
 }
 </style>
