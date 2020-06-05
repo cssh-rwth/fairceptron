@@ -19,6 +19,7 @@
           :class="ratingSelected ? 'range-visible' : 'range-invisible'"
           class="mx-4 w-full"
           @mousedown="enterSelection"
+          @touchstart="enterSelection"
         />
         <div
           class="text-xs sm:text-sm text-gray-700 sm:whitespace-no-wrap flex-1"
