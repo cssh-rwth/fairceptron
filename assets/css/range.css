@@ -1,0 +1,105 @@
+/* General input element */
+
+input[type="range"] {
+  -webkit-appearance: none;
+  /* Variables inside input range don't work in Edge */
+  --gray-400: #CBD5E0;
+  --gray-600: #718096;
+  --gray-700: #4A5568;
+}
+
+input[type="range"]:focus {
+  outline: none;
+}
+
+/* Thumbs */
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  margin-top: -.3rem; /* compensate for height in Webkit */
+  border: none;
+  height: 2rem;
+  width: .5rem;
+  border-radius: 9999px;
+  background: var(--gray-600);
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  background: var(--gray-700);
+}
+
+input[type="range"]:focus::-webkit-slider-thumb {
+  background: var(--gray-700);
+}
+
+input[type="range"]::-moz-range-thumb {
+  border: none;
+  height: 2rem;
+  width: .5rem;
+  border-radius: 9999px;
+  background: var(--gray-600);
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  background: var(--gray-700);
+}
+
+input[type="range"]:focus::-moz-range-thumb {
+  background: var(--gray-700);
+}
+
+input[type="range"]::-ms-thumb {
+  border: none;
+  height: 2rem;
+  width: .5rem;
+  border-radius: 9999px;
+  background: #718096;
+  cursor: pointer;
+}
+
+input[type="range"]::-ms-thumb:hover {
+  background: #4A5568;
+}
+
+input[type="range"]:focus::-ms-thumb {
+  background: #4A5568;
+}
+
+/* Tracks */
+
+input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 1.4rem;
+  cursor: pointer;
+  background: var(--gray-400);
+}
+
+input[type="range"]::-moz-range-track {
+  width: 100%;
+  height: 1.4rem;
+  cursor: pointer;
+  background: var(--gray-400);
+}
+
+input[type="range"]::-ms-track {
+  width: 100%;
+  height: 1.4rem;
+  cursor: pointer;
+  background: #CBD5E0;
+}
+
+/* Progress */
+
+input[type="range"]::-moz-range-progress {
+  cursor: pointer
+}
+
+input[type="range"]::-ms-fill-lower {
+  cursor: pointer;
+}
+
+input[type="range"]::-ms-fill-upper {
+  cursor: pointer;
+}

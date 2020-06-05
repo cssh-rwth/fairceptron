@@ -9,21 +9,21 @@
       v-if="questionType === 'ranking'"
       class="self-center my-12"
     />
-    <RatingBar class="self-end" />
+    <RangeRating class="self-end" />
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 
-import RatingBar from '~/components/RatingBar.vue'
-import SelectionPersonas from '~/components/SelectionPersonas.vue'
-import QuestionDescription from '~/components/QuestionDescription.vue'
-import RankingPersonas from '~/components/RankingPersonas.vue'
+import RangeRating from '~/components/RangeRating'
+import SelectionPersonas from '~/components/SelectionPersonas'
+import QuestionDescription from '~/components/QuestionDescription'
+import RankingPersonas from '~/components/RankingPersonas'
 
 export default {
   components: {
-    RatingBar,
+    RangeRating,
     SelectionPersonas,
     RankingPersonas,
     QuestionDescription
