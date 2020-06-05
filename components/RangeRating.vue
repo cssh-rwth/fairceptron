@@ -1,23 +1,35 @@
 <template>
   <div class="w-full sm:px-8">
     <form
-      class="w-full max-w-4xl p-4 mb-4 sm:mb-8 lg:mb-16 mx-auto flex flex-wrap items-end justify-center"
+      class="w-full max-w-4xl p-4 mb-4 sm:mb-8 lg:mb-16 mx-auto flex flex-wrap items-center justify-center"
       @submit.prevent="handleSubmit"
     >
-      <input
-        type="range"
-        :min="ratingMin"
-        :max="ratingMax"
-        :value="ratingValue"
-        :step="ratingStep"
-        :class="ratingSelected ? 'range-visible' : 'range-invisible'"
-        class="mr-4"
-        @mousedown="enterSelection"
-      />
+      <div class="flex flex-grow justify-center my-4">
+        <div
+          class="text-xs sm:text-sm text-gray-700 sm:whitespace-no-wrap flex-1"
+        >
+          {{ ratingLabelsDE[0] }}
+        </div>
+        <input
+          type="range"
+          :min="ratingMin"
+          :max="ratingMax"
+          :value="ratingValue"
+          :step="ratingStep"
+          :class="ratingSelected ? 'range-visible' : 'range-invisible'"
+          class="mx-4 w-full"
+          @mousedown="enterSelection"
+        />
+        <div
+          class="text-xs sm:text-sm text-gray-700 sm:whitespace-no-wrap flex-1"
+        >
+          {{ ratingLabelsDE[1] }}
+        </div>
+      </div>
       <button
         type="submit"
         :disabled="!ratingSelected"
-        class="px-2 py-1 sm:px-4 sm:py-2 mt-6 rounded text-white flex-none button"
+        class="px-2 py-1 my-4 mx-4 sm:ml-8 lg:ml-12 sm:mr-0 sm:px-4 sm:py-2 rounded text-white flex-none button"
       >
         {{ confirmLabelDE }}
       </button>
