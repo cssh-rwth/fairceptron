@@ -4,7 +4,7 @@
       class="w-full max-w-4xl p-4 mb-4 sm:mb-8 lg:mb-16 mx-auto flex flex-wrap items-center justify-center"
       @submit.prevent="handleSubmit"
     >
-      <div class="flex flex-grow justify-center my-4">
+      <div class="flex flex-grow justify-center items-center my-4">
         <div
           class="text-xs sm:text-sm text-gray-700 sm:whitespace-no-wrap flex-1"
         >

@@ -6,6 +6,7 @@ input[type="range"] {
   --gray-400: #CBD5E0;
   --gray-600: #718096;
   --gray-700: #4A5568;
+  cursor: pointer;
 }
 
 input[type="range"]:focus {
@@ -22,7 +23,6 @@ input[type="range"]::-webkit-slider-thumb {
   width: .5rem;
   border-radius: 9999px;
   background: var(--gray-600);
-  cursor: pointer;
 }
 
 input[type="range"]::-webkit-slider-thumb:hover {
@@ -39,7 +39,6 @@ input[type="range"]::-moz-range-thumb {
   width: .5rem;
   border-radius: 9999px;
   background: var(--gray-600);
-  cursor: pointer;
 }
 
 input[type="range"]::-moz-range-thumb:hover {
@@ -56,7 +55,6 @@ input[type="range"]::-ms-thumb {
   width: .5rem;
   border-radius: 9999px;
   background: #718096;
-  cursor: pointer;
 }
 
 input[type="range"]::-ms-thumb:hover {
@@ -72,34 +70,17 @@ input[type="range"]:focus::-ms-thumb {
 input[type="range"]::-webkit-slider-runnable-track {
   width: 100%;
   height: 1.4rem;
-  cursor: pointer;
   background: var(--gray-400);
 }
 
 input[type="range"]::-moz-range-track {
   width: 100%;
   height: 1.4rem;
-  cursor: pointer;
   background: var(--gray-400);
 }
 
 input[type="range"]::-ms-track {
   width: 100%;
   height: 1.4rem;
-  cursor: pointer;
   background: #CBD5E0;
-}
-
-/* Progress */
-
-input[type="range"]::-moz-range-progress {
-  cursor: pointer
-}
-
-input[type="range"]::-ms-fill-lower {
-  cursor: pointer;
-}
-
-input[type="range"]::-ms-fill-upper {
-  cursor: pointer;
 }
