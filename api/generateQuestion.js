@@ -9,14 +9,14 @@ export const generateRandomQuestion = () => {
       'text-yellow-300',
       'text-purple-300'
     ],
-    groupNames: []
+    groupNames: ['Frauen', 'Männer']
   }
-  const noOfPersonas = Math.floor(Math.random() * 12) + 3
-  const noOfGroups = Math.floor(Math.random() * 3) + 1
+  const noOfPersonas = 10 // Math.floor(Math.random() * 12) + 3
+  const noOfGroups = 2 // Math.floor(Math.random() * 3) + 1
   const noSelected = Math.floor(Math.random() * noOfPersonas * 0.3) + 1
   for (let i = 0; i < noOfPersonas; i++) {
     let group = i
-    if (i > noOfGroups) group = Math.floor(Math.random() * noOfGroups)
+    if (i >= noOfGroups) group = Math.floor(Math.random() * noOfGroups)
     const value = Math.floor(Math.random() * 100)
     question.personas.push({ group, selected: false, value })
   }
