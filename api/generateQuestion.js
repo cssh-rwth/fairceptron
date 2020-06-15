@@ -1,7 +1,7 @@
 export const generateRandomQuestion = () => {
   const question = {
     personas: [],
-    type: '',
+    questionType: '',
     showScores: true,
     colors: [
       'text-teal-300',
@@ -25,7 +25,7 @@ export const generateRandomQuestion = () => {
       question.personas[i].selected = true
   }
   const type = Math.random() > 0.5 ? 'selection' : 'ranking'
-  question.type = type
+  question.questionType = type
   const scoreVisibility = Math.random() > 0.5
   question.showScores = scoreVisibility
   return question

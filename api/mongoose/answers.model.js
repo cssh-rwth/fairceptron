@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const answerSchema = new Schema({
   rating: Number,
-  userID: String, // should be mongoose.ObjectId,
+  userID: mongoose.ObjectId,
   question: {
     questionType: String,
     personas: [
@@ -19,6 +19,7 @@ const answerSchema = new Schema({
 const Answer = mongoose.model('Answer', answerSchema)
 
 exports.createAnswer = (answerData) => {
+  answerData.userID = new mongoose.Types.ObjectId(answerData.userID)
   const answer = new Answer(answerData)
   return answer.save()
 }

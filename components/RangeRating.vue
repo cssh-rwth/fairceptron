@@ -11,10 +11,10 @@
           {{ ratingLabelsDE[0] }}
         </div>
         <input
+          v-model="ratingValue"
           type="range"
           :min="ratingMin"
           :max="ratingMax"
-          :value="ratingValue"
           :step="ratingStep"
           :class="ratingSelected ? 'range-visible' : 'range-invisible'"
           class="mx-4 w-full"
@@ -54,6 +54,7 @@ export default {
   },
   methods: {
     handleSubmit() {
+      this.$store.dispatch('sendAnswer', this.ratingValue)
       this.$router.push((parseInt(this.$route.params.id) + 1).toString())
     },
     enterSelection() {

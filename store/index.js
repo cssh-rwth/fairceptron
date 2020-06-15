@@ -9,7 +9,7 @@ const comparePersonas = (a, b) => {
 export const state = () => ({
   question: {
     personas: [],
-    type: '',
+    questionType: '',
     showScores: true,
     colors: [
       'text-teal-300',
@@ -19,7 +19,8 @@ export const state = () => ({
     ],
     groupNames: []
   },
-  userID: '-1'
+  answer: {},
+  userID: ''
 })
 
 export const getters = {
@@ -30,7 +31,7 @@ export const getters = {
     return state.question.personas
   },
   questionType(state) {
-    return state.question.type
+    return state.question.questionType
   },
   colors(state) {
     return state.question.colors
@@ -54,6 +55,12 @@ export const getters = {
   },
   noSelected(state) {
     return state.question.personas.filter((p) => p.selected).length
+  },
+  question(state) {
+    return state.question
+  },
+  userID(state) {
+    return state.userID
   }
 }
 
@@ -76,5 +83,12 @@ export const actions = {
     this.$axios.post('api/user').then((response) => {
       commit('setUserID', response.data.id)
     })
+  },
+  sendAnswer({ getters }, rating) {
+    const answer = {}
+    answer.question = getters.question
+    answer.rating = rating
+    answer.userID = getters.userID
+    this.$axios.post('api/answer', answer)
   }
 }
