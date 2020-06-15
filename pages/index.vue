@@ -46,6 +46,7 @@ export default {
   },
   methods: {
     startSurvey() {
+      this.$store.dispatch('registerUser')
       this.$router.push('/questions/1')
     }
   }

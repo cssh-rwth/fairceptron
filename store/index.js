@@ -1,8 +1,8 @@
 const comparePersonas = (a, b) => {
-  const valueA = a.value
-  const valueB = b.value
-  if (valueA > valueB) return -1
-  if (valueB > valueA) return 1
+  const qualificationA = a.qualification
+  const qualificationB = b.qualification
+  if (qualificationA > qualificationB) return -1
+  if (qualificationB > qualificationA) return 1
   else return 0
 }
 
@@ -18,7 +18,8 @@ export const state = () => ({
       'text-purple-300'
     ],
     groupNames: []
-  }
+  },
+  userID: '-1'
 })
 
 export const getters = {
@@ -59,6 +60,9 @@ export const getters = {
 export const mutations = {
   setQuestion(state, question) {
     state.question = question
+  },
+  setUserID(state, id) {
+    state.userID = id
   }
 }
 
@@ -66,6 +70,11 @@ export const actions = {
   getRandomQuestion({ commit }) {
     this.$axios.get('api/random').then((response) => {
       commit('setQuestion', response.data)
+    })
+  },
+  registerUser({ commit }) {
+    this.$axios.post('api/user').then((response) => {
+      commit('setUserID', response.data.id)
     })
   }
 }

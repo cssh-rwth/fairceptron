@@ -24,7 +24,7 @@
         v-if="showScores"
         class="self-center bg-gray-600 inline-block px-2 rounded-full text-xs lg:text-sm text-white"
       >
-        {{ p.value }} %
+        {{ p.qualification }} %
       </div>
     </div>
   </div>
