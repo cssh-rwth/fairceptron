@@ -17,8 +17,8 @@ export const generateRandomQuestion = () => {
   for (let i = 0; i < noOfPersonas; i++) {
     let group = i
     if (i >= noOfGroups) group = Math.floor(Math.random() * noOfGroups)
-    const value = Math.floor(Math.random() * 100)
-    question.personas.push({ group, selected: false, value })
+    const qualification = Math.floor(Math.random() * 100)
+    question.personas.push({ group, selected: false, qualification })
   }
   for (let i = 0; i < noSelected; i++) {
     if (Math.floor(Math.random() * noOfPersonas))
