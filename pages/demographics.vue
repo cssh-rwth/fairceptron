@@ -221,7 +221,7 @@
       weitere Anmerkungen?
     </div>
     <textarea
-      class="form-textarea mt-1 block w-full"
+      class="form-textarea mt-1 block w-full text-gray-700 text-sm sm:text-base xl:text-lg"
       rows="10"
       placeholder="Text eingeben."
     ></textarea>
