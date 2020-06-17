@@ -41,7 +41,12 @@ export default {
   },
   data() {
     return {
-      ratingSelected: ''
+      ratingSelected: undefined
+    }
+  },
+  watch: {
+    ratingSelected(val, oldVal) {
+      this.$emit('value', val)
     }
   }
 }

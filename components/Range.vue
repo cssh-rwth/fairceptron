@@ -36,10 +36,15 @@ export default {
   data() {
     return {
       ratingSelected: false,
-      ratingValue: 0,
-      ratingMin: -1,
+      ratingValue: undefined,
+      ratingMin: 0,
       ratingMax: 1,
       ratingStep: 0.001
+    }
+  },
+  watch: {
+    ratingValue(val, oldVal) {
+      this.$emit('value', val)
     }
   },
   methods: {
