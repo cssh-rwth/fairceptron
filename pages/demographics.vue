@@ -1,23 +1,33 @@
 <template>
-  <div class="max-w-6xl min-h-screen mx-auto">
-    <div class="text-base sm:text-lg my-12 md:text-xl xl:text-2xl">
+  <div class="max-w-6xl min-h-screen mx-auto px-4 sm:px-8">
+    <div
+      class="font-semibold text-gray-700 text-base sm:text-lg mt-4 sm:mt-12 md:text-xl xl:text-2xl"
+    >
       Gleich fertig! Bitte beantworte abschließend noch die folgenden Fragen:
     </div>
-    <div class="flex flex-col text-sm sm:text-base md:text-lg xl:text-xl">
-      <div class="flex flex-wrap min-w-full mb-6 xl:mb-8">
-        <div class="w-full sm:w-2/5">Wie religiös bist du?</div>
+    <div class="text-gray-700 text-sm sm:text-base xl:text-lg mt-4 mb-12 ">
+      Alle Angaben sind selbstverständlich freiwillig. Für meine Bachelorarbeit
+      bin ich aber auf möglichst vollständige Angaben angewiesen
+    </div>
+    <div class="flex flex-col text-sm sm:text-base xl:text-lg text-gray-700">
+      <div class="flex flex-wrap min-w-full">
+        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">Wie religiös bist du?</div>
         <Range @value="values.religious = $event" />
       </div>
-      <div class="flex flex-wrap min-w-full mb-6 xl:mb-8">
-        <div class="w-full sm:w-2/5">Wie sind deine politischen Ansichten?</div>
+      <hr class="my-6" />
+      <div class="flex flex-wrap min-w-full">
+        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+          Wie sind deine politischen Ansichten?
+        </div>
         <Range
           label-left="Konservativ"
           label-right="Progressiv"
           @value="values.political = $event"
         />
       </div>
-      <div class="flex flex-wrap min-w-full mb-6 xl:mb-8">
-        <div class="w-full sm:w-2/5">
+      <hr class="my-6" />
+      <div class="flex flex-wrap min-w-full">
+        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
           Wie hoch ist dein Vertrauen in maschinell getroffene Entscheidungen?
         </div>
         <Range
@@ -26,26 +36,32 @@
           @value="values.confidence = $event"
         />
       </div>
-      <div class="flex flex-wrap min-w-full mb-6 xl:mb-8">
-        <div class="w-full sm:w-2/5">
+      <hr class="my-6" />
+      <div class="flex flex-wrap min-w-full">
+        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
           Inwieweit befürchtest du, dass Maschinen außer Kontrolle geraten
           könnten?
         </div>
         <Range @value="values.fear = $event" />
       </div>
-      <div class="flex flex-wrap min-w-full mb-6 xl:mb-8">
-        <div class="w-full sm:w-2/5">
+      <hr class="my-6" />
+      <div class="flex flex-wrap min-w-full">
+        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
           Wie groß ist deine Bereitschaft, an einem maschinell durchgeführten
           Bewerbungsverfahren teilzunehmen?
         </div>
         <Range @value="values.will = $event" />
       </div>
-      <div class="flex flex-wrap min-w-full mb-6 xl:mb-8">
-        <div class="w-full sm:w-2/5">
+      <hr class="my-6" />
+      <div class="flex flex-wrap min-w-full">
+        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
           Was ist dein höchster Bildungsgrad?
         </div>
-        <div class="flex-grow">
-          <select v-model="values.edu" class="form-select block">
+        <div class="flex-grow lg:ml-8">
+          <select
+            v-model="values.edu"
+            class="form-select block w-full sm:w-1/2 lg:w-2/5"
+          >
             <option value="none">Kein Schulabschluss</option>
             <option value="realschule">
               Mittlerer Schulabschluss (10. Klasse)
@@ -60,13 +76,18 @@
           </select>
         </div>
       </div>
-      <div class="flex flex-wrap min-w-full mb-6 xl:mb-8">
-        <div class="w-full sm:w-2/5">
-          Wie hoch ist dein Jahreseinkommen? (Netto, inklusive Kapitalerträge,
-          Renten etc.)
+      <hr class="my-6" />
+      <div class="flex flex-wrap min-w-full">
+        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+          Wie hoch ist dein Jahreseinkommen?
+          <br />
+          (Netto, inklusive Kapitalerträge, Renten, Stipendien etc.)
         </div>
-        <div class="flex-grow">
-          <select v-model="values.income" class="form-select block">
+        <div class="flex-grow lg:ml-8">
+          <select
+            v-model="values.income"
+            class="form-select block w-full sm:w-1/2 lg:w-2/5"
+          >
             <option value="5000">weniger als 5000 €</option>
             <option value="10000">5.001 € bis 10.000 €</option>
             <option value="15000">10.001 € bis 15.000 €</option>
@@ -79,21 +100,26 @@
           </select>
         </div>
       </div>
-      <div class="flex flex-wrap min-w-full mb-6 xl:mb-8">
-        <div class="w-full sm:w-2/5">Wie alt bist du?</div>
-        <div class="flex-grow">
+      <hr class="my-6" />
+      <div class="flex flex-wrap min-w-full">
+        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">Wie alt bist du?</div>
+        <div class="flex-grow lg:ml-8">
           <input
             v-model="values.age"
             type="number"
-            class="form-input block"
+            class="form-input block w-full sm:w-1/2 lg:w-2/5"
             placeholder="Alter eingeben"
           />
         </div>
       </div>
-      <div class="flex flex-wrap min-w-full mb-6 xl:mb-8">
-        <div class="w-full sm:w-2/5">Was ist dein Geschlecht?</div>
-        <div class="flex-grow">
-          <select v-model="values.gender" class="form-select block">
+      <hr class="my-6" />
+      <div class="flex flex-wrap min-w-full">
+        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">Was ist dein Geschlecht?</div>
+        <div class="flex-grow lg:ml-8">
+          <select
+            v-model="values.gender"
+            class="form-select block w-full sm:w-1/2 lg:w-2/5"
+          >
             <option value="female">Weiblich</option>
             <option value="male">Männlich</option>
             <option value="other">Divers</option>
@@ -101,112 +127,119 @@
         </div>
       </div>
     </div>
-    <div class="text-base sm:text-lg my-12 md:text-xl xl:text-2xl">
+    <div
+      class="font-semibold text-gray-700 text-base sm:text-lg mt-24 md:text-xl xl:text-2xl"
+    >
       Inwieweit treffen die folgenden Aussagen auf dich zu?
     </div>
-    <div class="flex flex-col text-sm sm:text-base md:text-lg xl:text-xl">
-      <div class="flex flex-wrap min-w-full mb-6 xl:mb-8">
-        <div class="w-full sm:w-2/5">
+    <div class="text-gray-700 text-sm sm:text-base xl:text-lg mt-4 mb-12 ">
+      Die Antwortmöglichkeiten sind gegliedert wie folgt:
+      <br />
+      1: Trifft überhaupt nicht zu &ndash; 2: Trifft eher nicht zu &ndash; 3:
+      Weder noch &ndash; 4: Eher zutreffend &ndash; 5: Trifft voll und ganz zu
+    </div>
+    <div class="flex flex-col text-gray-700 text-sm sm:text-base xl:text-lg">
+      <div class="flex flex-wrap min-w-full">
+        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
           Ich bin eher zurückhaltend, reserviert.
         </div>
-        <RadioBar
-          name="BFI-1"
-          :levels="linkertLevelsDE"
-          @value="values.bfi1 = $event"
-        />
+        <RadioBar name="BFI-1" @value="values.bfi1 = $event" />
       </div>
-      <div class="flex flex-wrap min-w-full mb-6 xl:mb-8">
-        <div class="w-full sm:w-2/5">
+      <hr class="my-6" />
+      <div class="flex flex-wrap min-w-full">
+        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
           Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.
         </div>
-        <RadioBar
-          name="BFI-2"
-          :levels="linkertLevelsDE"
-          @value="values.bfi2 = $event"
-        />
+        <RadioBar name="BFI-2" @value="values.bfi2 = $event" />
       </div>
-      <div class="flex flex-wrap min-w-full mb-6 xl:mb-8">
-        <div class="w-full sm:w-2/5">Ich bin bequem, neige zur Faulheit.</div>
-        <RadioBar
-          name="BFI-3"
-          :levels="linkertLevelsDE"
-          @value="values.bfi3 = $event"
-        />
+      <hr class="my-6" />
+      <div class="flex flex-wrap min-w-full">
+        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+          Ich bin bequem, neige zur Faulheit.
+        </div>
+        <RadioBar name="BFI-3" @value="values.bfi3 = $event" />
       </div>
-      <div class="flex flex-wrap min-w-full mb-6 xl:mb-8">
-        <div class="w-full sm:w-2/5">
+      <hr class="my-6" />
+      <div class="flex flex-wrap min-w-full">
+        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
           Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.
         </div>
-        <RadioBar
-          name="BFI-4"
-          :levels="linkertLevelsDE"
-          @value="values.bfi4 = $event"
-        />
+        <RadioBar name="BFI-4" @value="values.bfi4 = $event" />
       </div>
-      <div class="flex flex-wrap min-w-full mb-6 xl:mb-8">
-        <div class="w-full sm:w-2/5">
+      <hr class="my-6" />
+      <div class="flex flex-wrap min-w-full">
+        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
           Ich habe nur wenig künstlerisches Interesse.
         </div>
-        <RadioBar
-          name="BFI-5"
-          :levels="linkertLevelsDE"
-          @value="values.bfi5 = $event"
-        />
+        <RadioBar name="BFI-5" @value="values.bfi5 = $event" />
       </div>
-      <div class="flex flex-wrap min-w-full mb-6 xl:mb-8">
-        <div class="w-full sm:w-2/5">
+      <hr class="my-6" />
+      <div class="flex flex-wrap min-w-full">
+        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
           Ich gehe aus mir heraus, bin gesellig.
         </div>
-        <RadioBar
-          name="BFI-6"
-          :levels="linkertLevelsDE"
-          @value="values.bfi6 = $event"
-        />
+        <RadioBar name="BFI-6" @value="values.bfi6 = $event" />
       </div>
-      <div class="flex flex-wrap min-w-full mb-6 xl:mb-8">
-        <div class="w-full sm:w-2/5">
+      <hr class="my-6" />
+      <div class="flex flex-wrap min-w-full">
+        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
           Ich neige dazu, andere zu kritisieren.
         </div>
-        <RadioBar
-          name="BFI-7"
-          :levels="linkertLevelsDE"
-          @value="values.bfi7 = $event"
-        />
+        <RadioBar name="BFI-7" @value="values.bfi7 = $event" />
       </div>
-      <div class="flex flex-wrap min-w-full mb-6 xl:mb-8">
-        <div class="w-full sm:w-2/5">Ich erledige Aufgaben gründlich.</div>
-        <RadioBar
-          name="BFI-8"
-          :levels="linkertLevelsDE"
-          @value="values.bfi8 = $event"
-        />
+      <hr class="my-6" />
+      <div class="flex flex-wrap min-w-full">
+        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+          Ich erledige Aufgaben gründlich.
+        </div>
+        <RadioBar name="BFI-8" @value="values.bfi8 = $event" />
       </div>
-      <div class="flex flex-wrap min-w-full mb-6 xl:mb-8">
-        <div class="w-full sm:w-2/5">Ich werde leicht nervös und unsicher.</div>
-        <RadioBar
-          name="BFI-9"
-          :levels="linkertLevelsDE"
-          @value="values.bfi9 = $event"
-        />
+      <hr class="my-6" />
+      <div class="flex flex-wrap min-w-full">
+        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+          Ich werde leicht nervös und unsicher.
+        </div>
+        <RadioBar name="BFI-9" @value="values.bfi9 = $event" />
       </div>
-      <div class="flex flex-wrap min-w-full mb-6 xl:mb-8">
-        <div class="w-full sm:w-2/5">
+      <hr class="my-6" />
+      <div class="flex flex-wrap min-w-full">
+        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
           Ich habe eine aktive Vorstellungskraft, bin phantasievoll.
         </div>
-        <RadioBar
-          name="BFI-10"
-          :levels="linkertLevelsDE"
-          @value="values.bfi10 = $event"
-        />
+        <RadioBar name="BFI-10" @value="values.bfi10 = $event" />
       </div>
     </div>
-    <div>Absenden</div>
+    <div
+      class="font-semibold text-gray-700 text-base sm:text-lg mt-24 md:text-xl xl:text-2xl"
+    >
+      Hast du noch Kommentare oder Hinweise?
+    </div>
+    <div class="text-gray-700 text-sm sm:text-base xl:text-lg mt-4 mb-12 ">
+      Was ist dir durch den Kopf gegangen, als du mit denverschiedenen Szenarien
+      konfrontiert wurdest? Was war für deine Entscheidungen ausschlaggebend?
+      Welche Paramter wurden im Design des Fairceptrons missachtet? Hast du
+      weitere Anmerkungen?
+    </div>
+    <textarea
+      class="form-textarea mt-1 block w-full"
+      rows="10"
+      placeholder="Text eingeben."
+    ></textarea>
+    <div class="w-full text-center my-16">
+      <button
+        type="submit"
+        class="bg-green-600 hover:bg-green-700 text-white rounded px-4 py-2"
+        @click.prevent="startSurvey()"
+      >
+        Absenden
+      </button>
+    </div>
   </div>
 </template>
 
 <script>
-import RadioBar from '~/components/RadioBar'
-import Range from '~/components/Range'
+import RadioBar from '~/components/demographics/RadioBar'
+import Range from '~/components/demographics/Range'
 
 export default {
   components: {
@@ -215,13 +248,13 @@ export default {
   },
   data() {
     return {
-      linkertLevelsDE: [
+      /* linkertLevelsDE: [
         'trifft überhaupt nicht zu',
         'trifft eher nicht zu',
         'weder noch',
         'eher zutreffend',
         'trifft voll und ganz zu'
-      ],
+      ], */
       values: {
         religious: undefined,
         political: undefined,

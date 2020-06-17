@@ -1,6 +1,8 @@
 <template>
-  <div class="flex flex-grow justify-center items-center my-4">
-    <div class="text-xs sm:text-sm text-gray-700 sm:whitespace-no-wrap flex-1">
+  <div class="flex flex-grow justify-center items-center">
+    <div
+      class="w-32 text-xs sm:text-sm text-gray-700 sm:whitespace-no-wrap text-right"
+    >
       {{ labelLeft }}
     </div>
     <input
@@ -14,7 +16,7 @@
       @mousedown="enterSelection"
       @touchstart="enterSelection"
     />
-    <div class="text-xs sm:text-sm text-gray-700 sm:whitespace-no-wrap flex-1">
+    <div class="w-32 text-xs sm:text-sm text-gray-700 sm:whitespace-no-wrap">
       {{ labelRight }}
     </div>
   </div>
