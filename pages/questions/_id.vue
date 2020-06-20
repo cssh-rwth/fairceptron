@@ -31,7 +31,7 @@ export default {
   computed: {
     ...mapGetters(['questionType'])
   },
-  created() {
+  beforeCreate() {
     /* load the current question into store, if not done already
      * e.g. if specific _id is requested directly
      */

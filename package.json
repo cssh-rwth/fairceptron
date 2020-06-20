@@ -15,7 +15,8 @@
     "@nuxtjs/axios": "^5.3.6",
     "body-parser": "^1.19.0",
     "mongoose": "^5.9.18",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "vuex-persistedstate": "^3.0.1"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^2.0.0",

@@ -141,10 +141,13 @@ export const actions = {
     })
   },
 
-  sendAnswer({ getters }, rating) {
+  sendAnswer({ getters, dispatch }, rating) {
     const answer = {}
     answer.question = getters.question
     answer.rating = rating
+    // get a new userID if unknown
+    // TODO: use the new userID also for the current answer
+    if (!getters.userID) dispatch('registerUser')
     answer.userID = getters.userID
     this.$axios.post('api/answer', answer)
   },

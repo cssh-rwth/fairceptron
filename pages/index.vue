@@ -49,7 +49,7 @@ export default {
   },
   methods: {
     startSurvey() {
-      this.$store.dispatch('registerUser')
+      if (!this.$store.getters.userID) this.$store.dispatch('registerUser')
       this.$router.push('/questions/1')
     }
   }
