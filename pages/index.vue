@@ -45,7 +45,7 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch('initQuestion')
+    this.$store.dispatch('initQuestions')
   },
   methods: {
     startSurvey() {

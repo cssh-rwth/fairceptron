@@ -31,9 +31,14 @@ export default {
   computed: {
     ...mapGetters(['questionType'])
   },
-  /* beforeCreate() {
-    this.$store.dispatch('getRandomQuestion')
-  }, */
+  created() {
+    /* load the current question into store, if not done already
+     * e.g. if specific _id is requested directly
+     */
+    if (this.$store.getters.currentNo !== parseInt(this.$route.params.id)) {
+      this.$store.dispatch('initQuestions', this.$route.params.id)
+    }
+  },
   validate({ params }) {
     // Must be a number
     return /^\d+$/.test(params.id)

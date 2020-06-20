@@ -18,7 +18,7 @@ export const state = () => ({
       'text-purple-300'
     ],
     groupNames: [],
-    number: 0
+    number: -1
   },
   nextQuestion: {
     personas: [],
@@ -31,7 +31,7 @@ export const state = () => ({
       'text-purple-300'
     ],
     groupNames: [],
-    number: 0
+    number: -1
   },
   answer: {},
   userID: ''
@@ -117,19 +117,20 @@ export const actions = {
   },
 
   // get the first questions
-  initQuestion({ commit }) {
+  initQuestions({ commit }, startAt) {
+    startAt = parseInt(startAt) || 1
     this.$axios
-      .get('api/question', { params: { number: 1 } })
+      .get('api/question', { params: { number: startAt } })
       .then((response) => {
         const question = response.data
-        question.number = 1
+        question.number = startAt
         commit('setQuestion', question)
       })
     this.$axios
-      .get('api/question', { params: { number: 2 } })
+      .get('api/question', { params: { number: startAt + 1 } })
       .then((response) => {
         const question = response.data
-        question.number = 2
+        question.number = startAt + 1
         commit('setNextQuestion', question)
       })
   },
