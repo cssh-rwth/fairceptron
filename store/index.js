@@ -96,10 +96,25 @@ export const mutations = {
   }
 }
 
+const normalizeQuestion = (question) => {
+  question.personas = question.personas || []
+  question.questionType = question.questionType || ''
+  question.showScores = question.showScores || true
+  question.colors = question.colors || [
+    'text-teal-300',
+    'text-orange-300',
+    'text-yellow-300',
+    'text-purple-300'
+  ]
+  question.groupNames = question.groupNames || []
+  question.number = question.number || -1
+  return question
+}
+
 export const actions = {
   getRandomQuestion({ commit }) {
     this.$axios.get('api/random').then((response) => {
-      commit('setQuestion', response.data)
+      commit('setQuestion', normalizeQuestion(response.data))
     })
   },
 
@@ -110,7 +125,7 @@ export const actions = {
     this.$axios
       .get('api/question', { params: { number: getters.currentNo + 1 } })
       .then((response) => {
-        const nextQuestion = response.data
+        const nextQuestion = normalizeQuestion(response.data)
         nextQuestion.number = getters.currentNo + 1
         commit('setNextQuestion', nextQuestion)
       })
@@ -122,14 +137,14 @@ export const actions = {
     this.$axios
       .get('api/question', { params: { number: startAt } })
       .then((response) => {
-        const question = response.data
+        const question = normalizeQuestion(response.data)
         question.number = startAt
         commit('setQuestion', question)
       })
     this.$axios
       .get('api/question', { params: { number: startAt + 1 } })
       .then((response) => {
-        const question = response.data
+        const question = normalizeQuestion(response.data)
         question.number = startAt + 1
         commit('setNextQuestion', question)
       })
