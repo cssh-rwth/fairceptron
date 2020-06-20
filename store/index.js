@@ -90,5 +90,9 @@ export const actions = {
     answer.rating = rating
     answer.userID = getters.userID
     this.$axios.post('api/answer', answer)
+  },
+  sendDemographics({ getters }, values) {
+    values.userID = getters.userID
+    this.$axios.post('api/demographics', values)
   }
 }

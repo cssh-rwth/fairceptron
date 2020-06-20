@@ -11,6 +11,19 @@
     </div>
     <div class="flex flex-col text-sm sm:text-base xl:text-lg text-gray-700">
       <div class="flex flex-wrap min-w-full">
+        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+          Inwieweit glaubst du, dass deine Bewertungen aus dem Fairceptron für
+          die Entwicklung fairer Entscheidungs-Algorithmen eingesetzt werden
+          sollten?
+        </div>
+        <Range
+          label-left="Sehr niedrig"
+          label-right="Sehr hoch"
+          @value="values.believe = $event"
+        />
+      </div>
+      <hr class="my-6" />
+      <div class="flex flex-wrap min-w-full">
         <div class="w-full lg:w-2/5 mb-4 lg:mb-0">Wie religiös bist du?</div>
         <Range @value="values.religious = $event" />
       </div>
@@ -39,18 +52,23 @@
       <hr class="my-6" />
       <div class="flex flex-wrap min-w-full">
         <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
-          Inwieweit befürchtest du, dass Maschinen außer Kontrolle geraten
-          könnten?
+          Inwieweit befürchtest du, dass maschinell getroffene Entscheidungen
+          außer Kontrolle geraten könnten?
         </div>
         <Range @value="values.fear = $event" />
       </div>
       <hr class="my-6" />
       <div class="flex flex-wrap min-w-full">
         <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
-          Wie groß ist deine Bereitschaft, an einem maschinell durchgeführten
-          Bewerbungsverfahren teilzunehmen?
+          Wie hoch ist deine Bereitschaft, an einem maschinell durchgeführten
+          Bewerbungsverfahren teilzunehmen, statt an einem Verfahren mit
+          menschlichen Entscheidern?
         </div>
-        <Range @value="values.will = $event" />
+        <Range
+          label-left="Sehr niedrig"
+          label-right="Sehr hoch"
+          @value="values.will = $event"
+        />
       </div>
       <hr class="my-6" />
       <div class="flex flex-wrap min-w-full">
@@ -81,22 +99,22 @@
         <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
           Wie hoch ist dein Jahreseinkommen?
           <br />
-          (Netto, inklusive Kapitalerträge, Renten, Stipendien etc.)
+          (Netto und inklusive Kapitalerträge, Renten, Stipendien etc.)
         </div>
         <div class="flex-grow lg:ml-8">
           <select
             v-model="values.income"
             class="form-select block w-full sm:w-1/2 lg:w-2/5"
           >
-            <option value="5000">weniger als 5000 €</option>
-            <option value="10000">5.001 € bis 10.000 €</option>
-            <option value="15000">10.001 € bis 15.000 €</option>
-            <option value="25000">15.001 € bis 25.000 €</option>
-            <option value="35000">25.001 € bis 35.000 €</option>
-            <option value="50000">35.001 € bis 50.000 €</option>
-            <option value="85000">50.001 € bis 85.000 €</option>
-            <option value="100000">85.001 € bis 100.000 €</option>
-            <option value="more">Mehr als 100.000 €</option>
+            <option value="< 5000">weniger als 5000 €</option>
+            <option value="5001 - 10000">5.001 € bis 10.000 €</option>
+            <option value="10001 - 15000">10.001 € bis 15.000 €</option>
+            <option value="15001 - 25000">15.001 € bis 25.000 €</option>
+            <option value="25001 - 35000">25.001 € bis 35.000 €</option>
+            <option value="35001 - 50000">35.001 € bis 50.000 €</option>
+            <option value="50001 - 85000">50.001 € bis 85.000 €</option>
+            <option value="85001 - 100000">85.001 € bis 100.000 €</option>
+            <option value="> 100000">Mehr als 100.000 €</option>
           </select>
         </div>
       </div>
@@ -221,6 +239,7 @@
       weitere Anmerkungen?
     </div>
     <textarea
+      v-model="values.comment"
       class="form-textarea mt-1 block w-full text-gray-700 text-sm sm:text-base xl:text-lg"
       rows="10"
       placeholder="Text eingeben."
@@ -229,7 +248,7 @@
       <button
         type="submit"
         class="bg-green-600 hover:bg-green-700 text-white rounded px-4 py-2"
-        @click.prevent="startSurvey()"
+        @click.prevent="finishSurvey()"
       >
         Absenden
       </button>
@@ -248,37 +267,37 @@ export default {
   },
   data() {
     return {
-      /* linkertLevelsDE: [
-        'trifft überhaupt nicht zu',
-        'trifft eher nicht zu',
-        'weder noch',
-        'eher zutreffend',
-        'trifft voll und ganz zu'
-      ], */
       values: {
-        religious: undefined,
-        political: undefined,
-        confidence: undefined,
-        fear: undefined,
-        will: undefined,
-        edu: undefined,
-        income: undefined,
-        age: undefined,
-        gender: undefined,
-        bfi1: undefined,
-        bfi2: undefined,
-        bfi3: undefined,
-        bfi4: undefined,
-        bfi5: undefined,
-        bfi6: undefined,
-        bfi7: undefined,
-        bfi8: undefined,
-        bfi9: undefined,
-        bfi10: undefined
+        religious: null,
+        political: null,
+        confidence: null,
+        fear: null,
+        will: null,
+        believe: null,
+        edu: null,
+        income: null,
+        age: null,
+        gender: null,
+        bfi1: null,
+        bfi2: null,
+        bfi3: null,
+        bfi4: null,
+        bfi5: null,
+        bfi6: null,
+        bfi7: null,
+        bfi8: null,
+        bfi9: null,
+        bfi10: null,
+        comment: null
       }
     }
   },
-  methods: {}
+  methods: {
+    finishSurvey() {
+      this.$store.dispatch('sendDemographics', this.values)
+      this.$router.push('finish')
+    }
+  }
 }
 </script>
 

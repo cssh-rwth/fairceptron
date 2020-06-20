@@ -25,6 +25,12 @@ app.post('/answer', (req, res) => {
   })
 })
 
+app.post('/demographics', (req, res) => {
+  UserModel.addDemographics(req.body).then((result) => {
+    res.status(201).send('Success')
+  })
+})
+
 module.exports = {
   path: '/api/',
   handler: app
