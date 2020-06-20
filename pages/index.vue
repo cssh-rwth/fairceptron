@@ -44,11 +44,13 @@ export default {
       startDE: 'FairCeptron starten'
     }
   },
+  mounted() {
+    this.$store.dispatch('initQuestion')
+  },
   methods: {
     startSurvey() {
       this.$store.dispatch('registerUser')
-      // this.$router.push('/questions/1')
-      this.$router.push('/demographics')
+      this.$router.push('/questions/1')
     }
   }
 }

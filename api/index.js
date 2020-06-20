@@ -13,6 +13,11 @@ app.get('/random', (req, res) => {
   res.json(generateRandomQuestion())
 })
 
+app.get('/question', (req, res) => {
+  if (req.query.number < 5) res.json(generateRandomQuestion())
+  else res.status(200).send({ questionType: 'demographics' })
+})
+
 app.post('/user', (req, res) => {
   UserModel.createUser().then((result) => {
     res.status(201).send({ id: result._id })

@@ -44,8 +44,8 @@ export default {
   data() {
     return {
       ratingSelected: false,
-      ratingValue: 0,
-      ratingMin: -1,
+      ratingValue: null,
+      ratingMin: 0,
       ratingMax: 1,
       ratingStep: 0.001,
       ratingLabelsDE: ['sehr unfair', 'sehr fair'],
@@ -55,7 +55,10 @@ export default {
   methods: {
     handleSubmit() {
       this.$store.dispatch('sendAnswer', this.ratingValue)
-      this.$router.push((parseInt(this.$route.params.id) + 1).toString())
+      this.$store.dispatch('rotateQuestions')
+      if (this.$store.getters.questionType === 'demographics')
+        this.$router.push('/demographics')
+      else this.$router.push(this.$store.getters.currentNo.toString())
     },
     enterSelection() {
       this.ratingSelected = true

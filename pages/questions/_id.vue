@@ -31,9 +31,9 @@ export default {
   computed: {
     ...mapGetters(['questionType'])
   },
-  beforeCreate() {
+  /* beforeCreate() {
     this.$store.dispatch('getRandomQuestion')
-  },
+  }, */
   validate({ params }) {
     // Must be a number
     return /^\d+$/.test(params.id)

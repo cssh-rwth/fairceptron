@@ -76,7 +76,8 @@ exports.addDemographics = (values) => {
     },
     /* 'omitUndefined: false' is default behaviour
      * undefined params will be stored as NULL in mongoDB
-     * on export from mongoDB into csv all fields will hence be included, including those that are NULL on some entries
+     * on export from mongoDB into csv all fields will hence be included,
+     * also those that are NULL on some entries
      */
     { omitUndefined: false }
   )
