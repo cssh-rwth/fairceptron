@@ -20,7 +20,11 @@
 </template>
 
 <script>
-export default {}
+export default {
+  transition: 'slide-left'
+}
 </script>
 
-<style scoped></style>
+<style scoped>
+@import '~assets/css/transitions.css';
+</style>

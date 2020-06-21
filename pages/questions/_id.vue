@@ -35,15 +35,36 @@ export default {
     /* load the current question into store, if not done already
      * e.g. if specific _id is requested directly
      */
-    if (this.$store.getters.currentNo !== parseInt(this.$route.params.id)) {
+    if (this.$store.getters.nextNo !== parseInt(this.$route.params.id)) {
       this.$store.dispatch('initQuestions', this.$route.params.id)
     }
+    // rotate new question in place
+    if (this.$store.getters.nextNo === parseInt(this.$route.params.id))
+      this.$store.dispatch('rotateQuestions')
+    // if this is a demographics question, redirect
+    if (this.$store.getters.questionType === 'demographics')
+      this.$router.push('/demographics')
   },
   validate({ params }) {
     // Must be a number
     return /^\d+$/.test(params.id)
+  },
+  transition(to, from) {
+    if (!from) return 'slide-left'
+    if (from.name === 'index') return 'slide-left'
+    if (from.name === 'demographics' || from.name === 'finish')
+      return 'slide-right'
+    if (from.name === 'questions-id') {
+      if (to.params.id < from.params.id) {
+        return 'slide-right'
+      } else {
+        return 'slide-left'
+      }
+    }
   }
 }
 </script>
 
-<style></style>
+<style scoped>
+@import '~assets/css/transitions.css';
+</style>

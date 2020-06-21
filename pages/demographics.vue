@@ -297,8 +297,15 @@ export default {
       this.$store.dispatch('sendDemographics', this.values)
       this.$router.push('finish')
     }
+  },
+  transition(to, from) {
+    if (!from) return 'slide-left'
+    if (from.name === 'questions-id') return 'slide-left'
+    if (from.name === 'finish') return 'slide-right'
   }
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+@import '~assets/css/transitions.css';
+</style>

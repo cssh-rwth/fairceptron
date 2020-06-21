@@ -55,10 +55,9 @@ export default {
   methods: {
     handleSubmit() {
       this.$store.dispatch('sendAnswer', this.ratingValue)
-      this.$store.dispatch('rotateQuestions')
-      if (this.$store.getters.questionType === 'demographics')
+      if (this.$store.getters.nextQuestion.questionType === 'demographics')
         this.$router.push('/demographics')
-      else this.$router.push(this.$store.getters.currentNo.toString())
+      else this.$router.push(this.$store.getters.nextNo.toString())
     },
     enterSelection() {
       this.ratingSelected = true

@@ -81,6 +81,9 @@ export const getters = {
   },
   nextQuestion(state) {
     return state.nextQuestion
+  },
+  nextNo(state) {
+    return state.nextQuestion.number
   }
 }
 
