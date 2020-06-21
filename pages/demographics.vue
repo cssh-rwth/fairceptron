@@ -292,6 +292,10 @@ export default {
       },
     }
   },
+  beforeCreate() {
+    // start the timer
+    this.$store.commit('startTimer')
+  },
   methods: {
     finishSurvey() {
       this.$store.dispatch('sendDemographics', this.values)

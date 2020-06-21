@@ -38,12 +38,17 @@ export default {
     if (this.$store.getters.nextNo !== parseInt(this.$route.params.id)) {
       this.$store.dispatch('initQuestions', this.$route.params.id)
     }
+
     // rotate new question in place
     if (this.$store.getters.nextNo === parseInt(this.$route.params.id))
       this.$store.dispatch('rotateQuestions')
+
     // if this is a demographics question, redirect
     if (this.$store.getters.questionType === 'demographics')
       this.$router.push('/demographics')
+
+    // start the timer
+    this.$store.commit('startTimer')
   },
   validate({ params }) {
     // Must be a number

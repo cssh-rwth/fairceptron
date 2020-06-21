@@ -31,6 +31,15 @@ app.post('/answer', (req, res) => {
 })
 
 app.post('/demographics', (req, res) => {
+  const answer = {
+    question: {
+      questionType: 'demographics',
+    },
+    rating: null,
+    timeElapsed: req.body.timeElapsed,
+    userID: req.body.userID,
+  }
+  AnswerModel.createAnswer(answer)
   UserModel.addDemographics(req.body).then((result) => {
     res.status(201).send('Success')
   })

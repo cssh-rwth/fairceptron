@@ -35,6 +35,8 @@ export const state = () => ({
   },
   answer: {},
   userID: '',
+  startTime: null,
+  timeElapsed: null,
 })
 
 export const getters = {
@@ -85,6 +87,9 @@ export const getters = {
   nextNo(state) {
     return state.nextQuestion.number
   },
+  timeElapsed(state) {
+    return state.timeElapsed
+  },
 }
 
 export const mutations = {
@@ -96,6 +101,18 @@ export const mutations = {
   },
   setUserID(state, id) {
     state.userID = id
+  },
+  startTimer(state) {
+    state.startTime = new Date()
+  },
+  stopTimer(state) {
+    const endTime = new Date()
+    if (state.startTime === null) state.timeElapsed = null
+    else {
+      const timeDiff = endTime - state.startTime
+      state.timeElapsed = timeDiff
+      state.startTime = null
+    }
   },
 }
 
@@ -159,19 +176,23 @@ export const actions = {
     })
   },
 
-  sendAnswer({ getters, dispatch }, rating) {
+  sendAnswer({ getters, commit, dispatch }, rating) {
     const answer = {}
     answer.question = getters.question
     answer.rating = rating
+    commit('stopTimer')
+    answer.timeElapsed = getters.timeElapsed
     // get a new userID if unknown
-    // TODO: use the new userID also for the current answer
+    // TODO await successfull registration
     if (!getters.userID) dispatch('registerUser')
     answer.userID = getters.userID
     this.$axios.post('api/answer', answer)
   },
 
-  sendDemographics({ getters }, values) {
+  sendDemographics({ getters, commit }, values) {
     values.userID = getters.userID
+    commit('stopTimer')
+    values.timeElapsed = getters.timeElapsed
     this.$axios.post('api/demographics', values)
   },
 }

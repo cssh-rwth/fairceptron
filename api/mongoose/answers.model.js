@@ -4,6 +4,7 @@ const Schema = mongoose.Schema
 const answerSchema = new Schema({
   rating: Number,
   userID: mongoose.ObjectId,
+  timeElapsed: Date,
   question: {
     questionType: String,
     personas: [
