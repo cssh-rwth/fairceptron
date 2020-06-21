@@ -37,6 +37,7 @@ export const state = () => ({
   userID: '',
   startTime: null,
   timeElapsed: null,
+  totalQuestions: -1,
 })
 
 export const getters = {
@@ -90,6 +91,9 @@ export const getters = {
   timeElapsed(state) {
     return state.timeElapsed
   },
+  totalQuestions(state) {
+    return state.totalQuestions
+  },
 }
 
 export const mutations = {
@@ -113,6 +117,9 @@ export const mutations = {
       state.timeElapsed = timeDiff
       state.startTime = null
     }
+  },
+  setTotalQuestions(state, totalQuestions) {
+    state.totalQuestions = totalQuestions
   },
 }
 
@@ -147,6 +154,8 @@ export const actions = {
       .then((response) => {
         const nextQuestion = normalizeQuestion(response.data)
         nextQuestion.number = getters.currentNo + 1
+        commit('setTotalQuestions', nextQuestion.totalQuestions)
+        delete nextQuestion.totalQuestions
         commit('setNextQuestion', nextQuestion)
       })
   },
@@ -159,6 +168,8 @@ export const actions = {
       .then((response) => {
         const question = normalizeQuestion(response.data)
         question.number = startAt
+        commit('setTotalQuestions', question.totalQuestions)
+        delete question.totalQuestions
         commit('setQuestion', question)
       })
     this.$axios
@@ -166,6 +177,8 @@ export const actions = {
       .then((response) => {
         const question = normalizeQuestion(response.data)
         question.number = startAt + 1
+        commit('setTotalQuestions', question.totalQuestions)
+        delete question.totalQuestions
         commit('setNextQuestion', question)
       })
   },

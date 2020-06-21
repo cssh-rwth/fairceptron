@@ -2,8 +2,10 @@
   <div
     class="p-4 sm:pt-6 lg:pt-8 xl:pt-16 text-gray-700 text-sm sm:text-base md:text-lg xl:text-xl leading-loose"
   >
-    Dieses Szenario besteht aus {{ personas.length }} Personen in
-    {{ noOfGroups }} Gruppen:
+    <span class="font-bold">Szenario {{ currentNo }}/{{ totalQuestions }}</span>
+    <br />
+    Dieses Szenario besteht aus
+    {{ personas.length }} Personen in {{ noOfGroups }} Gruppen:
     <span v-for="n in noOfGroups" :key="n"
       >{{ n === noOfGroups ? ' und' : n > 1 ? ',' : '' }}
       <span :class="colors[n - 1]" class="font-bold">
@@ -54,6 +56,8 @@ export default {
       'personasPerGroup',
       'noOfGroups',
       'noSelected',
+      'currentNo',
+      'totalQuestions',
     ]),
     groupDescriptions() {
       if (this.groupNames.length > 0) return this.groupNames

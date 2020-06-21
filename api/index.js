@@ -14,8 +14,18 @@ app.get('/random', (req, res) => {
 })
 
 app.get('/question', (req, res) => {
-  if (req.query.number < 5) res.json(generateRandomQuestion())
-  else res.status(200).send({ questionType: 'demographics' })
+  const totalQuestions = 5
+  if (req.query.number < totalQuestions) {
+    const question = generateRandomQuestion()
+    question.totalQuestions = totalQuestions
+    res.json(question)
+  } else {
+    const question = {
+      questionType: 'demographics',
+      totalQuestions,
+    }
+    res.status(200).send(question)
+  }
 })
 
 app.post('/user', (req, res) => {
