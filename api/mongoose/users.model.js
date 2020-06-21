@@ -17,7 +17,7 @@ const userSchema = new Schema({
   agreeableness: Number,
   conscientiousness: Number,
   neuroticism: Number,
-  openness: Number
+  openness: Number,
 })
 const User = mongoose.model('User', userSchema)
 
@@ -72,7 +72,7 @@ exports.addDemographics = (values) => {
       agreeableness,
       conscientiousness,
       neuroticism,
-      openness
+      openness,
     },
     /* 'omitUndefined: false' is default behaviour
      * undefined params will be stored as NULL in mongoDB

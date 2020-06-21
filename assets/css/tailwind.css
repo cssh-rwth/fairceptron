@@ -3,3 +3,6 @@
 @import 'tailwindcss/components';
 /* purgecss end ignore */
 @import 'tailwindcss/utilities';
+
+@import './range.css';
+@import './transitions.css'

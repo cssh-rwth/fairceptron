@@ -38,8 +38,8 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'SelectionPersonas',
   computed: {
-    ...mapGetters(['personas', 'colors', 'showScores'])
-  }
+    ...mapGetters(['personas', 'colors', 'showScores']),
+  },
 }
 </script>
 

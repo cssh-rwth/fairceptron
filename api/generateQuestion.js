@@ -7,9 +7,9 @@ export const generateRandomQuestion = () => {
       'text-teal-300',
       'text-orange-300',
       'text-yellow-300',
-      'text-purple-300'
+      'text-purple-300',
     ],
-    groupNames: ['Frauen', 'Männer']
+    groupNames: ['Frauen', 'Männer'],
   }
   const noOfPersonas = 10 // Math.floor(Math.random() * 12) + 3
   const noOfGroups = 2 // Math.floor(Math.random() * 3) + 1

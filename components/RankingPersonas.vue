@@ -39,9 +39,9 @@ export default {
     ...mapGetters({
       personas: 'personasSorted',
       colors: 'colors',
-      showScores: 'showScores'
-    })
-  }
+      showScores: 'showScores',
+    }),
+  },
 }
 </script>
 

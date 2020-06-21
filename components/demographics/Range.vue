@@ -28,12 +28,12 @@ export default {
   props: {
     labelLeft: {
       type: String,
-      default: 'Gar nicht'
+      default: 'Gar nicht',
     },
     labelRight: {
       type: String,
-      default: 'Sehr'
-    }
+      default: 'Sehr',
+    },
   },
   data() {
     return {
@@ -41,24 +41,23 @@ export default {
       ratingValue: undefined,
       ratingMin: 0,
       ratingMax: 1,
-      ratingStep: 0.001
+      ratingStep: 0.001,
     }
   },
   watch: {
     ratingValue(val, oldVal) {
       this.$emit('value', val)
-    }
+    },
   },
   methods: {
     enterSelection() {
       this.ratingSelected = true
-    }
-  }
+    },
+  },
 }
 </script>
 
 <style scoped>
-@import '~assets/css/range.css';
 .range-visible::-moz-range-thumb {
   visibility: visible;
 }

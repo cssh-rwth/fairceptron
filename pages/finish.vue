@@ -21,10 +21,8 @@
 
 <script>
 export default {
-  transition: 'slide-left'
+  transition: 'slide-left',
 }
 </script>
 
-<style scoped>
-@import '~assets/css/transitions.css';
-</style>
+<style scoped></style>

@@ -26,10 +26,10 @@ export default {
     RangeRating,
     SelectionPersonas,
     RankingPersonas,
-    QuestionDescription
+    QuestionDescription,
   },
   computed: {
-    ...mapGetters(['questionType'])
+    ...mapGetters(['questionType']),
   },
   beforeCreate() {
     /* load the current question into store, if not done already
@@ -61,10 +61,8 @@ export default {
         return 'slide-left'
       }
     }
-  }
+  },
 }
 </script>
 
-<style scoped>
-@import '~assets/css/transitions.css';
-</style>
+<style scoped></style>

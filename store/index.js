@@ -15,10 +15,10 @@ export const state = () => ({
       'text-teal-300',
       'text-orange-300',
       'text-yellow-300',
-      'text-purple-300'
+      'text-purple-300',
     ],
     groupNames: [],
-    number: -1
+    number: -1,
   },
   nextQuestion: {
     personas: [],
@@ -28,13 +28,13 @@ export const state = () => ({
       'text-teal-300',
       'text-orange-300',
       'text-yellow-300',
-      'text-purple-300'
+      'text-purple-300',
     ],
     groupNames: [],
-    number: -1
+    number: -1,
   },
   answer: {},
-  userID: ''
+  userID: '',
 })
 
 export const getters = {
@@ -84,7 +84,7 @@ export const getters = {
   },
   nextNo(state) {
     return state.nextQuestion.number
-  }
+  },
 }
 
 export const mutations = {
@@ -96,7 +96,7 @@ export const mutations = {
   },
   setUserID(state, id) {
     state.userID = id
-  }
+  },
 }
 
 const normalizeQuestion = (question) => {
@@ -107,7 +107,7 @@ const normalizeQuestion = (question) => {
     'text-teal-300',
     'text-orange-300',
     'text-yellow-300',
-    'text-purple-300'
+    'text-purple-300',
   ]
   question.groupNames = question.groupNames || []
   question.number = question.number || -1
@@ -173,5 +173,5 @@ export const actions = {
   sendDemographics({ getters }, values) {
     values.userID = getters.userID
     this.$axios.post('api/demographics', values)
-  }
+  },
 }

@@ -29,25 +29,25 @@ export default {
   props: {
     name: {
       type: String,
-      default: ''
+      default: '',
     },
     levels: {
       type: Array,
       default: () => {
         return [1, 2, 3, 4, 5]
-      }
-    }
+      },
+    },
   },
   data() {
     return {
-      ratingSelected: undefined
+      ratingSelected: undefined,
     }
   },
   watch: {
     ratingSelected(val, oldVal) {
       this.$emit('value', val)
-    }
-  }
+    },
+  },
 }
 </script>
 

@@ -38,5 +38,5 @@ app.post('/demographics', (req, res) => {
 
 module.exports = {
   path: '/api/',
-  handler: app
+  handler: app,
 }

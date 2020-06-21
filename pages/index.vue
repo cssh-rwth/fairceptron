@@ -41,7 +41,7 @@
 export default {
   data() {
     return {
-      startDE: 'FairCeptron starten'
+      startDE: 'FairCeptron starten',
     }
   },
   mounted() {
@@ -51,16 +51,14 @@ export default {
     startSurvey() {
       if (!this.$store.getters.userID) this.$store.dispatch('registerUser')
       this.$router.push('/questions/1')
-    }
+    },
   },
   transition(to, from) {
     if (!from) return 'slide-left'
     if (from.name === 'index') return 'slide-left'
     if (to.name === 'index') return 'slide-right'
-  }
+  },
 }
 </script>
 
-<style scoped>
-@import '~assets/css/transitions.css';
-</style>
+<style scoped></style>

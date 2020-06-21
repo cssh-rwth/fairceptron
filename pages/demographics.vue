@@ -5,7 +5,7 @@
     >
       Gleich fertig! Bitte beantworte abschließend noch die folgenden Fragen:
     </div>
-    <div class="text-gray-700 text-sm sm:text-base xl:text-lg mt-4 mb-12 ">
+    <div class="text-gray-700 text-sm sm:text-base xl:text-lg mt-4 mb-12">
       Alle Angaben sind selbstverständlich freiwillig. Für meine Bachelorarbeit
       bin ich aber auf möglichst vollständige Angaben angewiesen
     </div>
@@ -150,7 +150,7 @@
     >
       Inwieweit treffen die folgenden Aussagen auf dich zu?
     </div>
-    <div class="text-gray-700 text-sm sm:text-base xl:text-lg mt-4 mb-12 ">
+    <div class="text-gray-700 text-sm sm:text-base xl:text-lg mt-4 mb-12">
       Die Antwortmöglichkeiten sind gegliedert wie folgt:
       <br />
       1: Trifft überhaupt nicht zu &ndash; 2: Trifft eher nicht zu &ndash; 3:
@@ -232,7 +232,7 @@
     >
       Hast du noch Kommentare oder Hinweise?
     </div>
-    <div class="text-gray-700 text-sm sm:text-base xl:text-lg mt-4 mb-12 ">
+    <div class="text-gray-700 text-sm sm:text-base xl:text-lg mt-4 mb-12">
       Was ist dir durch den Kopf gegangen, als du mit denverschiedenen Szenarien
       konfrontiert wurdest? Was war für deine Entscheidungen ausschlaggebend?
       Welche Paramter wurden im Design des Fairceptrons missachtet? Hast du
@@ -263,7 +263,7 @@ import Range from '~/components/demographics/Range'
 export default {
   components: {
     RadioBar,
-    Range
+    Range,
   },
   data() {
     return {
@@ -288,24 +288,22 @@ export default {
         bfi8: null,
         bfi9: null,
         bfi10: null,
-        comment: null
-      }
+        comment: null,
+      },
     }
   },
   methods: {
     finishSurvey() {
       this.$store.dispatch('sendDemographics', this.values)
       this.$router.push('finish')
-    }
+    },
   },
   transition(to, from) {
     if (!from) return 'slide-left'
     if (from.name === 'questions-id') return 'slide-left'
     if (from.name === 'finish') return 'slide-right'
-  }
+  },
 }
 </script>
 
-<style scoped>
-@import '~assets/css/transitions.css';
-</style>
+<style scoped></style>

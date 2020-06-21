@@ -49,7 +49,7 @@ export default {
       ratingMax: 1,
       ratingStep: 0.001,
       ratingLabelsDE: ['sehr unfair', 'sehr fair'],
-      confirmLabelDE: 'Nächste Frage'
+      confirmLabelDE: 'Nächste Frage',
     }
   },
   methods: {
@@ -61,14 +61,12 @@ export default {
     },
     enterSelection() {
       this.ratingSelected = true
-    }
-  }
+    },
+  },
 }
 </script>
 
 <style scoped>
-@import '~assets/css/range.css';
-
 .button {
   @apply bg-gray-600;
 }

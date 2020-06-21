@@ -53,7 +53,7 @@ export default {
       'questionType',
       'personasPerGroup',
       'noOfGroups',
-      'noSelected'
+      'noSelected',
     ]),
     groupDescriptions() {
       if (this.groupNames.length > 0) return this.groupNames
@@ -65,8 +65,8 @@ export default {
         }
         return descriptions
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

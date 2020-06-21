@@ -10,11 +10,11 @@ const answerSchema = new Schema({
       {
         group: Number,
         selected: Boolean,
-        qualification: Number
-      }
+        qualification: Number,
+      },
     ],
-    showScores: Boolean
-  }
+    showScores: Boolean,
+  },
 })
 const Answer = mongoose.model('Answer', answerSchema)
 
