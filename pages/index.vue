@@ -40,14 +40,14 @@
         Die Teilnahme an der Studie ist freiwillig. Du kannst sie jederzeit
         abbrechen. Die Studie nimmt etwa ?? Minuten in Anspruch. Zusätzlich zu
         den von dir explizit eingegebenen Daten und der Bearbeitungsdauer pro
-        Szenario werden keine weiteren Daten erhoben. Genauere Informationen zum
+        Frage werden keine weiteren Daten erhoben. Genauere Informationen zum
         Datenschutz findest du im folgenden Abschnitt. Darüber hinaus wird eine
         eindeutige Benutzerkennung im Lokalen Speicher deines Webbrowsers
         hinterlegt (ähnlich zu einem Cookie), welche für die Verwendung des
         FAI<span class="tracking-widest">R</span>CEPTRONs notwendig ist. Indem
         du das FAI<span class="tracking-widest">R</span>CEPTRON startest,
         stimmst du der Verwendung dieser Benutzerkennung zu und bestätigst, dass
-        du
+        du über die Studie aufgeklärt wurdest und freiwillig an ihr teilnimmst.
       </div>
       <h1
         class="text-xl font-semibold mt-6 mb-2 cursor-pointer"
