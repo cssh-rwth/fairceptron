@@ -189,15 +189,17 @@ export const actions = {
     })
   },
 
-  sendAnswer({ getters, commit, dispatch }, rating) {
+  async sendAnswer({ getters, commit, dispatch }, rating) {
     const answer = {}
     answer.question = getters.question
     answer.rating = rating
     commit('stopTimer')
     answer.timeElapsed = getters.timeElapsed
     // get a new userID if unknown
-    // TODO await successfull registration
-    if (!getters.userID) dispatch('registerUser')
+    if (!getters.userID) {
+      const response = await this.$axios.post('api/user')
+      commit('setUserID', response.data.id)
+    }
     answer.userID = getters.userID
     this.$axios.post('api/answer', answer)
   },
