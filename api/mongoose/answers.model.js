@@ -7,6 +7,7 @@ const answerSchema = new Schema({
   timeElapsed: Date,
   question: {
     questionType: String,
+    number: Number,
     personas: [
       {
         group: Number,
