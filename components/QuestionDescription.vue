@@ -4,8 +4,7 @@
   >
     <span class="font-bold">Szenario {{ currentNo }}/{{ totalQuestions }}</span>
     <br />
-    Dieses Szenario besteht aus
-    {{ personas.length }} Personen in {{ noOfGroups }} Gruppen:
+    Es bewerben sich {{ personas.length }} Personen auf gleiche Studienplätze:
     <span v-for="n in noOfGroups" :key="n"
       >{{ n === noOfGroups ? ' und' : n > 1 ? ',' : '' }}
       <span :class="colors[n - 1]" class="font-bold">
@@ -14,15 +13,24 @@
     >.
     <br />
     <span v-if="questionType === 'selection'">
-      <span v-if="noSelected > 1">Es werden {{ noSelected }} Personen</span>
-      <span v-else>Es wird eine Person</span>
+      Aus den Bewerber:innen
+      <span v-if="noSelected > 1">werden {{ noSelected }} Personen</span>
+      <span v-else>wird eine Person</span>
+      von einem Algorithmus
       <span class="border-2 p-px px-1 border-green-500 rounded bg-green-100"
         >ausgewählt</span
-      >.
+      >
+      und
+      <span v-if="noSelected > 1">erhalten</span>
+      <span v-else>erhält</span>
+      einen Studienplatz.
     </span>
     <span v-else-if="questionType === 'ranking'">
-      Sie werden in folgendem Ranking sortiert.
+      Sie werden von einem Algorithmus in folgender Rangfolge sortiert. Je höher
+      eine Person in der Rangfolge steht, desto wahrscheinlicher erhält sie
+      einen Studienplatz.
     </span>
+    <br />
     <span v-if="showScores">
       Zusätzlich wird die
       <span class="text-white bg-gray-600 rounded-full px-2 py-px"
@@ -33,7 +41,7 @@
     <br />
     Für wie fair empfindest du
     <span v-if="questionType === 'selection'">die Auswahl</span>
-    <span v-else-if="questionType === 'ranking'">das Ranking</span>?
+    <span v-else-if="questionType === 'ranking'">die Rangfolge</span>?
     <!-- force postcss to load classes -->
     <div
       class="text-teal-300 text-orange-300 text-yellow-300 text-purple-300"

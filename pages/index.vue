@@ -23,7 +23,7 @@
         Im Kontext der Vergabe von Studienplätzen werden dir
         {{ $store.getters.totalQuestions }} Szenarien mit unterschiedlichen
         Auswahlen und Rangfolgen gezeigt. Jedes Szenario beinhaltet 10 Personen
-        mit verschiedenen Eigenschaften, die sich alle jeweils um dieselben
+        mit verschiedenen Eigenschaften, die sich alle jeweils auf gleiche
         Studienplätze bewerben. In Auswahlszenarien werden jeweils weniger als
         10 Bewerber:innen ausgewählt. In Rangfolge-Szenarien werden alle
         Bewerber:innen so sortiert, dass die ersten mit der höchsten
