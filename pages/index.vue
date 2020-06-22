@@ -20,12 +20,13 @@
       </div>
       <h1 class="text-xl font-semibold mt-6 mb-2">Ablauf und Inhalt</h1>
       <div class="mb-2">
-        Im Kontext der Vergabe von Studienplätzen werden dir 20 Szenarien mit
-        unterschiedlichen Auswahlen und Rangfolgen gezeigt. Jedes Szenario
-        beinhaltet 10 Personen mit verschiedenen Eigenschaften, die sich alle
-        jeweils um dieselben Studienplätze bewerben. In Auswahlszenarien werden
-        jeweils weniger als 10 Bewerber:innen ausgewählt. In Rangfolge-Szenarien
-        werden alle Bewerber:innen so sortiert, dass die ersten mit der höchsten
+        Im Kontext der Vergabe von Studienplätzen werden dir
+        {{ $store.getters.totalQuestions }} Szenarien mit unterschiedlichen
+        Auswahlen und Rangfolgen gezeigt. Jedes Szenario beinhaltet 10 Personen
+        mit verschiedenen Eigenschaften, die sich alle jeweils um dieselben
+        Studienplätze bewerben. In Auswahlszenarien werden jeweils weniger als
+        10 Bewerber:innen ausgewählt. In Rangfolge-Szenarien werden alle
+        Bewerber:innen so sortiert, dass die ersten mit der höchsten
         Wahrscheinlichkeit einen Studienplatz erhalten und die letzten mit der
         geringsten.
       </div>

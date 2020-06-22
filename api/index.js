@@ -15,7 +15,7 @@ app.get('/random', (req, res) => {
 
 app.get('/question', (req, res) => {
   const totalQuestions = 5
-  if (req.query.number < totalQuestions) {
+  if (req.query.number <= totalQuestions) {
     const question = generateRandomQuestion()
     question.totalQuestions = totalQuestions
     res.json(question)

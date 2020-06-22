@@ -37,7 +37,7 @@ export const state = () => ({
   userID: '',
   startTime: null,
   timeElapsed: null,
-  totalQuestions: -1,
+  totalQuestions: 20,
 })
 
 export const getters = {
