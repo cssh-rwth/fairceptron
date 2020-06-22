@@ -3,7 +3,7 @@
     <h1
       class="self-end text-4xl font-semibold text-gray-700 w-full text-center mt-16 mb-8"
     >
-      FAI<span class="tracking-widest">R</span>CEPTRON
+      Fai<span class="tracking-widest">r</span>Ceptron
     </h1>
     <div class="text-gray-700 px-4">
       <div class="mb-2">
@@ -14,7 +14,7 @@
         Arbeitsstelle.
       </div>
       <div class="mb-2">
-        Das FAI<span class="tracking-widest">R</span>CEPTRON ist eine Plattform
+        Das Fai<span class="tracking-widest">r</span>Ceptron ist eine Plattform
         zur Erfassung der menschlichen Perspektive auf solche maschinell
         getroffenen Auswahl- und Rangfolge-Entscheidungen.
       </div>
@@ -44,8 +44,8 @@
         Datenschutz findest du im folgenden Abschnitt. Darüber hinaus wird eine
         eindeutige Benutzerkennung im Lokalen Speicher deines Webbrowsers
         hinterlegt (ähnlich zu einem Cookie), welche für die Verwendung des
-        FAI<span class="tracking-widest">R</span>CEPTRONs notwendig ist. Indem
-        du das FAI<span class="tracking-widest">R</span>CEPTRON startest,
+        Fai<span class="tracking-widest">r</span>Ceptrons notwendig ist. Indem
+        du das Fai<span class="tracking-widest">r</span>Ceptron startest,
         stimmst du der Verwendung dieser Benutzerkennung zu und bestätigst, dass
         du über die Studie aufgeklärt wurdest und freiwillig an ihr teilnimmst.
       </div>
@@ -91,7 +91,7 @@
         class="bg-green-600 hover:bg-green-700 text-white rounded px-4 py-2"
         @click.prevent="startSurvey()"
       >
-        FAI<span class="tracking-widest">R</span>CEPTRON starten
+        Fai<span class="tracking-widest">r</span>Ceptron starten
       </button>
     </div>
   </div>

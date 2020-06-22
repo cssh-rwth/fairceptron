@@ -1,7 +1,7 @@
 {
   "name": "fairceptron",
   "version": "1.0.0",
-  "description": "Frontend for measuring perceptions of algorithmic fairness",
+  "description": "Tool for measuring perceptions of algorithmic fairness",
   "author": "Georg Ahnert",
   "private": true,
   "scripts": {
