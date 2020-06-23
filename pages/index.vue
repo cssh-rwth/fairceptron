@@ -9,9 +9,8 @@
       <div class="mb-2">
         Algorithmen übernehmen zunehmend Entscheidungen über Menschen, die
         bisher von Menschen getroffen wurden. Solche Entscheidungen umfassen
-        unter unter anderem die Vergabe von Krediten, das Gewähren von Kaution
-        oder die Rangfolge möglicher Kandidat:innen für eine offene
-        Arbeitsstelle.
+        unter anderem die Vergabe von Krediten, das Gewähren von Kaution oder
+        die Rangfolge möglicher Kandidat:innen für eine offene Arbeitsstelle.
       </div>
       <div class="mb-2">
         Das Fai<span class="tracking-widest">r</span>Ceptron ist eine Plattform
@@ -39,7 +38,7 @@
       <h1 class="text-xl font-semibold mt-6 mb-2">Teilnahme und Zustimmung</h1>
       <div class="mb-2">
         Die Teilnahme an der Studie ist freiwillig. Du kannst sie jederzeit
-        abbrechen. Die Studie nimmt etwa ?? Minuten in Anspruch. Zusätzlich zu
+        abbrechen. Die Studie nimmt etwa 15 Minuten in Anspruch. Zusätzlich zu
         den von dir explizit eingegebenen Daten und der Bearbeitungsdauer pro
         Frage werden keine weiteren Daten erhoben. Genauere Informationen zum
         Datenschutz findest du im folgenden Abschnitt. Darüber hinaus wird eine
