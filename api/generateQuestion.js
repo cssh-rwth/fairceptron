@@ -41,6 +41,9 @@ export const getPreSurveyQuestion = (number) => {
     [96, 83, 76, 69, 62],
     [98, 86, 79, 73, 68, 61],
     [100, 87, 81, 76, 71, 67, 60],
+    [100, 89, 83, 78, 74, 70, 66, 60],
+    [100, 91, 84, 80, 76, 72, 69, 65, 59],
+    [100, 92, 86, 81, 77, 74, 71, 68, 64, 59],
   ]
   const qualMinOver = [
     [],
@@ -51,44 +54,72 @@ export const getPreSurveyQuestion = (number) => {
     [100, 96, 89, 82, 75],
   ]
   const ratios = [
+    { maj: 9, min: 1, maj_sel: 3, min_sel: 0, maj_label: 'male' },
+    { maj: 9, min: 1, maj_sel: 2, min_sel: 1, maj_label: 'male' },
+
+    { maj: 8, min: 2, maj_sel: 3, min_sel: 0, maj_label: 'male' },
+    { maj: 8, min: 2, maj_sel: 2, min_sel: 1, maj_label: 'male' },
+    { maj: 8, min: 2, maj_sel: 1, min_sel: 2, maj_label: 'male' },
+
     { maj: 7, min: 3, maj_sel: 3, min_sel: 0, maj_label: 'male' },
     { maj: 7, min: 3, maj_sel: 2, min_sel: 1, maj_label: 'male' },
     { maj: 7, min: 3, maj_sel: 1, min_sel: 2, maj_label: 'male' },
     { maj: 7, min: 3, maj_sel: 0, min_sel: 3, maj_label: 'male' },
+
     { maj: 6, min: 4, maj_sel: 3, min_sel: 0, maj_label: 'male' },
     { maj: 6, min: 4, maj_sel: 2, min_sel: 1, maj_label: 'male' },
     { maj: 6, min: 4, maj_sel: 1, min_sel: 2, maj_label: 'male' },
     { maj: 6, min: 4, maj_sel: 0, min_sel: 3, maj_label: 'male' },
+
     { maj: 5, min: 5, maj_sel: 3, min_sel: 0, maj_label: 'male' },
     { maj: 5, min: 5, maj_sel: 2, min_sel: 1, maj_label: 'male' },
+
+    { maj: 9, min: 1, maj_sel: 3, min_sel: 0, maj_label: 'female' },
+    { maj: 9, min: 1, maj_sel: 2, min_sel: 1, maj_label: 'female' },
+
+    { maj: 8, min: 2, maj_sel: 3, min_sel: 0, maj_label: 'female' },
+    { maj: 8, min: 2, maj_sel: 2, min_sel: 1, maj_label: 'female' },
+    { maj: 8, min: 2, maj_sel: 1, min_sel: 2, maj_label: 'female' },
+
     { maj: 7, min: 3, maj_sel: 3, min_sel: 0, maj_label: 'female' },
     { maj: 7, min: 3, maj_sel: 2, min_sel: 1, maj_label: 'female' },
     { maj: 7, min: 3, maj_sel: 1, min_sel: 2, maj_label: 'female' },
     { maj: 7, min: 3, maj_sel: 0, min_sel: 3, maj_label: 'female' },
+
     { maj: 6, min: 4, maj_sel: 3, min_sel: 0, maj_label: 'female' },
     { maj: 6, min: 4, maj_sel: 2, min_sel: 1, maj_label: 'female' },
     { maj: 6, min: 4, maj_sel: 1, min_sel: 2, maj_label: 'female' },
     { maj: 6, min: 4, maj_sel: 0, min_sel: 3, maj_label: 'female' },
   ]
   const shuffledNo = [
-    12,
-    8,
-    9,
-    10,
+    20,
+    19,
     0,
-    5,
-    16,
+    27,
+    24,
     2,
-    3,
-    17,
-    15,
+    16,
     11,
-    14,
-    7,
-    13,
-    6,
-    1,
     4,
+    15,
+    13,
+    22,
+    3,
+    8,
+    10,
+    18,
+    7,
+    6,
+    23,
+    25,
+    17,
+    14,
+    1,
+    5,
+    26,
+    12,
+    21,
+    9,
   ]
   const questionNo = shuffledNo[number - 1]
 

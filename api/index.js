@@ -17,7 +17,7 @@ app.get('/random', (req, res) => {
 })
 
 app.get('/question', (req, res) => {
-  const totalQuestions = 18
+  const totalQuestions = 28
   if (req.query.number <= totalQuestions) {
     const question = getPreSurveyQuestion(req.query.number)
     question.totalQuestions = totalQuestions
