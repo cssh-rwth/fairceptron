@@ -60,7 +60,7 @@ export default {
     if (from.name === 'demographics' || from.name === 'finish')
       return 'slide-right'
     if (from.name === 'questions-id') {
-      if (to.params.id < from.params.id) {
+      if (parseInt(to.params.id) < parseInt(from.params.id)) {
         return 'slide-right'
       } else {
         return 'slide-left'
