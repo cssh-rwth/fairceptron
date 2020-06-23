@@ -1,4 +1,7 @@
-import { generateRandomQuestion } from './generateQuestion'
+import {
+  generateRandomQuestion,
+  getPreSurveyQuestion,
+} from './generateQuestion'
 
 const express = require('express')
 const app = express()
@@ -14,9 +17,9 @@ app.get('/random', (req, res) => {
 })
 
 app.get('/question', (req, res) => {
-  const totalQuestions = 5
+  const totalQuestions = 18
   if (req.query.number <= totalQuestions) {
-    const question = generateRandomQuestion()
+    const question = getPreSurveyQuestion(req.query.number)
     question.totalQuestions = totalQuestions
     res.json(question)
   } else {
@@ -44,6 +47,8 @@ app.post('/demographics', (req, res) => {
   const answer = {
     question: {
       questionType: 'demographics',
+      number: null,
+      showScores: null,
     },
     rating: null,
     timeElapsed: req.body.timeElapsed,
