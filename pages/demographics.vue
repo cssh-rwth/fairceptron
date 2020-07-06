@@ -257,8 +257,8 @@
 </template>
 
 <script>
-import RadioBar from '~/components/demographics/RadioBar'
-import Range from '~/components/demographics/Range'
+import RadioBar from '~/components/RadioBar'
+import Range from '~/components/Range'
 
 export default {
   components: {

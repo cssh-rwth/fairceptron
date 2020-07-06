@@ -4,42 +4,15 @@
       class="w-full max-w-4xl p-4 mb-4 sm:mb-8 lg:mb-16 mx-auto flex flex-wrap items-center justify-center"
       @submit.prevent="handleSubmit"
     >
-      <div class="flex flex-grow justify-center items-center my-4">
-        <div
-          class="text-xs sm:text-sm text-gray-700 sm:whitespace-no-wrap flex-1"
-        >
-          {{ ratingLabelsDE[0] }}
-        </div>
-        <div class="mx-4 w-full relative">
-          <div
-            v-if="ratingSelected"
-            :style="ratingValueCSS"
-            style="left: var(--rating-value); bottom: 2.25rem;"
-            class="absolute bg-white text-gray-700 w-8 rounded-full text-white text-center select-none"
-          >
-            {{ Math.round(ratingValue * 100) }}
-          </div>
-          <input
-            v-model="ratingValue"
-            type="range"
-            :min="ratingMin"
-            :max="ratingMax"
-            :step="ratingStep"
-            :class="ratingSelected ? 'range-visible' : 'range-invisible'"
-            class="w-full"
-            @mousedown="enterSelection"
-            @touchstart="enterSelection"
-          />
-        </div>
-        <div
-          class="text-xs sm:text-sm text-gray-700 sm:whitespace-no-wrap flex-1"
-        >
-          {{ ratingLabelsDE[1] }}
-        </div>
-      </div>
+      <Range
+        class="my-4"
+        :label-left="ratingLabelsDE[0]"
+        :label-right="ratingLabelsDE[1]"
+        @value="ratingValue = $event"
+      />
       <button
         type="submit"
-        :disabled="!ratingSelected"
+        :disabled="ratingValue === null"
         class="px-2 py-1 my-4 mx-4 sm:ml-8 lg:ml-12 sm:mr-0 sm:px-4 sm:py-2 rounded text-white flex-none button"
       >
         {{ confirmLabelDE }}
@@ -49,15 +22,16 @@
 </template>
 
 <script>
+import Range from '~/components/Range'
+
 export default {
   name: 'RatingBar',
+  components: {
+    Range,
+  },
   data() {
     return {
-      ratingSelected: false,
       ratingValue: null,
-      ratingMin: 0,
-      ratingMax: 1,
-      ratingStep: 0.01,
       ratingLabelsDE: ['sehr unfair', 'sehr fair'],
       confirmLabelDE: 'Nächste Frage',
     }
@@ -80,9 +54,6 @@ export default {
       if (this.$store.getters.nextQuestion.questionType === 'demographics')
         this.$router.push('/demographics')
       else this.$router.push(this.$store.getters.nextNo.toString())
-    },
-    enterSelection() {
-      this.ratingSelected = true
     },
   },
 }
