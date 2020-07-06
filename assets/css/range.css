@@ -87,21 +87,3 @@ input[type="range"]::-ms-track {
   height: 1.4rem;
   background: #CBD5E0;
 }
-
-/* Value indicator */
-
-.range-arrow-down {
-  width: 0;
-  height: 0;
-  bottom: -0.4rem;
-
-  border-left: 0.4rem solid transparent;
-  border-right: 0.4rem solid transparent;
-  border-top: .8rem solid var(--gray-400);
-}
-
-.range-bubble {
-  bottom: 2.5rem;
-  width: 1.5rem;
-  height: 1.5rem;
-}

@@ -9,13 +9,10 @@
       <div
         v-if="ratingSelected"
         :style="ratingValueCSS"
-        style="left: var(--rating-value);"
-        class="absolute range-bubble bg-gray-400 rounded-full text-white flex items-center justify-center"
+        style="left: var(--rating-value); bottom: 2.25rem;"
+        class="absolute bg-white text-gray-700 w-8 rounded-full text-white text-center select-none"
       >
-        <div class="range-arrow-down absolute"></div>
-        <div class="mb-px text-gray-700 select-none text-xs">
-          {{ Math.round(ratingValue * 100) }}
-        </div>
+        {{ Math.round(ratingValue * 100) }}
       </div>
       <input
         v-model="ratingValue"
@@ -64,7 +61,7 @@ export default {
           'calc(' +
           this.ratingValue * 100 +
           '% - ' +
-          (this.ratingValue * 0.5 + 0.5) +
+          (this.ratingValue * 0.5 + 0.75) +
           'rem)',
       }
     },
