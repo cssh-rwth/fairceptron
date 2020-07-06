@@ -1,11 +1,14 @@
 /* General input element */
 
-input[type="range"] {
-  -webkit-appearance: none;
+:root {
   /* Variables inside input range don't work in Edge */
   --gray-400: #CBD5E0;
   --gray-600: #718096;
   --gray-700: #4A5568;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
   cursor: pointer;
 }
 
@@ -83,4 +86,22 @@ input[type="range"]::-ms-track {
   width: 100%;
   height: 1.4rem;
   background: #CBD5E0;
+}
+
+/* Value indicator */
+
+.range-arrow-down {
+  width: 0;
+  height: 0;
+  bottom: -0.4rem;
+
+  border-left: 0.4rem solid transparent;
+  border-right: 0.4rem solid transparent;
+  border-top: .8rem solid var(--gray-400);
+}
+
+.range-bubble {
+  bottom: 2.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
 }
