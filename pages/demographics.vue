@@ -16,16 +16,12 @@
           die Entwicklung fairer Entscheidungs-Algorithmen eingesetzt werden
           sollten?
         </div>
-        <Range
-          label-left="Sehr niedrig"
-          label-right="Sehr hoch"
-          @value="values.believe = $event"
-        />
+        <Range class="mt-4 xl:mt-0" @value="values.believe = $event" />
       </div>
       <hr class="my-6" />
       <div class="flex flex-wrap min-w-full">
         <div class="w-full lg:w-2/5 mb-4 lg:mb-0">Wie religiös bist du?</div>
-        <Range @value="values.religious = $event" />
+        <Range class="mt-4 xl:mt-0" @value="values.religious = $event" />
       </div>
       <hr class="my-6" />
       <div class="flex flex-wrap min-w-full">
@@ -33,6 +29,7 @@
           Wie sind deine politischen Ansichten?
         </div>
         <Range
+          class="mt-4 xl:mt-0"
           label-left="Konservativ"
           label-right="Progressiv"
           @value="values.political = $event"
@@ -44,6 +41,7 @@
           Wie hoch ist dein Vertrauen in maschinell getroffene Entscheidungen?
         </div>
         <Range
+          class="mt-4 xl:mt-0"
           label-left="Sehr niedrig"
           label-right="Sehr hoch"
           @value="values.confidence = $event"
@@ -55,7 +53,7 @@
           Inwieweit befürchtest du, dass maschinell getroffene Entscheidungen
           außer Kontrolle geraten könnten?
         </div>
-        <Range @value="values.fear = $event" />
+        <Range class="mt-4 xl:mt-0" @value="values.fear = $event" />
       </div>
       <hr class="my-6" />
       <div class="flex flex-wrap min-w-full">
@@ -65,6 +63,7 @@
           menschlichen Entscheidern?
         </div>
         <Range
+          class="mt-4 xl:mt-0"
           label-left="Sehr niedrig"
           label-right="Sehr hoch"
           @value="values.will = $event"
