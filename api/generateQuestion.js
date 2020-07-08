@@ -26,8 +26,8 @@ export const generateRandomQuestion = () => {
   }
   const type = Math.random() > 0.5 ? 'selection' : 'ranking'
   question.questionType = type
-  const scoreVisibility = Math.random() > 0.5
-  question.showScores = scoreVisibility
+  // const scoreVisibility = Math.random() > 0.5
+  question.showScores = true
   return question
 }
 
