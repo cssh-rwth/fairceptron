@@ -86,13 +86,13 @@
       </div>
     </div>
     <div class="w-full text-center my-16">
-      <button
-        type="submit"
+      <nuxt-link
+        to="/questions/1"
         class="bg-green-600 hover:bg-green-700 text-white rounded px-4 py-2"
-        @click.prevent="startSurvey()"
+        @click.native="startSurvey()"
       >
         Fai<span class="tracking-widest">r</span>Ceptron starten
-      </button>
+      </nuxt-link>
     </div>
   </div>
 </template>
@@ -125,7 +125,6 @@ export default {
   methods: {
     startSurvey() {
       this.$store.commit('persistUserID') // persist the ID only with user agreement
-      this.$router.push('/questions/1')
     },
     togglePrivacyStatement() {
       this.showPrivacyStatement = !this.showPrivacyStatement
