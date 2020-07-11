@@ -8,16 +8,29 @@ const comparePersonas = (a, b) => {
 
 const qs = require('qs')
 
-export const state = () => ({
-  questionNumbers: [],
-  currentQuestion: -1,
-  questions: [],
-  answer: {},
-  userID: '',
-  localUserID: '',
-  startTime: null,
-  timeElapsed: null,
-})
+export const state = () => {
+  const initialState = {
+    questionNumbers: [],
+    currentQuestion: 0,
+    questions: [],
+    answer: {},
+    userID: '',
+    localUserID: '',
+    startTime: null,
+    timeElapsed: null,
+  }
+  const question = {
+    questionType: '',
+    personas: [],
+    colors: [],
+    showScores: true,
+    groupNames: [],
+  }
+  for (let i = 0; i < 100; i++) {
+    initialState.questions.push(question)
+  }
+  return initialState
+}
 
 export const getters = {
   personasSorted(state) {
@@ -77,7 +90,7 @@ export const getters = {
     return state.timeElapsed
   },
   totalQuestions(state) {
-    return state.questions.length ? state.questions.length - 1 : null
+    return state.questions.length !== 100 ? state.questions.length - 1 : null
   },
   questionNumbers(state) {
     return state.questionNumbers
@@ -151,10 +164,14 @@ export const actions = {
       })
   },
 
-  async registerUser({ commit, dispatch }) {
+  async registerUser({ commit, dispatch }, persistant) {
+    persistant = persistant || false
     const response = await this.$axios.post('api/user')
     commit('setUserID', response.data.id)
     commit('setQuestionNumbers', response.data.questionNumbers)
+    if (persistant) {
+      commit('persistUserID')
+    }
     dispatch('loadQuestions')
   },
 

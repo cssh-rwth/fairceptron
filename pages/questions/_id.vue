@@ -31,9 +31,11 @@ export default {
   computed: {
     ...mapGetters(['questionType']),
   },
+  validate({ params }) {
+    // Must be a number
+    return /^\d+$/.test(params.id)
+  },
   beforeCreate() {
-    // TODO: register user, load questions
-
     // point to the correct question
     this.$store.commit(
       'setCurrentQuestion',
@@ -47,9 +49,24 @@ export default {
     // start the timer
     this.$store.commit('startTimer')
   },
-  validate({ params }) {
-    // Must be a number
-    return /^\d+$/.test(params.id)
+  mounted() {
+    // user unknown
+    if (!this.$store.getters.userID) {
+      // load previously persisted UserID
+      if (this.$store.getters.localUserID) {
+        this.$store.commit('loadUserID')
+        this.$store.dispatch('loadUser', this.$store.getters.userID)
+      }
+      // register a new user
+      else {
+        const persistant = true
+        this.$store.dispatch('registerUser', persistant)
+      }
+    }
+    // user known, but questions not loaded
+    else if (!this.$store.getters.totalQuestions) {
+      this.$store.dispatch('loadQuestions')
+    }
   },
   transition(to, from) {
     if (!from) return 'slide-left'
