@@ -31,9 +31,21 @@ app.get('/question', (req, res) => {
   }
 })
 
+app.get('/questions', (req, res) => {
+  const numbers = req.body.numbers
+  const questions = []
+  for (let i = 0; i < numbers.length; i++) {
+    questions.push(getPreSurveyQuestion(numbers[i])) // TODO: get from DB
+  }
+  questions.push({ questionType: 'demographics' })
+  res.status(200).send(questions)
+})
+
 app.post('/user', (req, res) => {
   UserModel.createUser().then((result) => {
-    res.status(201).send({ id: result._id })
+    res
+      .status(201)
+      .send({ id: result._id, questionNumbers: result.questionNumbers })
   })
 })
 

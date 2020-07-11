@@ -18,7 +18,8 @@ const answerSchema = new Schema({
     showScores: Boolean,
   },
 })
-const Answer = mongoose.model('Answer', answerSchema)
+// don't recompile model on hot reload
+const Answer = mongoose.models.Answer || mongoose.model('Answer', answerSchema)
 
 exports.createAnswer = (answerData) => {
   answerData.userID = new mongoose.Types.ObjectId(answerData.userID)

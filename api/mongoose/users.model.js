@@ -2,6 +2,7 @@ const mongoose = require('./service').mongoose
 const Schema = mongoose.Schema
 
 const userSchema = new Schema({
+  questionNumbers: Array,
   believe: Number,
   religious: Number,
   political: Number,
@@ -19,10 +20,22 @@ const userSchema = new Schema({
   neuroticism: Number,
   openness: Number,
 })
-const User = mongoose.model('User', userSchema)
+// don't recompile model on hot reload
+const User = mongoose.models.User || mongoose.model('User', userSchema)
+
+const shuffle = (array) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * i)
+    const temp = array[i]
+    array[i] = array[j]
+    array[j] = temp
+  }
+  return array
+}
 
 exports.createUser = () => {
-  const user = new User()
+  const questionNumbers = shuffle([1, 2, 3, 4, 5]) // TODO generate from questions in DB
+  const user = new User({ questionNumbers })
   return user.save()
 }
 

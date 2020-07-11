@@ -91,37 +91,7 @@ export const getPreSurveyQuestion = (number) => {
     { maj: 6, min: 4, maj_sel: 1, min_sel: 2, maj_label: 'female' },
     { maj: 6, min: 4, maj_sel: 0, min_sel: 3, maj_label: 'female' },
   ]
-  const shuffledNo = [
-    20,
-    19,
-    0,
-    27,
-    24,
-    2,
-    16,
-    11,
-    4,
-    15,
-    13,
-    22,
-    3,
-    8,
-    10,
-    18,
-    7,
-    6,
-    23,
-    25,
-    17,
-    14,
-    1,
-    5,
-    26,
-    12,
-    21,
-    9,
-  ]
-  const questionNo = shuffledNo[number - 1]
+  const questionNo = number // shuffledNo[number - 1]
 
   // fixed settings
   const question = {
