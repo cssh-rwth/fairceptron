@@ -8,13 +8,6 @@ const answerSchema = new Schema({
   question: {
     questionType: String,
     number: Number,
-    personas: [
-      {
-        group: Number,
-        selected: Boolean,
-        qualification: Number,
-      },
-    ],
     showScores: Boolean,
   },
 })

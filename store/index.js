@@ -183,7 +183,11 @@ export const actions = {
 
   async sendAnswer({ getters, commit }, rating) {
     const answer = {}
-    answer.question = getters.question
+    answer.question = {
+      questionType: getters.questionType,
+      number: getters.questionNumbers[getters.currentNo],
+      showScores: getters.showScores,
+    }
     answer.rating = rating
     commit('stopTimer')
     answer.timeElapsed = getters.timeElapsed

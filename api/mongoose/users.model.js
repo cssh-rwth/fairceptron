@@ -1,6 +1,8 @@
 const mongoose = require('./service').mongoose
 const Schema = mongoose.Schema
 
+const QuestionModel = require('./questions.model')
+
 const userSchema = new Schema({
   questionNumbers: Array,
   believe: Number,
@@ -33,10 +35,17 @@ const shuffle = (array) => {
   return array
 }
 
-exports.createUser = () => {
-  const questionNumbers = [5, 3] // shuffle([1, 2, 3, 4, 5]) // TODO generate from questions in DB
+exports.createUser = async () => {
+  const questionNumbers = shuffle(
+    await QuestionModel.randomQuestionEachCluster()
+  )
   const user = new User({ questionNumbers })
   return user.save()
+}
+
+exports.getUser = (userID) => {
+  const user = User.where({ _id: userID }).findOne()
+  return user
 }
 
 exports.addDemographics = (values) => {

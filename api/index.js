@@ -1,66 +1,36 @@
-import {
-  generateRandomQuestion,
-  getPreSurveyQuestion,
-} from './generateQuestion'
-
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 
 const UserModel = require('./mongoose/users.model')
 const AnswerModel = require('./mongoose/answers.model')
+const QuestionModel = require('./mongoose/questions.model')
 
 app.use(bodyParser.json())
 
-app.get('/random', (req, res) => {
-  res.json(generateRandomQuestion())
+app.post('/user', async (req, res) => {
+  const user = await UserModel.createUser()
+  res.status(201).send({ id: user._id, questionNumbers: user.questionNumbers })
 })
 
-app.get('/question', (req, res) => {
-  const totalQuestions = 10
-  if (req.query.number <= totalQuestions) {
-    const question = generateRandomQuestion() // getPreSurveyQuestion(req.query.number)
-    question.totalQuestions = totalQuestions
-    res.json(question)
-  } else {
-    const question = {
-      questionType: 'demographics',
-      totalQuestions,
-    }
-    res.status(200).send(question)
-  }
+app.get('/user', async (req, res) => {
+  const user = await UserModel.getUser(req.query.userID)
+  res.status(200).send(user)
 })
 
-app.get('/questions', (req, res) => {
+app.get('/questions', async (req, res) => {
   const numbers = req.query.questionNumbers
-  const questions = []
-  for (let i = 0; i < numbers.length; i++) {
-    questions.push(getPreSurveyQuestion(numbers[i])) // TODO: get from DB
-  }
+  const questions = await QuestionModel.getQuestions(numbers)
   questions.push({ questionType: 'demographics' })
   res.status(200).send(questions)
 })
 
-app.post('/user', (req, res) => {
-  UserModel.createUser().then((result) => {
-    res
-      .status(201)
-      .send({ id: result._id, questionNumbers: result.questionNumbers })
-  })
+app.post('/answer', async (req, res) => {
+  await AnswerModel.createAnswer(req.body)
+  res.status(201).send('Success')
 })
 
-app.get('/user', (req, res) => {
-  // TODO: get from DB
-  res.status(200).send({ questionNumbers: [5, 3] })
-})
-
-app.post('/answer', (req, res) => {
-  AnswerModel.createAnswer(req.body).then((result) => {
-    res.status(201).send('Success')
-  })
-})
-
-app.post('/demographics', (req, res) => {
+app.post('/demographics', async (req, res) => {
   const answer = {
     question: {
       questionType: 'demographics',
@@ -71,10 +41,11 @@ app.post('/demographics', (req, res) => {
     timeElapsed: req.body.timeElapsed,
     userID: req.body.userID,
   }
-  AnswerModel.createAnswer(answer)
-  UserModel.addDemographics(req.body).then((result) => {
-    res.status(201).send('Success')
-  })
+  await Promise.all([
+    AnswerModel.createAnswer(answer),
+    UserModel.addDemographics(req.body),
+  ])
+  res.status(201).send('Success')
 })
 
 module.exports = {
