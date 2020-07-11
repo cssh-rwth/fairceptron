@@ -105,11 +105,26 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch('initQuestions')
+    // user unknown
+    if (!this.$store.getters.userID) {
+      // load previously persisted UserID
+      if (this.$store.getters.localUserID) {
+        this.$store.commit('loadUserID')
+        this.$store.dispatch('loadUser', this.$store.getters.userID)
+      }
+      // register a new user
+      else {
+        this.$store.dispatch('registerUser')
+      }
+    }
+    // user known, but questions not loaded
+    else if (!this.$store.getters.totalQuestions) {
+      this.$store.dispatch('loadQuestions')
+    }
   },
   methods: {
     startSurvey() {
-      if (!this.$store.getters.userID) this.$store.dispatch('registerUser')
+      this.$store.commit('persistUserID') // persist the ID only with user agreement
       this.$router.push('/questions/1')
     },
     togglePrivacyStatement() {

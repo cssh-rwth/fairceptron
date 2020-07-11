@@ -2,7 +2,9 @@
   <div
     class="p-4 sm:pt-6 lg:pt-8 xl:pt-16 text-gray-700 text-sm sm:text-base md:text-lg xl:text-xl leading-loose"
   >
-    <span class="font-bold">Szenario {{ currentNo }}/{{ totalQuestions }}</span>
+    <span class="font-bold"
+      >Szenario {{ currentNo + 1 }}/{{ totalQuestions }}</span
+    >
     <br />
     Es bewerben sich {{ personas.length }} Personen auf gleiche Studienplätze:
     <span v-for="n in noOfGroups" :key="n"

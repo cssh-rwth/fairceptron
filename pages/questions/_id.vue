@@ -32,16 +32,13 @@ export default {
     ...mapGetters(['questionType']),
   },
   beforeCreate() {
-    /* load the current question into store, if not done already
-     * e.g. if specific _id is requested directly
-     */
-    if (this.$store.getters.nextNo !== parseInt(this.$route.params.id)) {
-      this.$store.dispatch('initQuestions', this.$route.params.id)
-    }
+    // TODO: register user, load questions
 
-    // rotate new question in place
-    if (this.$store.getters.nextNo === parseInt(this.$route.params.id))
-      this.$store.dispatch('rotateQuestions')
+    // point to the correct question
+    this.$store.commit(
+      'setCurrentQuestion',
+      parseInt(this.$route.params.id - 1)
+    )
 
     // if this is a demographics question, redirect
     if (this.$store.getters.questionType === 'demographics')

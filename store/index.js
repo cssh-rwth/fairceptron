@@ -6,64 +6,47 @@ const comparePersonas = (a, b) => {
   else return 0
 }
 
+const qs = require('qs')
+
 export const state = () => ({
-  question: {
-    personas: [],
-    questionType: '',
-    showScores: true,
-    colors: [
-      'text-teal-300',
-      'text-orange-300',
-      'text-yellow-300',
-      'text-purple-300',
-    ],
-    groupNames: [],
-    number: -1,
-  },
-  nextQuestion: {
-    personas: [],
-    questionType: '',
-    showScores: true,
-    colors: [
-      'text-teal-300',
-      'text-orange-300',
-      'text-yellow-300',
-      'text-purple-300',
-    ],
-    groupNames: [],
-    number: -1,
-  },
+  questionNumbers: [],
+  currentQuestion: -1,
+  questions: [],
   answer: {},
   userID: '',
+  localUserID: '',
   startTime: null,
   timeElapsed: null,
-  totalQuestions: null,
 })
 
 export const getters = {
   personasSorted(state) {
-    return [...state.question.personas].sort(comparePersonas)
+    return [...state.questions[state.currentQuestion].personas].sort(
+      comparePersonas
+    )
   },
   personas(state) {
-    return state.question.personas
+    return state.questions[state.currentQuestion].personas
   },
   questionType(state) {
-    return state.question.questionType
+    return state.questions[state.currentQuestion].questionType
   },
   colors(state) {
-    return state.question.colors
+    return state.questions[state.currentQuestion].colors
   },
   showScores(state) {
-    return state.question.showScores
+    return state.questions[state.currentQuestion].showScores
   },
   groupNames(state) {
-    return state.question.groupNames
+    return state.questions[state.currentQuestion].groupNames
   },
   personasPerGroup(state) {
     const groupCount = []
     for (let i = 0; i < 5; i++)
       groupCount.push(
-        state.question.personas.filter((p) => p.group === i).length
+        state.questions[state.currentQuestion].personas.filter(
+          (p) => p.group === i
+        ).length
       )
     return groupCount
   },
@@ -71,40 +54,48 @@ export const getters = {
     return getters.personasPerGroup.filter((g) => g !== 0).length
   },
   noSelected(state) {
-    return state.question.personas.filter((p) => p.selected).length
+    return state.questions[state.currentQuestion].personas.filter(
+      (p) => p.selected
+    ).length
   },
   question(state) {
-    return state.question
+    return state.questions[state.currentQuestion]
   },
   userID(state) {
     return state.userID
   },
+  localUserID(state) {
+    return state.localUserID
+  },
   currentNo(state) {
-    return state.question.number
+    return state.currentQuestion
   },
   nextQuestion(state) {
-    return state.nextQuestion
-  },
-  nextNo(state) {
-    return state.nextQuestion.number
+    return state.questions[state.currentQuestion + 1]
   },
   timeElapsed(state) {
     return state.timeElapsed
   },
   totalQuestions(state) {
-    return state.totalQuestions
+    return state.questions.length ? state.questions.length - 1 : null
+  },
+  questionNumbers(state) {
+    return state.questionNumbers
   },
 }
 
 export const mutations = {
-  setQuestion(state, question) {
-    state.question = question
-  },
-  setNextQuestion(state, question) {
-    state.nextQuestion = question
-  },
   setUserID(state, id) {
     state.userID = id
+  },
+  setQuestionNumbers(state, numbers) {
+    state.questionNumbers = numbers
+  },
+  setQuestions(state, questions) {
+    state.questions = questions
+  },
+  setCurrentQuestion(state, number) {
+    state.currentQuestion = number
   },
   startTimer(state) {
     state.startTime = new Date()
@@ -118,8 +109,11 @@ export const mutations = {
       state.startTime = null
     }
   },
-  setTotalQuestions(state, totalQuestions) {
-    state.totalQuestions = totalQuestions
+  persistUserID(state) {
+    state.localUserID = state.userID
+  },
+  loadUserID(state) {
+    state.userID = state.localUserID
   },
 }
 
@@ -139,57 +133,38 @@ const normalizeQuestion = (question) => {
 }
 
 export const actions = {
-  getRandomQuestion({ commit }) {
-    this.$axios.get('api/random').then((response) => {
-      commit('setQuestion', normalizeQuestion(response.data))
-    })
-  },
-
-  rotateQuestions({ commit, getters }) {
-    // rotate next question to become current question
-    commit('setQuestion', getters.nextQuestion)
-    // get new next question asychronously
+  loadQuestions({ commit, getters }) {
+    const questionNumbers = getters.questionNumbers
     this.$axios
-      .get('api/question', { params: { number: getters.currentNo + 1 } })
+      .get('api/questions', {
+        params: { questionNumbers },
+        paramsSerializer: (params) => {
+          return qs.stringify(params)
+        },
+      })
       .then((response) => {
-        const nextQuestion = normalizeQuestion(response.data)
-        nextQuestion.number = getters.currentNo + 1
-        commit('setTotalQuestions', nextQuestion.totalQuestions)
-        delete nextQuestion.totalQuestions
-        commit('setNextQuestion', nextQuestion)
+        const questions = response.data
+        for (let i = 0; i < questions.length - 1; i++) {
+          questions[i] = normalizeQuestion(questions[i])
+        }
+        commit('setQuestions', questions)
       })
   },
 
-  // get the first questions
-  initQuestions({ commit }, startAt) {
-    startAt = parseInt(startAt) || 1
-    this.$axios
-      .get('api/question', { params: { number: startAt } })
-      .then((response) => {
-        const question = normalizeQuestion(response.data)
-        question.number = startAt
-        commit('setTotalQuestions', question.totalQuestions)
-        delete question.totalQuestions
-        commit('setQuestion', question)
-      })
-    this.$axios
-      .get('api/question', { params: { number: startAt + 1 } })
-      .then((response) => {
-        const question = normalizeQuestion(response.data)
-        question.number = startAt + 1
-        commit('setTotalQuestions', question.totalQuestions)
-        delete question.totalQuestions
-        commit('setNextQuestion', question)
-      })
+  async registerUser({ commit, dispatch }) {
+    const response = await this.$axios.post('api/user')
+    commit('setUserID', response.data.id)
+    commit('setQuestionNumbers', response.data.questionNumbers)
+    dispatch('loadQuestions')
   },
 
-  registerUser({ commit }) {
-    this.$axios.post('api/user').then((response) => {
-      commit('setUserID', response.data.id)
-    })
+  async loadUser({ commit, dispatch }, userID) {
+    const response = await this.$axios.get('api/user', { params: { userID } })
+    commit('setQuestionNumbers', response.data.questionNumbers)
+    dispatch('loadQuestions')
   },
 
-  async sendAnswer({ getters, commit, dispatch }, rating) {
+  async sendAnswer({ getters, commit }, rating) {
     const answer = {}
     answer.question = getters.question
     answer.rating = rating
@@ -199,6 +174,7 @@ export const actions = {
     if (!getters.userID) {
       const response = await this.$axios.post('api/user')
       commit('setUserID', response.data.id)
+      commit('setQuestionNumbers', response.data.questionNumbers)
     }
     answer.userID = getters.userID
     this.$axios.post('api/answer', answer)

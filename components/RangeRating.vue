@@ -53,7 +53,7 @@ export default {
       this.$store.dispatch('sendAnswer', this.ratingValue)
       if (this.$store.getters.nextQuestion.questionType === 'demographics')
         this.$router.push('/demographics')
-      else this.$router.push(this.$store.getters.nextNo.toString())
+      else this.$router.push((this.$store.getters.currentNo + 2).toString())
     },
   },
 }

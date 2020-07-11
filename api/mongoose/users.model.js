@@ -34,7 +34,7 @@ const shuffle = (array) => {
 }
 
 exports.createUser = () => {
-  const questionNumbers = shuffle([1, 2, 3, 4, 5]) // TODO generate from questions in DB
+  const questionNumbers = [5, 3] // shuffle([1, 2, 3, 4, 5]) // TODO generate from questions in DB
   const user = new User({ questionNumbers })
   return user.save()
 }

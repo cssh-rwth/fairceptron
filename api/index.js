@@ -32,7 +32,7 @@ app.get('/question', (req, res) => {
 })
 
 app.get('/questions', (req, res) => {
-  const numbers = req.body.numbers
+  const numbers = req.query.questionNumbers
   const questions = []
   for (let i = 0; i < numbers.length; i++) {
     questions.push(getPreSurveyQuestion(numbers[i])) // TODO: get from DB
@@ -47,6 +47,11 @@ app.post('/user', (req, res) => {
       .status(201)
       .send({ id: result._id, questionNumbers: result.questionNumbers })
   })
+})
+
+app.get('/user', (req, res) => {
+  // TODO: get from DB
+  res.status(200).send({ questionNumbers: [5, 3] })
 })
 
 app.post('/answer', (req, res) => {

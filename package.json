@@ -17,6 +17,7 @@
     "dotenv": "^8.2.0",
     "mongoose": "^5.9.18",
     "nuxt": "^2.0.0",
+    "qs": "^6.9.4",
     "vuex-persistedstate": "^3.0.1"
   },
   "devDependencies": {
