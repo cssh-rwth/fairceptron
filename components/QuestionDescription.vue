@@ -2,10 +2,8 @@
   <div
     class="p-4 sm:pt-6 lg:pt-8 xl:pt-16 text-gray-700 text-sm sm:text-base md:text-lg xl:text-xl leading-loose"
   >
-    <span class="font-bold"
-      >Szenario {{ currentNo + 1 }}/{{ totalQuestions }}</span
-    >
-    <br />
+    <ProgressBar class="mb-6 sm:mb-8 lg:mb-10 xl:mb-20" :progress="progress" />
+
     Es bewerben sich {{ personas.length }} Personen auf gleiche Studienplätze:
     <span v-for="n in noOfGroups" :key="n"
       >{{ n === noOfGroups ? ' und' : n > 1 ? ',' : '' }}
@@ -53,9 +51,13 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import ProgressBar from '~/components/ProgressBar'
 
 export default {
   name: 'QuestionDescription',
+  components: {
+    ProgressBar,
+  },
   computed: {
     ...mapGetters([
       'personas',
@@ -69,16 +71,31 @@ export default {
       'currentNo',
       'totalQuestions',
     ]),
+    progress() {
+      return Math.round(
+        ((this.currentNo + 1) / (this.totalQuestions + 3)) * 100 // + landingPage + 2xdemographics
+      )
+    },
     groupDescriptions() {
-      if (this.groupNames.length > 0) return this.groupNames
-      else {
+      const names = this.groupNames
+      if (names.length === 0) {
         const descriptions = []
         for (let i = 0; i < this.noOfGroups; i++) {
           const descr = this.personasPerGroup[i] === 1 ? 'Person' : 'Personen'
           descriptions.push(descr + ' in Gruppe ' + (i + 1).toString())
         }
         return descriptions
+      } else if (names.length === 2) {
+        if (names[0] === 'Männer' && this.personasPerGroup[0] === 1)
+          names[0] = 'Mann'
+        if (names[1] === 'Männer' && this.personasPerGroup[1] === 1)
+          names[1] = 'Mann'
+        if (names[0] === 'Frauen' && this.personasPerGroup[0] === 1)
+          names[0] = 'Frau'
+        if (names[1] === 'Frauen' && this.personasPerGroup[1] === 1)
+          names[1] = 'Frau'
       }
+      return names
     },
   },
 }

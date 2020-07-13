@@ -1,5 +1,9 @@
 <template>
-  <div class="max-w-6xl min-h-screen mx-auto px-4 sm:px-8">
+  <div
+    class="max-w-6xl min-h-screen mx-auto p-4 sm:pt-6 lg:pt-8 xl:pt-16 sm:px-8"
+  >
+    <ProgressBar class="mb-4 sm:mb-6 lg:mb-8 xl:mb-16" :progress="progress" />
+
     <div
       class="font-semibold text-gray-700 text-base sm:text-lg mt-4 sm:mt-12 md:text-xl xl:text-2xl"
     >
@@ -256,13 +260,16 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import RadioBar from '~/components/RadioBar'
 import Range from '~/components/Range'
+import ProgressBar from '~/components/ProgressBar'
 
 export default {
   components: {
     RadioBar,
     Range,
+    ProgressBar,
   },
   data() {
     return {
@@ -290,6 +297,14 @@ export default {
         comment: null,
       },
     }
+  },
+  computed: {
+    ...mapGetters(['totalQuestions']),
+    progress() {
+      return Math.round(
+        ((this.totalQuestions + 1) / (this.totalQuestions + 3)) * 100 // + landingPage + 2xdemographics
+      )
+    },
   },
   beforeCreate() {
     // start the timer
