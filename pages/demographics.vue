@@ -14,53 +14,53 @@
       bin ich aber auf möglichst vollständige Angaben angewiesen.
     </div>
     <div class="flex flex-col text-sm sm:text-base xl:text-lg text-gray-700">
-      <div class="flex flex-wrap min-w-full">
+      <div class="flex flex-wrap items-center min-w-full">
         <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
           Inwieweit glaubst du, dass deine Bewertungen aus dem Fairceptron für
           die Entwicklung fairer Entscheidungs-Algorithmen eingesetzt werden
           sollten?
         </div>
-        <Range class="mt-4 xl:mt-0" @value="values.believe = $event" />
+        <Range class="mt-4 lg:mt-0" @value="values.believe = $event" />
       </div>
       <hr class="my-6" />
-      <div class="flex flex-wrap min-w-full">
+      <div class="flex flex-wrap items-end min-w-full">
         <div class="w-full lg:w-2/5 mb-4 lg:mb-0">Wie religiös bist du?</div>
-        <Range class="mt-4 xl:mt-0" @value="values.religious = $event" />
+        <Range class="mt-4" @value="values.religious = $event" />
       </div>
       <hr class="my-6" />
-      <div class="flex flex-wrap min-w-full">
+      <div class="flex flex-wrap items-end min-w-full">
         <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
           Wie sind deine politischen Ansichten?
         </div>
         <Range
-          class="mt-4 xl:mt-0"
+          class="mt-4"
           label-left="Konservativ"
           label-right="Progressiv"
           @value="values.political = $event"
         />
       </div>
       <hr class="my-6" />
-      <div class="flex flex-wrap min-w-full">
+      <div class="flex flex-wrap items-center min-w-full">
         <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
           Wie hoch ist dein Vertrauen in maschinell getroffene Entscheidungen?
         </div>
         <Range
-          class="mt-4 xl:mt-0"
+          class="mt-4 lg:mt-0"
           label-left="Sehr niedrig"
           label-right="Sehr hoch"
           @value="values.confidence = $event"
         />
       </div>
       <hr class="my-6" />
-      <div class="flex flex-wrap min-w-full">
+      <div class="flex flex-wrap items-center min-w-full">
         <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
           Inwieweit befürchtest du, dass maschinell getroffene Entscheidungen
           außer Kontrolle geraten könnten?
         </div>
-        <Range class="mt-4 xl:mt-0" @value="values.fear = $event" />
+        <Range class="mt-4 lg:mt-0" @value="values.fear = $event" />
       </div>
       <hr class="my-6" />
-      <div class="flex flex-wrap min-w-full">
+      <div class="flex flex-wrap items-center min-w-full">
         <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
           Wie hoch ist deine Bereitschaft, an einem maschinell durchgeführten
           Bewerbungsverfahren teilzunehmen, statt an einem Verfahren mit

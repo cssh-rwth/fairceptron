@@ -72,6 +72,7 @@ export default {
       'totalQuestions',
     ]),
     progress() {
+      if (!this.totalQuestions) return 0
       return Math.round(
         ((this.currentNo + 1) / (this.totalQuestions + 3)) * 100 // + landingPage + 2xdemographics
       )

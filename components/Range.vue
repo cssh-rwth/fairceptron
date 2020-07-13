@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-grow justify-center items-center">
+  <div class="flex flex-grow justify-center items-start">
     <div
       class="w-32 text-xs sm:text-sm text-gray-700 sm:whitespace-no-wrap text-right"
     >

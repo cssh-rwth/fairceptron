@@ -65,14 +65,14 @@ export default {
 
 <style scoped>
 .button {
-  @apply bg-gray-600;
+  @apply bg-green-600;
 }
 .button.disabled {
   @apply bg-gray-200;
   @apply cursor-default;
 }
 .button.enabled:hover {
-  @apply bg-gray-700;
+  @apply bg-green-700;
 }
 
 .range-visible::-moz-range-thumb {

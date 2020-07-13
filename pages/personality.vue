@@ -117,13 +117,13 @@
       placeholder="Text eingeben."
     ></textarea>
     <div class="w-full text-center my-16">
-      <button
-        type="submit"
+      <nuxt-link
+        to="finish"
         class="bg-green-600 hover:bg-green-700 text-white rounded px-4 py-2"
-        @click.prevent="finishSurvey()"
+        @click.native="finishSurvey()"
       >
         Absenden
-      </button>
+      </nuxt-link>
     </div>
   </div>
 </template>
@@ -196,7 +196,6 @@ export default {
   methods: {
     finishSurvey() {
       this.$store.dispatch('sendPersonality', this.values)
-      this.$router.push('finish')
     },
   },
   transition(to, from) {
