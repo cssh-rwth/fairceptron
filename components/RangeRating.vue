@@ -1,25 +1,21 @@
 <template>
-  <div class="w-full sm:px-8">
-    <form
-      class="w-full p-4 mb-4 sm:mb-8 lg:mb-16 mx-auto flex flex-wrap items-center justify-center"
+  <form class="w-full mx-auto flex flex-wrap items-center justify-center">
+    <Range
+      class="my-4"
+      :label-left="ratingLabelsDE[0]"
+      :label-right="ratingLabelsDE[1]"
+      :range-value.sync="ratingValue"
+    />
+    <nuxt-link
+      :to="nextPage"
+      :class="ratingValue === null ? 'disabled' : 'enabled'"
+      :event="ratingValue !== null ? 'click' : ''"
+      class="px-2 py-1 my-4 mx-4 sm:ml-8 lg:ml-12 sm:mr-0 sm:px-4 sm:py-2 rounded text-white flex-none button"
+      @click.native="handleSubmit()"
     >
-      <Range
-        class="my-4"
-        :label-left="ratingLabelsDE[0]"
-        :label-right="ratingLabelsDE[1]"
-        :range-value.sync="ratingValue"
-      />
-      <nuxt-link
-        :to="nextPage"
-        :class="ratingValue === null ? 'disabled' : 'enabled'"
-        :event="ratingValue !== null ? 'click' : ''"
-        class="px-2 py-1 my-4 mx-4 sm:ml-8 lg:ml-12 sm:mr-0 sm:px-4 sm:py-2 rounded text-white flex-none button"
-        @click.native="handleSubmit()"
-      >
-        {{ confirmLabelDE }}
-      </nuxt-link>
-    </form>
-  </div>
+      {{ confirmLabelDE }}
+    </nuxt-link>
+  </form>
 </template>
 
 <script>

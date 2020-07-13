@@ -1,15 +1,15 @@
 <template>
-  <div class="max-w-6xl min-h-screen mx-auto grid grid-cols-1">
-    <QuestionDescription class="self-start" />
+  <div
+    class="max-w-6xl min-h-screen mx-auto flex flex-col p-4 sm:p-6 lg:p-8 xl:p-12"
+  >
+    <ProgressBar :progress="progress" class="mb-4 flex-grow-0" />
+    <QuestionDescription class="flex-grow flex-initial flex items-center" />
     <SelectionPersonas
       v-if="questionType === 'selection'"
-      class="self-center my-12"
+      class="my-4 flex-grow flex-initial flex items-start"
     />
-    <RankingPersonas
-      v-if="questionType === 'ranking'"
-      class="self-center my-12"
-    />
-    <RangeRating class="self-end" />
+    <RankingPersonas v-if="questionType === 'ranking'" class="my-4 flex-grow" />
+    <RangeRating class="mt-4 flex-grow-0" />
   </div>
 </template>
 
@@ -20,6 +20,7 @@ import RangeRating from '~/components/RangeRating'
 import SelectionPersonas from '~/components/SelectionPersonas'
 import QuestionDescription from '~/components/QuestionDescription'
 import RankingPersonas from '~/components/RankingPersonas'
+import ProgressBar from '~/components/ProgressBar'
 
 export default {
   components: {
@@ -27,9 +28,16 @@ export default {
     SelectionPersonas,
     RankingPersonas,
     QuestionDescription,
+    ProgressBar,
   },
   computed: {
-    ...mapGetters(['questionType']),
+    ...mapGetters(['questionType', 'totalQuestions', 'currentNo']),
+    progress() {
+      if (!this.totalQuestions) return 0
+      return Math.round(
+        ((this.currentNo + 1) / (this.totalQuestions + 3)) * 100 // + landingPage + 2xdemographics
+      )
+    },
   },
   validate({ params }) {
     // Must be a number
