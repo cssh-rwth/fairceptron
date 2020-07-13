@@ -1,9 +1,12 @@
 <template>
   <div
-    class="rounded-full flex border-gray-300 border text-gray-700 p-1 w-full leading-relaxed"
+    class="rounded-full w-full flex items-center border-gray-300 border text-gray-700 leading-relaxed"
   >
     <div class="text-xs w-20 text-center">Fortschritt</div>
-    <div :style="css" class="text-right text-xs pr-2 rounded-full bg-gray-200">
+    <div
+      :style="css"
+      class="text-right text-xs pr-2 rounded-full bg-gray-200 my-1 min-w-10"
+    >
       {{ progress }} %
     </div>
   </div>
@@ -20,9 +23,6 @@ export default {
   },
   computed: {
     css() {
-      if (this.progress < 5) {
-        return { width: '3rem' }
-      }
       return {
         width:
           'calc(' + this.progress + '% - ' + (this.progress * 5) / 100 + 'rem)',
