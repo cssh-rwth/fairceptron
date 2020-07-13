@@ -7,7 +7,7 @@
     Es bewerben sich {{ personas.length }} Personen auf gleiche Studienplätze:
     <span v-for="n in noOfGroups" :key="n"
       >{{ n === noOfGroups ? ' und' : n > 1 ? ',' : '' }}
-      <span :class="colors[n - 1]" class="font-bold">
+      <span :class="'text-' + colors[n - 1] + '-400'" class="font-semibold">
         {{ personasPerGroup[n - 1] }} {{ groupDescriptions[n - 1] }}</span
       ></span
     >.
@@ -42,10 +42,6 @@
     Für wie fair empfindest du
     <span v-if="questionType === 'selection'">die Auswahl</span>
     <span v-else-if="questionType === 'ranking'">die Rangfolge</span>?
-    <!-- force postcss to load classes -->
-    <div
-      class="text-teal-300 text-orange-300 text-yellow-300 text-purple-300"
-    ></div>
   </div>
 </template>
 

@@ -9,7 +9,7 @@
       class="p-2 m-2 sm:p-4 sm:m-4 lg:m-8 relative rounded-lg border-4 border-green-400"
     >
       <svg
-        :class="colors[p.group]"
+        :class="'text-' + colors[p.group] + '-400'"
         class="fill-current"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"

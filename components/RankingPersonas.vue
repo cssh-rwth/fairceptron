@@ -11,7 +11,7 @@
         <span class="align-middle">{{ index + 1 + '.' }}</span>
       </div>
       <svg
-        :class="colors[p.group]"
+        :class="'text-' + colors[p.group] + '-400'"
         class="fill-current w-8 sm:w-10 lg:w-12 my-4 mx-12"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"

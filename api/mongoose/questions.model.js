@@ -12,6 +12,7 @@ const questionSchema = new Schema({
   questionType: String,
   showScores: Boolean,
   groupNames: Array,
+  colors: Array,
   number: Number,
   cluster: Number,
 })
@@ -22,7 +23,7 @@ const Question =
 exports.getQuestions = (numbers) => {
   return Question.find({
     number: { $in: numbers },
-  }).select('questionType personas number showScores groupNames cluster')
+  }).select('questionType personas number showScores groupNames colors cluster')
 }
 
 exports.randomQuestionEachCluster = async () => {

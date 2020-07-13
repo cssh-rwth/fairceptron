@@ -134,12 +134,7 @@ const normalizeQuestion = (question) => {
   question.personas = question.personas || []
   question.questionType = question.questionType || ''
   question.showScores = question.showScores || true
-  question.colors = question.colors || [
-    'text-teal-300',
-    'text-orange-300',
-    'text-yellow-300',
-    'text-purple-300',
-  ]
+  question.colors = question.colors || ['teal', 'orange', 'yellow', 'purple']
   question.groupNames = question.groupNames || []
   question.number = question.number || -1
   return question

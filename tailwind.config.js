@@ -24,5 +24,8 @@ module.exports = {
       'plugins/**/*.js',
       'nuxt.config.js',
     ],
+    options: {
+      whitelist: ['text-teal-400', 'text-pink-400'],
+    },
   },
 }
