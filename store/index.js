@@ -207,4 +207,11 @@ export const actions = {
     values.timeElapsed = getters.timeElapsed
     this.$axios.post('api/demographics', values)
   },
+
+  sendPersonality({ getters, commit }, values) {
+    values.userID = getters.userID
+    commit('stopTimer')
+    values.timeElapsed = getters.timeElapsed
+    this.$axios.post('api/personality', values)
+  },
 }

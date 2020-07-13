@@ -1,0 +1,5 @@
+@responsive { /* Generate responsive variants */
+  .max-w-3\/5 {
+    max-width: 60%;
+  }
+}

@@ -12,7 +12,6 @@ const userSchema = new Schema({
   fear: Number,
   will: Number,
   edu: String,
-  income: String,
   age: Number,
   gender: String,
   comment: String,
@@ -49,6 +48,36 @@ exports.getUser = (userID) => {
 }
 
 exports.addDemographics = (values) => {
+  if (!values.userID) return Error('No userID specified')
+
+  // update the user (with default values for additionally incomplete data)
+  const res = User.updateOne(
+    { _id: values.userID },
+    {
+      believe: values.believe,
+      religious: values.religious,
+      political: values.political,
+      confidence: values.confidence,
+      fear: values.fear,
+      will: values.will,
+      edu: values.edu,
+      age: values.age,
+      gender: values.gender,
+    },
+    /* 'omitUndefined: false' is default behaviour
+     * undefined params will be stored as NULL in mongoDB
+     * on export from mongoDB into csv all fields will hence be included,
+     * also those that are NULL on some entries
+     */
+    { omitUndefined: false }
+  )
+
+  return res
+}
+
+exports.addPersonality = (values) => {
+  if (!values.userID) return Error('No userID specified')
+
   // recode negatively poled items and check for completeness
   const bfi1 = 6 - values.bfi1 || null
   const bfi2 = values.bfi2 || null
@@ -73,22 +102,10 @@ exports.addDemographics = (values) => {
   const openness =
     bfi5 === null || bfi10 === null ? undefined : (bfi5 + bfi10) / 2
 
-  if (!values.userID) return Error('No userID specified')
-
   // update the user (with default values for additionally incomplete data)
   const res = User.updateOne(
     { _id: values.userID },
     {
-      believe: values.believe,
-      religious: values.religious,
-      political: values.political,
-      confidence: values.confidence,
-      fear: values.fear,
-      will: values.will,
-      edu: values.edu,
-      income: values.income,
-      age: values.age,
-      gender: values.gender,
       comment: values.comment,
       extraversion,
       agreeableness,

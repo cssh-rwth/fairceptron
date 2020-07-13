@@ -48,6 +48,24 @@ app.post('/demographics', async (req, res) => {
   res.status(201).send('Success')
 })
 
+app.post('/personality', async (req, res) => {
+  const answer = {
+    question: {
+      questionType: 'personality',
+      number: null,
+      showScores: null,
+    },
+    rating: null,
+    timeElapsed: req.body.timeElapsed,
+    userID: req.body.userID,
+  }
+  await Promise.all([
+    AnswerModel.createAnswer(answer),
+    UserModel.addPersonality(req.body),
+  ])
+  res.status(201).send('Success')
+})
+
 module.exports = {
   path: '/api/',
   handler: app,

@@ -5,13 +5,13 @@
     <ProgressBar class="mb-4 sm:mb-6 lg:mb-8 xl:mb-16" :progress="progress" />
 
     <div
-      class="font-semibold text-gray-700 text-base sm:text-lg mt-4 sm:mt-12 md:text-xl xl:text-2xl"
+      class="font-semibold text-gray-700 text-base sm:text-lg md:text-xl xl:text-2xl"
     >
-      Gleich fertig! Bitte beantworte abschließend noch die folgenden Fragen:
+      Bitte beantworte abschließend noch die folgenden Fragen:
     </div>
     <div class="text-gray-700 text-sm sm:text-base xl:text-lg mt-4 mb-12">
       Alle Angaben sind selbstverständlich freiwillig. Für meine Bachelorarbeit
-      bin ich aber auf möglichst vollständige Angaben angewiesen
+      bin ich aber auf möglichst vollständige Angaben angewiesen.
     </div>
     <div class="flex flex-col text-sm sm:text-base xl:text-lg text-gray-700">
       <div class="flex flex-wrap min-w-full">
@@ -76,7 +76,7 @@
       <hr class="my-6" />
       <div class="flex flex-wrap min-w-full">
         <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
-          Was ist dein höchster Bildungsgrad?
+          Was ist dein höchster Bildungsabschluss?
         </div>
         <div class="flex-grow lg:ml-8">
           <select
@@ -89,9 +89,6 @@
             </option>
             <option value="abitur">Abitur</option>
             <option value="ausbildung">Abgeschlossene Ausbildung</option>
-            <option value="attended_college">
-              Hochschule / Universität besucht
-            </option>
             <option value="bachelor">Bachelor</option>
             <option value="master">Master oder Diplom</option>
           </select>
@@ -99,38 +96,21 @@
       </div>
       <hr class="my-6" />
       <div class="flex flex-wrap min-w-full">
-        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
-          Wie hoch ist dein Jahreseinkommen?
-          <br />
-          (Netto und inklusive Kapitalerträge, Renten, Stipendien etc.)
-        </div>
-        <div class="flex-grow lg:ml-8">
-          <select
-            v-model="values.income"
-            class="form-select block w-full sm:w-1/2 lg:w-2/5"
-          >
-            <option value="< 5000">weniger als 5000 €</option>
-            <option value="5001 - 10000">5.001 € bis 10.000 €</option>
-            <option value="10001 - 15000">10.001 € bis 15.000 €</option>
-            <option value="15001 - 25000">15.001 € bis 25.000 €</option>
-            <option value="25001 - 35000">25.001 € bis 35.000 €</option>
-            <option value="35001 - 50000">35.001 € bis 50.000 €</option>
-            <option value="50001 - 85000">50.001 € bis 85.000 €</option>
-            <option value="85001 - 100000">85.001 € bis 100.000 €</option>
-            <option value="> 100000">Mehr als 100.000 €</option>
-          </select>
-        </div>
-      </div>
-      <hr class="my-6" />
-      <div class="flex flex-wrap min-w-full">
         <div class="w-full lg:w-2/5 mb-4 lg:mb-0">Wie alt bist du?</div>
         <div class="flex-grow lg:ml-8">
-          <input
+          <select
             v-model="values.age"
-            type="number"
-            class="form-input block w-full sm:w-1/2 lg:w-2/5"
-            placeholder="Alter eingeben"
-          />
+            class="form-select block w-full sm:w-1/2 lg:w-2/5"
+          >
+            <option value="18">18 oder jünger</option>
+            <option value="25">19 bis 25</option>
+            <option value="35">26 bis 35</option>
+            <option value="45">36 bis 45</option>
+            <option value="55">46 bis 55</option>
+            <option value="65">56 bis 65</option>
+            <option value="75">66 bis 75</option>
+            <option value="76">älter als 75</option>
+          </select>
         </div>
       </div>
       <hr class="my-6" />
@@ -148,126 +128,25 @@
         </div>
       </div>
     </div>
-    <div
-      class="font-semibold text-gray-700 text-base sm:text-lg mt-24 md:text-xl xl:text-2xl"
-    >
-      Inwieweit treffen die folgenden Aussagen auf dich zu?
-    </div>
-    <div class="text-gray-700 text-sm sm:text-base xl:text-lg mt-4 mb-12">
-      Die Antwortmöglichkeiten sind gegliedert wie folgt:
-      <br />
-      1: Trifft überhaupt nicht zu &ndash; 2: Trifft eher nicht zu &ndash; 3:
-      Weder noch &ndash; 4: Eher zutreffend &ndash; 5: Trifft voll und ganz zu
-    </div>
-    <div class="flex flex-col text-gray-700 text-sm sm:text-base xl:text-lg">
-      <div class="flex flex-wrap min-w-full">
-        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
-          Ich bin eher zurückhaltend, reserviert.
-        </div>
-        <RadioBar name="BFI-1" @value="values.bfi1 = $event" />
-      </div>
-      <hr class="my-6" />
-      <div class="flex flex-wrap min-w-full">
-        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
-          Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.
-        </div>
-        <RadioBar name="BFI-2" @value="values.bfi2 = $event" />
-      </div>
-      <hr class="my-6" />
-      <div class="flex flex-wrap min-w-full">
-        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
-          Ich bin bequem, neige zur Faulheit.
-        </div>
-        <RadioBar name="BFI-3" @value="values.bfi3 = $event" />
-      </div>
-      <hr class="my-6" />
-      <div class="flex flex-wrap min-w-full">
-        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
-          Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.
-        </div>
-        <RadioBar name="BFI-4" @value="values.bfi4 = $event" />
-      </div>
-      <hr class="my-6" />
-      <div class="flex flex-wrap min-w-full">
-        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
-          Ich habe nur wenig künstlerisches Interesse.
-        </div>
-        <RadioBar name="BFI-5" @value="values.bfi5 = $event" />
-      </div>
-      <hr class="my-6" />
-      <div class="flex flex-wrap min-w-full">
-        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
-          Ich gehe aus mir heraus, bin gesellig.
-        </div>
-        <RadioBar name="BFI-6" @value="values.bfi6 = $event" />
-      </div>
-      <hr class="my-6" />
-      <div class="flex flex-wrap min-w-full">
-        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
-          Ich neige dazu, andere zu kritisieren.
-        </div>
-        <RadioBar name="BFI-7" @value="values.bfi7 = $event" />
-      </div>
-      <hr class="my-6" />
-      <div class="flex flex-wrap min-w-full">
-        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
-          Ich erledige Aufgaben gründlich.
-        </div>
-        <RadioBar name="BFI-8" @value="values.bfi8 = $event" />
-      </div>
-      <hr class="my-6" />
-      <div class="flex flex-wrap min-w-full">
-        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
-          Ich werde leicht nervös und unsicher.
-        </div>
-        <RadioBar name="BFI-9" @value="values.bfi9 = $event" />
-      </div>
-      <hr class="my-6" />
-      <div class="flex flex-wrap min-w-full">
-        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
-          Ich habe eine aktive Vorstellungskraft, bin phantasievoll.
-        </div>
-        <RadioBar name="BFI-10" @value="values.bfi10 = $event" />
-      </div>
-    </div>
-    <div
-      class="font-semibold text-gray-700 text-base sm:text-lg mt-24 md:text-xl xl:text-2xl"
-    >
-      Hast du noch Kommentare oder Hinweise?
-    </div>
-    <div class="text-gray-700 text-sm sm:text-base xl:text-lg mt-4 mb-12">
-      Was ist dir durch den Kopf gegangen, als du mit denverschiedenen Szenarien
-      konfrontiert wurdest? Was war für deine Entscheidungen ausschlaggebend?
-      Welche Paramter wurden im Design des Fairceptrons missachtet? Hast du
-      weitere Anmerkungen?
-    </div>
-    <textarea
-      v-model="values.comment"
-      class="form-textarea mt-1 block w-full text-gray-700 text-sm sm:text-base xl:text-lg"
-      rows="10"
-      placeholder="Text eingeben."
-    ></textarea>
     <div class="w-full text-center my-16">
-      <button
-        type="submit"
+      <nuxt-link
+        to="personality"
         class="bg-green-600 hover:bg-green-700 text-white rounded px-4 py-2"
-        @click.prevent="finishSurvey()"
+        @click.native="sendDemographics()"
       >
-        Absenden
-      </button>
+        Weiter
+      </nuxt-link>
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import RadioBar from '~/components/RadioBar'
 import Range from '~/components/Range'
 import ProgressBar from '~/components/ProgressBar'
 
 export default {
   components: {
-    RadioBar,
     Range,
     ProgressBar,
   },
@@ -284,17 +163,6 @@ export default {
         income: null,
         age: null,
         gender: null,
-        bfi1: null,
-        bfi2: null,
-        bfi3: null,
-        bfi4: null,
-        bfi5: null,
-        bfi6: null,
-        bfi7: null,
-        bfi8: null,
-        bfi9: null,
-        bfi10: null,
-        comment: null,
       },
     }
   },
@@ -310,16 +178,34 @@ export default {
     // start the timer
     this.$store.commit('startTimer')
   },
+  mounted() {
+    // user unknown
+    if (!this.$store.getters.userID) {
+      // load previously persisted UserID
+      if (this.$store.getters.localUserID) {
+        this.$store.commit('loadUserID')
+        this.$store.dispatch('loadUser', this.$store.getters.userID)
+      }
+      // register a new user
+      else {
+        const persistant = true
+        this.$store.dispatch('registerUser', persistant)
+      }
+    }
+    // user known, but questions not loaded
+    else if (!this.$store.getters.totalQuestions) {
+      this.$store.dispatch('loadQuestions')
+    }
+  },
   methods: {
-    finishSurvey() {
+    sendDemographics() {
       this.$store.dispatch('sendDemographics', this.values)
-      this.$router.push('finish')
     },
   },
   transition(to, from) {
     if (!from) return 'slide-left'
     if (from.name === 'questions-id') return 'slide-left'
-    if (from.name === 'finish') return 'slide-right'
+    if (from.name === 'personality') return 'slide-right'
   },
 }
 </script>

@@ -5,4 +5,5 @@
 @import 'tailwindcss/utilities';
 
 @import './range.css';
-@import './transitions.css'
+@import './transitions.css';
+@import './custom-tailwind.css';
