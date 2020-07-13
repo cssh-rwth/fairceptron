@@ -7,23 +7,22 @@
     </div>
     <div class="mx-4 w-full relative">
       <div
-        v-if="ratingSelected"
-        :style="ratingValueCSS"
-        style="left: var(--rating-value); bottom: 2.25rem;"
-        class="absolute bg-white text-gray-700 w-8 rounded-full text-white text-center select-none"
+        v-if="rangeValue !== null"
+        :style="rangeValueCSS"
+        style="left: var(--range-value); bottom: 2.25rem;"
+        class="absolute bg-white text-gray-700 w-8 rounded-full text-center select-none"
       >
-        {{ Math.round(ratingValue * 100) }}
+        {{ Math.round(rangeValue * 100) }}
       </div>
       <input
-        v-model="ratingValue"
+        :value="rangeValue"
         type="range"
-        :min="ratingMin"
-        :max="ratingMax"
-        :step="ratingStep"
-        :class="ratingSelected ? 'range-visible' : 'range-invisible'"
+        :min="rangeMin"
+        :max="rangeMax"
+        :step="rangeStep"
+        :class="rangeValue ? 'range-visible' : 'range-invisible'"
         class="w-full"
-        @mousedown="enterSelection"
-        @touchstart="enterSelection"
+        @input="$emit('update:rangeValue', parseFloat($event.target.value))"
       />
     </div>
     <div class="w-32 text-xs sm:text-sm text-gray-700 sm:whitespace-no-wrap">
@@ -44,36 +43,28 @@ export default {
       type: String,
       default: 'Sehr',
     },
+    rangeValue: {
+      type: Number,
+      default: null,
+    },
   },
   data() {
     return {
-      ratingSelected: false,
-      ratingValue: undefined,
-      ratingMin: 0,
-      ratingMax: 1,
-      ratingStep: 0.01,
+      rangeMin: 0,
+      rangeMax: 1,
+      rangeStep: 0.01,
     }
   },
   computed: {
-    ratingValueCSS() {
+    rangeValueCSS() {
       return {
-        '--rating-value':
+        '--range-value':
           'calc(' +
-          this.ratingValue * 100 +
+          this.rangeValue * 100 +
           '% - ' +
-          (this.ratingValue * 0.5 + 0.75) +
+          (this.rangeValue * 0.5 + 0.75) +
           'rem)',
       }
-    },
-  },
-  watch: {
-    ratingValue(val, oldVal) {
-      this.$emit('value', val)
-    },
-  },
-  methods: {
-    enterSelection() {
-      this.ratingSelected = true
     },
   },
 }

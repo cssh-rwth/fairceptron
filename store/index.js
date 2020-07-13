@@ -12,12 +12,13 @@ export const state = () => {
   const initialState = {
     questionNumbers: [],
     currentQuestion: 0,
-    questions: [],
+    questions: Array(100),
     answer: {},
     userID: '',
     localUserID: '',
     startTime: null,
     timeElapsed: null,
+    answers: Array(100),
   }
   const question = {
     questionType: '',
@@ -26,9 +27,8 @@ export const state = () => {
     showScores: true,
     groupNames: [],
   }
-  for (let i = 0; i < 100; i++) {
-    initialState.questions.push(question)
-  }
+  initialState.questions.fill(question)
+  initialState.answers.fill(null)
   return initialState
 }
 
@@ -95,6 +95,9 @@ export const getters = {
   questionNumbers(state) {
     return state.questionNumbers
   },
+  currentAnswer(state) {
+    return state.answers[state.currentQuestion]
+  },
 }
 
 export const mutations = {
@@ -127,6 +130,9 @@ export const mutations = {
   },
   loadUserID(state) {
     state.userID = state.localUserID
+  },
+  setAnswer(state, { rating, number }) {
+    state.answers[number] = rating
   },
 }
 
@@ -177,6 +183,7 @@ export const actions = {
   },
 
   async sendAnswer({ getters, commit }, rating) {
+    commit('setAnswer', { rating, number: getters.currentNo })
     const answer = {}
     answer.question = {
       questionType: getters.questionType,

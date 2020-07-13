@@ -1,13 +1,13 @@
 <template>
   <div class="w-full sm:px-8">
     <form
-      class="w-full max-w-4xl p-4 mb-4 sm:mb-8 lg:mb-16 mx-auto flex flex-wrap items-center justify-center"
+      class="w-full p-4 mb-4 sm:mb-8 lg:mb-16 mx-auto flex flex-wrap items-center justify-center"
     >
       <Range
         class="my-4"
         :label-left="ratingLabelsDE[0]"
         :label-right="ratingLabelsDE[1]"
-        @value="ratingValue = $event"
+        :range-value.sync="ratingValue"
       />
       <nuxt-link
         :to="nextPage"
@@ -34,7 +34,7 @@ export default {
     return {
       ratingValue: null,
       ratingLabelsDE: ['sehr unfair', 'sehr fair'],
-      confirmLabelDE: 'Nächste Frage',
+      confirmLabelDE: 'Nächstes Szenario',
     }
   },
   computed: {
@@ -53,6 +53,9 @@ export default {
         return '/demographics'
       else return (this.$store.getters.currentNo + 2).toString()
     },
+  },
+  created() {
+    this.ratingValue = this.$store.getters.currentAnswer
   },
   methods: {
     handleSubmit() {
