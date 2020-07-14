@@ -26,8 +26,13 @@ app.get('/questions', async (req, res) => {
 })
 
 app.post('/answer', async (req, res) => {
-  await AnswerModel.createAnswer(req.body)
+  await AnswerModel.updateAnswer(req.body)
   res.status(201).send('Success')
+})
+
+app.get('/answers', async (req, res) => {
+  const answers = await AnswerModel.getAnswers(req.query.userID)
+  res.status(200).send(answers)
 })
 
 app.post('/demographics', async (req, res) => {

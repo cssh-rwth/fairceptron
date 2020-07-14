@@ -20,7 +20,7 @@
         :min="rangeMin"
         :max="rangeMax"
         :step="rangeStep"
-        :class="rangeValue ? 'range-visible' : 'range-invisible'"
+        :class="rangeValue !== null ? 'range-visible' : 'range-invisible'"
         class="w-full"
         @input="$emit('update:rangeValue', parseFloat($event.target.value))"
       />

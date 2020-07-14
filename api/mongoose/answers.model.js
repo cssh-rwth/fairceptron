@@ -19,3 +19,18 @@ exports.createAnswer = (answerData) => {
   const answer = new Answer(answerData)
   return answer.save()
 }
+
+exports.updateAnswer = (answerData) => {
+  const userID = answerData.userID
+  answerData.userID = new mongoose.Types.ObjectId(answerData.userID)
+  return Answer.updateOne(
+    { userID, 'question.number': answerData.question.number },
+    answerData,
+    // create a new document if no match found
+    { upsert: true }
+  )
+}
+
+exports.getAnswers = (userID) => {
+  return Answer.find({ userID }).select('rating question.number')
+}

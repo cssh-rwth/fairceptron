@@ -134,6 +134,9 @@ export const mutations = {
   setAnswer(state, { rating, number }) {
     state.answers[number] = rating
   },
+  setAnswers(state, answers) {
+    state.answers = answers
+  },
 }
 
 const normalizeQuestion = (question) => {
@@ -179,6 +182,7 @@ export const actions = {
   async loadUser({ commit, dispatch }, userID) {
     const response = await this.$axios.get('api/user', { params: { userID } })
     commit('setQuestionNumbers', response.data.questionNumbers)
+    commit('setAnswers', response.data.answers)
     dispatch('loadQuestions')
   },
 

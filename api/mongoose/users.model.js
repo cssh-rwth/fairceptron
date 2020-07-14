@@ -2,6 +2,7 @@ const mongoose = require('./service').mongoose
 const Schema = mongoose.Schema
 
 const QuestionModel = require('./questions.model')
+const AnswerModel = require('./answers.model')
 
 const userSchema = new Schema({
   questionNumbers: Array,
@@ -42,9 +43,19 @@ exports.createUser = async () => {
   return user.save()
 }
 
-exports.getUser = (userID) => {
-  const user = User.where({ _id: userID }).findOne()
-  return user
+exports.getUser = async (userID) => {
+  const user = await User.findOne({ _id: userID }).select('questionNumbers _id')
+  const answersFromDB = await AnswerModel.getAnswers(userID)
+  const answers = []
+  // merge answers and user on questionNumbers
+  for (let i = 0; i < user.questionNumbers.length; i++) {
+    const answer = answersFromDB.find(
+      (a) => a.question.number === user.questionNumbers[i]
+    )
+    if (answer) answers.push(answer.rating)
+    else answers.push(null)
+  }
+  return { _id: user._id, questionNumbers: user.questionNumbers, answers }
 }
 
 exports.addDemographics = (values) => {

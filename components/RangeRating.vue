@@ -28,12 +28,25 @@ export default {
   },
   data() {
     return {
-      ratingValue: null,
+      localRatingValue: null,
       ratingLabelsDE: ['sehr unfair', 'sehr fair'],
       confirmLabelDE: 'Nächstes Szenario',
     }
   },
   computed: {
+    ratingValue: {
+      // can't use shorthand () => {} because we need 'this'
+      // eslint-disable-next-line object-shorthand
+      get: function () {
+        return this.localRatingValue !== null
+          ? this.localRatingValue
+          : this.$store.getters.currentAnswer
+      },
+      // eslint-disable-next-line object-shorthand
+      set: function (rating) {
+        this.localRatingValue = rating
+      },
+    },
     ratingValueCSS() {
       return {
         '--rating-value':
@@ -50,13 +63,13 @@ export default {
       else return (this.$store.getters.currentNo + 2).toString()
     },
   },
-  created() {
-    this.ratingValue = this.$store.getters.currentAnswer
+  mounted() {
+    this.localRatingValue = this.$store.getters.currentAnswer
   },
   methods: {
     handleSubmit() {
       if (this.ratingValue !== null)
-        this.$store.dispatch('sendAnswer', this.ratingValue)
+        this.$store.dispatch('sendAnswer', this.localRatingValue)
     },
   },
 }
