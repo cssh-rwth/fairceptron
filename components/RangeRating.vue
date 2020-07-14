@@ -35,27 +35,15 @@ export default {
   },
   computed: {
     ratingValue: {
-      // can't use shorthand () => {} because we need 'this'
-      // eslint-disable-next-line object-shorthand
-      get: function () {
+      // can't use shorthand () => {} because we need the correct scope
+      get() {
         return this.localRatingValue !== null
           ? this.localRatingValue
           : this.$store.getters.currentAnswer
       },
-      // eslint-disable-next-line object-shorthand
-      set: function (rating) {
+      set(rating) {
         this.localRatingValue = rating
       },
-    },
-    ratingValueCSS() {
-      return {
-        '--rating-value':
-          'calc(' +
-          this.ratingValue * 100 +
-          '% - ' +
-          (this.ratingValue * 0.5 + 0.75) +
-          'rem)',
-      }
     },
     nextPage() {
       if (this.$store.getters.nextQuestion.questionType === 'demographics')
