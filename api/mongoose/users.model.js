@@ -44,7 +44,12 @@ exports.createUser = async () => {
 }
 
 exports.getUser = async (userID) => {
-  const user = await User.findOne({ _id: userID }).select('questionNumbers _id')
+  let user = await User.findOne({ _id: userID }).select('questionNumbers _id')
+  // user might have been deleted in the database
+  if (user === null) {
+    user = await this.createUser()
+    userID = user._id
+  }
   const answersFromDB = await AnswerModel.getAnswers(userID)
   const answers = []
   // merge answers and user on questionNumbers
@@ -55,7 +60,7 @@ exports.getUser = async (userID) => {
     if (answer) answers.push(answer.rating)
     else answers.push(null)
   }
-  return { _id: user._id, questionNumbers: user.questionNumbers, answers }
+  return { userID: user._id, questionNumbers: user.questionNumbers, answers }
 }
 
 exports.addDemographics = (values) => {

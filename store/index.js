@@ -179,10 +179,15 @@ export const actions = {
     dispatch('loadQuestions')
   },
 
-  async loadUser({ commit, dispatch }, userID) {
+  async loadUser({ commit, dispatch, getters }, userID) {
     const response = await this.$axios.get('api/user', { params: { userID } })
     commit('setQuestionNumbers', response.data.questionNumbers)
     commit('setAnswers', response.data.answers)
+    // the server might answer with a different userID -> new user was created
+    if (getters.userID !== response.data.userID) {
+      commit('setUserID', response.data.userID)
+      commit('persistUserID')
+    }
     dispatch('loadQuestions')
   },
 
