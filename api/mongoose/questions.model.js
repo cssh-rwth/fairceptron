@@ -20,6 +20,8 @@ const questionSchema = new Schema({
 const Question =
   mongoose.models.Question || mongoose.model('Question', questionSchema)
 
+let aggRes = null
+
 exports.getQuestions = (numbers) => {
   return Question.find({
     number: { $in: numbers },
@@ -34,7 +36,11 @@ exports.randomQuestionEachCluster = async () => {
     { $group: { _id: null, counts: { $push: '$count' } } },
     { $project: { counts: true, _id: false } },
   ]
-  const aggRes = await Question.aggregate(aggregatorOpts).exec()
+  // only once when the server restarts
+  if (!aggRes) {
+    console.log('generate new')
+    aggRes = await Question.aggregate(aggregatorOpts).exec()
+  }
   // generate a random question number in each cluster
   const randomNo = aggRes[0].counts.map((count) => {
     return Math.floor(Math.random() * count)
