@@ -1,18 +1,18 @@
 <template>
   <div class="justify-center">
     <div
-      class="grid gap-1 xs:gap-2 sm:gap-4 lg:gap-8 grid-cols-3 xs:grid-cols-4 md:grid-cols-5"
+      class="grid w-full gap-1 xs:gap-2 sm:gap-4 lg:gap-8 grid-cols-3 xs:grid-cols-4 md:grid-cols-5"
     >
       <div
         v-for="(p, index) in personas"
         :key="index"
-        :class="p.selected ? 'bg-green-100' : 'border-none'"
-        class="p-2 m-2 sm:p-4 relative rounded-lg border-4 border-green-400"
+        :class="p.selected ? 'bg-green-100 border-green-400' : 'border-white'"
+        class="p-2 flex-grow m-2 sm:p-4 relative rounded-lg border-4"
       >
         <svg
           :class="'text-' + colors[p.group] + '-400'"
           style="max-height: 10vh;"
-          class="fill-current"
+          class="fill-current mx-auto"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
         >
