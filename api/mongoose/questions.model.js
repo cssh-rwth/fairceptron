@@ -38,7 +38,6 @@ exports.randomQuestionEachCluster = async () => {
   ]
   // only once when the server restarts
   if (!aggRes) {
-    console.log('generate new')
     aggRes = await Question.aggregate(aggregatorOpts).exec()
   }
   // generate a random question number in each cluster

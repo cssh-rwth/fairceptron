@@ -37,7 +37,7 @@ export default {
   name: 'RankingPersonas',
   computed: {
     ...mapGetters({
-      personas: 'personasSorted',
+      personas: 'personas',
       colors: 'colors',
       showScores: 'showScores',
     }),
