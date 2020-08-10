@@ -1,10 +1,10 @@
 <template>
-  <div class="max-w-6xl min-h-screen mx-auto flex flex-col justify-center">
-    <h1
-      class="self-end text-4xl font-semibold text-gray-700 w-full text-center mt-16 mb-8"
-    >
-      Fai<span class="tracking-widest">r</span>Ceptron
-    </h1>
+  <div class="max-w-3xl mx-auto justify-center">
+    <img
+      src="~/static/logo.png"
+      alt="Logo des FairCeptrons"
+      class="w-64 mt-16 mb-8 mx-auto"
+    />
     <div class="text-gray-700 px-4">
       <div class="mb-2">
         Algorithmen übernehmen zunehmend Entscheidungen über Menschen, die
@@ -17,7 +17,7 @@
         zur Erfassung der menschlichen Perspektive auf solche maschinell
         getroffenen Auswahl- und Rangfolge-Entscheidungen.
       </div>
-      <h1 class="text-xl font-semibold mt-6 mb-2">Ablauf und Inhalt</h1>
+      <h2 class="text-xl font-semibold mt-6 mb-2">Ablauf und Inhalt</h2>
       <div class="mb-2">
         Im Kontext der Vergabe von Studienplätzen werden dir
         {{ $store.getters.totalQuestions }} Szenarien mit unterschiedlichen
@@ -35,8 +35,23 @@
         stehen dir genau dieselben anonymisierten Informationen über die
         Bewerber:innen zur Verfügung, wie auch dem Algorithmus.
       </div>
-      <h1 class="text-xl font-semibold mt-6 mb-2">Teilnahme und Zustimmung</h1>
-      <div class="mb-2">
+      <h2
+        class="text-xl font-semibold mt-6 mb-2 cursor-pointer"
+        @click="toggleAgreement"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          :class="showAgreement ? 'rotate-90' : 'rotate-0'"
+          class="w-4 h-4 mt-2 mr-2 float-left transform transition-transform duration-150 ease-in-out fill-current"
+        >
+          <path
+            d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z"
+          />
+        </svg>
+        Teilnahme und Zustimmung
+      </h2>
+      <div v-if="showAgreement" class="mb-2">
         Die Teilnahme an der Studie ist freiwillig. Du kannst sie jederzeit
         abbrechen. Die Studie nimmt etwa 15 Minuten in Anspruch. Zusätzlich zu
         den von dir explizit eingegebenen Daten und der Bearbeitungsdauer pro
@@ -49,18 +64,22 @@
         stimmst du der Verwendung dieser Benutzerkennung zu und bestätigst, dass
         du über die Studie aufgeklärt wurdest und freiwillig an ihr teilnimmst.
       </div>
-      <h1
+      <h2
         class="text-xl font-semibold mt-6 mb-2 cursor-pointer"
         @click="togglePrivacyStatement"
       >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          :class="showPrivacyStatement ? 'rotate-90' : 'rotate-0'"
+          class="w-4 h-4 mt-2 mr-2 float-left transform transition-transform duration-150 ease-in-out fill-current"
+        >
+          <path
+            d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z"
+          />
+        </svg>
         Datenschutz
-        <span v-if="!showPrivacyStatement" class="font-normal">
-          [Anzeigen]
-        </span>
-        <span v-if="showPrivacyStatement" class="font-normal">
-          [Verbergen]
-        </span>
-      </h1>
+      </h2>
       <div v-if="showPrivacyStatement" class="mb-2">
         Verantwortlich für die Erhebung, Verarbeitung und Nutzung deiner
         personenbezogenen Daten Sinne von Art. 4 Nr. 7 DSGVO ist <br />
@@ -102,6 +121,7 @@ export default {
   data() {
     return {
       showPrivacyStatement: false,
+      showAgreement: false,
     }
   },
   mounted() {
@@ -128,6 +148,9 @@ export default {
     },
     togglePrivacyStatement() {
       this.showPrivacyStatement = !this.showPrivacyStatement
+    },
+    toggleAgreement() {
+      this.showAgreement = !this.showAgreement
     },
   },
   transition(to, from) {
