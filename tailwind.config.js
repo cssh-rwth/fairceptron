@@ -10,13 +10,9 @@ module.exports = {
       spacing: {
         xl: '36rem',
       },
-    },
-    screens: {
-      xs: '375px',
-      sm: '640px',
-      md: '768px',
-      lg: '1024px',
-      xl: '1280px',
+      screens: {
+        xs: '375px',
+      },
     },
   },
   variants: {},
@@ -32,7 +28,12 @@ module.exports = {
       'nuxt.config.js',
     ],
     options: {
-      whitelist: ['text-teal-400', 'text-pink-400'],
+      whitelist: [
+        'text-teal-400',
+        'text-pink-400',
+        'bg-teal-400',
+        'bg-pink-400',
+      ],
     },
   },
 }

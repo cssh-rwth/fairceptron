@@ -5,14 +5,15 @@
     <div
       v-for="(p, index) in personas"
       :key="index"
-      class="flex flex-no-wrap justify-around"
+      :class="'bg-' + colors[p.group] + '-100'"
+      class="flex flex-no-wrap justify-between"
     >
-      <div class="text-gray-700 m-2 text-lg w-4 text-right self-center">
+      <div class="text-gray-700 m-1 text-lg w-4 text-right self-center">
         <span class="align-middle">{{ index + 1 + '.' }}</span>
       </div>
       <svg
         :class="'text-' + colors[p.group] + '-400'"
-        class="fill-current w-8 sm:w-10 lg:w-12 my-4 mx-12"
+        class="fill-current w-6 my-1"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
       >
@@ -22,7 +23,7 @@
       </svg>
       <div
         v-if="showScores"
-        class="self-center bg-gray-600 inline-block px-2 rounded-full text-xs lg:text-sm text-white"
+        class="self-center bg-gray-600 inline-block pr-2 mr-2 w-12 lg:w-16 text-right rounded-full text-xs lg:text-sm text-white"
       >
         {{ p.qualification }} %
       </div>
