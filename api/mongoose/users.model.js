@@ -53,6 +53,7 @@ exports.getUser = async (userID) => {
     userID = user._id
   }
   const answersFromDB = await AnswerModel.getAnswers(userID)
+  const inconfidencesFromDB = await AnswerModel.getInconfidences(userID)
   const answers = []
   // merge answers and user on questionNumbers
   for (let i = 0; i < user.questionNumbers.length; i++) {
@@ -62,7 +63,21 @@ exports.getUser = async (userID) => {
     if (answer) answers.push(answer.rating)
     else answers.push(null)
   }
-  return { userID: user._id, questionNumbers: user.questionNumbers, answers }
+  const inconfidences = []
+  // merge inconfidences and user on questionNumbers
+  for (let i = 0; i < user.questionNumbers.length; i++) {
+    const inconfidence = inconfidencesFromDB.find(
+      (a) => a.question.number === user.questionNumbers[i]
+    )
+    if (inconfidence) inconfidences.push(inconfidence.inconfidence)
+    else inconfidences.push(null)
+  }
+  return {
+    userID: user._id,
+    questionNumbers: user.questionNumbers,
+    answers,
+    inconfidences,
+  }
 }
 
 exports.addDemographics = (values) => {

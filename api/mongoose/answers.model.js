@@ -5,6 +5,7 @@ const answerSchema = new Schema({
   rating: Number,
   userID: mongoose.ObjectId,
   timeElapsed: Date,
+  inconfidence: Number,
   question: {
     questionType: String,
     number: Number,
@@ -33,4 +34,8 @@ exports.updateAnswer = (answerData) => {
 
 exports.getAnswers = (userID) => {
   return Answer.find({ userID }).select('rating question.number')
+}
+
+exports.getInconfidences = (userID) => {
+  return Answer.find({ userID }).select('inconfidence question.number')
 }
