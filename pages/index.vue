@@ -99,9 +99,10 @@
       <div v-if="showPrivacyStatement" class="mb-2">
         Der Zugriff auf diese Webseite wird grundsätzlich nicht automatisiert
         erfasst. Es werden keine IP-Adressen erfasst. Deine Eingaben im Verlauf
-        der Studie, sowie die Bearbeitungsdauer pro Frage speichere ich auf
-        meinem Server und stelle sie ggf. anderen Forschern am Lehrstuhl für
-        Computational Social Sciences der RWTH Aachen für zur Verfügung.
+        der Studie, sowie die Bearbeitungsdauer pro Frage und deine
+        Bildschirmgröße speichere ich auf meinem Server und stelle sie ggf.
+        anderen Forschern am Lehrstuhl für Computational Social Sciences der
+        RWTH Aachen für zur Verfügung.
       </div>
     </div>
     <div class="w-full text-center my-16">

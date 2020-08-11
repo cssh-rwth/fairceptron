@@ -163,6 +163,8 @@ export default {
         income: null,
         age: null,
         gender: null,
+        screenHeight: null,
+        screenWidth: null,
       },
     }
   },
@@ -196,6 +198,9 @@ export default {
     else if (!this.$store.getters.totalQuestions) {
       this.$store.dispatch('loadQuestions')
     }
+    // query the screen size
+    this.values.screenHeight = window.screen.height
+    this.values.screenWidth = window.screen.width
   },
   methods: {
     sendDemographics() {

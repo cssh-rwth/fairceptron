@@ -21,6 +21,8 @@ const userSchema = new Schema({
   conscientiousness: Number,
   neuroticism: Number,
   openness: Number,
+  screenHeight: Number,
+  screenWidth: Number,
 })
 // don't recompile model on hot reload
 const User = mongoose.models.User || mongoose.model('User', userSchema)
@@ -79,6 +81,8 @@ exports.addDemographics = (values) => {
       edu: values.edu,
       age: values.age,
       gender: values.gender,
+      screenHeight: values.screenHeight,
+      screenWidth: values.screenWidth,
     },
     /* 'omitUndefined: false' is default behaviour
      * undefined params will be stored as NULL in mongoDB
