@@ -1,12 +1,12 @@
 <template>
   <div
-    class="min-w-full sm:min-w-0 sm:w-xl mx-auto divide-y divide-gray-400 px-4"
+    class="min-w-full sm:min-w-0 sm:w-xl mx-auto divide-y divide-gray-400 px-4 flex flex-col"
   >
     <div
       v-for="(p, index) in personas"
       :key="index"
       :class="'bg-' + colors[p.group] + '-100'"
-      class="flex flex-no-wrap justify-between"
+      class="flex flex-no-wrap flex-grow justify-between"
     >
       <div class="text-gray-700 m-1 text-lg w-4 text-right self-center">
         <span class="align-middle">{{ index + 1 + '.' }}</span>

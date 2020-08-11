@@ -6,9 +6,10 @@
     <QuestionDescription class="flex-grow flex-initial flex items-center" />
     <SelectionPersonas
       v-if="questionType === 'selection'"
-      class="my-4 flex-grow flex-initial flex items-start"
+      class="my-4 flex-grow flex-initial flex items-start self-center"
     />
     <RankingPersonas v-if="questionType === 'ranking'" class="my-4 flex-grow" />
+    <div v-if="questionType === 'ranking'" class="flex-grow"></div>
     <RangeRating class="mt-4 flex-grow-0" />
   </div>
 </template>
