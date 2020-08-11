@@ -18,6 +18,7 @@ export const state = () => {
     localUserID: '',
     startTime: null,
     timeElapsed: null,
+    inconfidences: Array(100),
     answers: Array(100),
   }
   const question = {
@@ -29,30 +30,18 @@ export const state = () => {
   }
   initialState.questions.fill(question)
   initialState.answers.fill(null)
+  initialState.inconfidences.fill(null)
   return initialState
 }
 
 export const getters = {
-  personasSorted(state) {
-    return [...state.questions[state.currentQuestion].personas].sort(
-      comparePersonas
-    )
-  },
-  personas(state) {
-    return state.questions[state.currentQuestion].personas
-  },
-  questionType(state) {
-    return state.questions[state.currentQuestion].questionType
-  },
-  colors(state) {
-    return state.questions[state.currentQuestion].colors
-  },
-  showScores(state) {
-    return state.questions[state.currentQuestion].showScores
-  },
-  groupNames(state) {
-    return state.questions[state.currentQuestion].groupNames
-  },
+  personasSorted: (state) =>
+    [...state.questions[state.currentQuestion].personas].sort(comparePersonas),
+  personas: (state) => state.questions[state.currentQuestion].personas,
+  questionType: (state) => state.questions[state.currentQuestion].questionType,
+  colors: (state) => state.questions[state.currentQuestion].colors,
+  showScores: (state) => state.questions[state.currentQuestion].showScores,
+  groupNames: (state) => state.questions[state.currentQuestion].groupNames,
   personasPerGroup(state) {
     const groupCount = []
     for (let i = 0; i < 5; i++)
@@ -63,41 +52,22 @@ export const getters = {
       )
     return groupCount
   },
-  noOfGroups(_, getters) {
-    return getters.personasPerGroup.filter((g) => g !== 0).length
-  },
-  noSelected(state) {
-    return state.questions[state.currentQuestion].personas.filter(
-      (p) => p.selected
-    ).length
-  },
-  question(state) {
-    return state.questions[state.currentQuestion]
-  },
-  userID(state) {
-    return state.userID
-  },
-  localUserID(state) {
-    return state.localUserID
-  },
-  currentNo(state) {
-    return state.currentQuestion
-  },
-  nextQuestion(state) {
-    return state.questions[state.currentQuestion + 1]
-  },
-  timeElapsed(state) {
-    return state.timeElapsed
-  },
-  totalQuestions(state) {
-    return state.questions.length !== 100 ? state.questions.length - 1 : null
-  },
-  questionNumbers(state) {
-    return state.questionNumbers
-  },
-  currentAnswer(state) {
-    return state.answers[state.currentQuestion]
-  },
+  noOfGroups: (_, getters) =>
+    getters.personasPerGroup.filter((g) => g !== 0).length,
+  noSelected: (state) =>
+    state.questions[state.currentQuestion].personas.filter((p) => p.selected)
+      .length,
+  question: (state) => state.questions[state.currentQuestion],
+  userID: (state) => state.userID,
+  localUserID: (state) => state.localUserID,
+  currentNo: (state) => state.currentQuestion,
+  nextQuestion: (state) => state.questions[state.currentQuestion + 1],
+  timeElapsed: (state) => state.timeElapsed,
+  totalQuestions: (state) =>
+    state.questions.length !== 100 ? state.questions.length - 1 : null,
+  questionNumbers: (state) => state.questionNumbers,
+  currentAnswer: (state) => state.answers[state.currentQuestion],
+  inconfidences: (state) => state.inconfidences,
 }
 
 export const mutations = {
@@ -136,6 +106,14 @@ export const mutations = {
   },
   setAnswers(state, answers) {
     state.answers = answers
+  },
+  setInconfidences(state, inconfidences) {
+    state.inconfidences = inconfidences
+  },
+  addInconfidence(state, { diff, number }) {
+    if (state.inconfidences[number] === null)
+      state.inconfidences[number] = 0 + diff
+    else state.inconfidences[number] += diff
   },
 }
 
@@ -183,6 +161,7 @@ export const actions = {
     const response = await this.$axios.get('api/user', { params: { userID } })
     commit('setQuestionNumbers', response.data.questionNumbers)
     commit('setAnswers', response.data.answers)
+    commit('setInconfidences', response.data.inconfidences)
     // the server might answer with a different userID -> new user was created
     if (getters.userID !== response.data.userID) {
       commit('setUserID', response.data.userID)
@@ -200,6 +179,7 @@ export const actions = {
       showScores: getters.showScores,
     }
     answer.rating = rating
+    answer.inconfidence = getters.inconfidences[getters.currentNo]
     commit('stopTimer')
     answer.timeElapsed = getters.timeElapsed
     // get a new userID if unknown
@@ -209,6 +189,7 @@ export const actions = {
       commit('setQuestionNumbers', response.data.questionNumbers)
     }
     answer.userID = getters.userID
+    console.log(answer)
     this.$axios.post('api/answer', answer)
   },
 

@@ -51,6 +51,16 @@ export default {
       else return (this.$store.getters.currentNo + 2).toString()
     },
   },
+  watch: {
+    ratingValue(newRating, oldRating) {
+      if (oldRating !== null) {
+        this.$store.commit('addInconfidence', {
+          diff: Math.abs(newRating - oldRating),
+          number: this.$store.getters.currentNo,
+        })
+      }
+    },
+  },
   mounted() {
     this.localRatingValue = this.$store.getters.currentAnswer
   },
