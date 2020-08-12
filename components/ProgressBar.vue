@@ -44,7 +44,7 @@ export default {
     css() {
       return {
         width:
-          'calc(' + this.progress + '% - ' + (this.progress * 5) / 100 + 'rem)',
+          'calc(' + this.progress + '% - ' + (this.progress * 8) / 100 + 'rem)',
       }
     },
     language() {

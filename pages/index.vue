@@ -115,7 +115,8 @@
           Verlauf der Studie, sowie die Bearbeitungsdauer pro Frage und deine
           Bildschirmgröße speichere ich auf meinem Server und stelle sie ggf.
           anderen Forschern am Lehrstuhl für Computational Social Sciences der
-          RWTH Aachen für zur Verfügung.
+          RWTH Aachen für zur Verfügung. Alle Daten werden nur in anonymisierter
+          Form veröffentlicht.
         </div>
       </div>
       <div class="w-full text-center my-16">
@@ -192,9 +193,9 @@
           study will take about 15 minutes. In addition to the data you have
           explicitly entered, your screen size and the time required to fill in
           each question, no further data will be collected. More detailed
-          information about the Privacy policy can be found in the following
+          information about the privacy policy can be found in the following
           section. In addition a unique user ID will be stored in the local
-          memory of your web browser (similar to a cookie), which are necessary
+          storage of your web browser (similar to a cookie), which are necessary
           for the use of the Fai<span class="tracking-widest">r</span>Ceptron.
           By starting the Fai<span class="tracking-widest">r</span>Ceptron, you
           agree to the use of the user ID, and confirm that you have been
@@ -225,18 +226,18 @@
           Germany
         </div>
         <div v-if="showPrivacyStatement" class="mb-2">
-          You have the right to request information free of charge about stored
-          personal data and/or to request a copy of your personal to request
-          rectification, blocking or erasure. A blocking or deletion cannot take
-          place if legal regulations are opposed to this. Please contact me at
-          georg.ahnert&nbsp;[ät]&nbsp;rwth-aachen.de .
+          You have the right to request free of charge about stored personal
+          data and/or to request rectification, blocking or erasure. A blocking
+          or deletion cannot take place if legal regulations are opposed to
+          this. Please contact me at georg.ahnert&nbsp;[ät]&nbsp;rwth-aachen.de.
         </div>
         <div v-if="showPrivacyStatement" class="mb-2">
           Access to this website is not automatically recorded. No IP addresses
           are recorded. Your entries during the course of the study, as well as
           the processing time per question and your screen size are stored on my
-          server and can be made available to other researchers at the Chair of
-          Computational Social Sciences at RWTH Aachen University.
+          server and can be made available to other researchers at the chair of
+          Computational Social Sciences at RWTH Aachen University. Data will be
+          anonymized before publishing.
         </div>
       </div>
       <div class="w-full text-center my-16">

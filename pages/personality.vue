@@ -1,129 +1,263 @@
 <template>
-  <div
-    class="max-w-6xl min-h-screen mx-auto p-4 sm:pt-6 lg:pt-8 xl:pt-16 sm:px-8"
-  >
-    <ProgressBar class="mb-4 sm:mb-6 lg:mb-8 xl:mb-16" :progress="progress" />
-
+  <div>
     <div
-      class="font-semibold mb-0 lg:mb-6 text-gray-700 text-base sm:text-lg md:text-xl xl:text-2xl"
+      v-if="language === 'de'"
+      class="max-w-6xl min-h-screen mx-auto p-4 sm:pt-6 lg:pt-8 xl:pt-16 sm:px-8"
     >
-      Gleich fertig! Inwieweit treffen die folgenden Aussagen auf dich zu?
-    </div>
-    <div class="flex flex-col text-gray-700 text-sm sm:text-base xl:text-lg">
-      <div class="flex flex-wrap min-w-full">
-        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">&nbsp;</div>
-        <div class="flex flex-grow items-start justify-center lg:max-w-3/5">
-          <div
-            v-for="n in levels.length"
-            :key="n"
-            class="text-center flex-grow flex-1"
-          >
+      <ProgressBar class="mb-4 sm:mb-6 lg:mb-8 xl:mb-16" :progress="progress" />
+
+      <div
+        class="font-semibold mb-0 lg:mb-6 text-gray-700 text-base sm:text-lg md:text-xl xl:text-2xl"
+      >
+        Gleich fertig! Inwieweit treffen die folgenden Aussagen auf dich zu?
+      </div>
+      <div class="flex flex-col text-gray-700 text-sm sm:text-base xl:text-lg">
+        <div class="flex flex-wrap min-w-full">
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">&nbsp;</div>
+          <div class="flex flex-grow items-start justify-center lg:max-w-3/5">
             <div
-              class="mx-1 sm:mx-2 lg:mx-3 mb-2 text-xs sm:text-sm cursor-pointer text-gray-700 leading-tight"
-              @click="ratingSelected = n"
+              v-for="n in levels.length"
+              :key="n"
+              class="text-center flex-grow flex-1"
             >
-              {{ n }}: <br />
-              {{ levels[n - 1] }}
+              <div
+                class="mx-1 sm:mx-2 lg:mx-3 mb-2 text-xs sm:text-sm cursor-pointer text-gray-700 leading-tight"
+                @click="ratingSelected = n"
+              >
+                {{ n }}: <br />
+                {{ levels[n - 1] }}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <hr class="my-6" />
-      <div class="flex flex-wrap min-w-full">
-        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
-          Ich bin eher zurückhaltend, reserviert.
+        <hr class="my-6" />
+        <div class="flex flex-wrap min-w-full">
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+            Ich bin eher zurückhaltend, reserviert.
+          </div>
+          <RadioBar name="BFI-1" @value="values.bfi1 = $event" />
         </div>
-        <RadioBar name="BFI-1" @value="values.bfi1 = $event" />
-      </div>
-      <hr class="my-6" />
-      <div class="flex flex-wrap min-w-full">
-        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
-          Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.
+        <hr class="my-6" />
+        <div class="flex flex-wrap min-w-full">
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+            Ich schenke anderen leicht Vertrauen, glaube an das Gute im
+            Menschen.
+          </div>
+          <RadioBar name="BFI-2" @value="values.bfi2 = $event" />
         </div>
-        <RadioBar name="BFI-2" @value="values.bfi2 = $event" />
-      </div>
-      <hr class="my-6" />
-      <div class="flex flex-wrap min-w-full">
-        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
-          Ich bin bequem, neige zur Faulheit.
+        <hr class="my-6" />
+        <div class="flex flex-wrap min-w-full">
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+            Ich bin bequem, neige zur Faulheit.
+          </div>
+          <RadioBar name="BFI-3" @value="values.bfi3 = $event" />
         </div>
-        <RadioBar name="BFI-3" @value="values.bfi3 = $event" />
-      </div>
-      <hr class="my-6" />
-      <div class="flex flex-wrap min-w-full">
-        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
-          Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.
+        <hr class="my-6" />
+        <div class="flex flex-wrap min-w-full">
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+            Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe
+            bringen.
+          </div>
+          <RadioBar name="BFI-4" @value="values.bfi4 = $event" />
         </div>
-        <RadioBar name="BFI-4" @value="values.bfi4 = $event" />
-      </div>
-      <hr class="my-6" />
-      <div class="flex flex-wrap min-w-full">
-        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
-          Ich habe nur wenig künstlerisches Interesse.
+        <hr class="my-6" />
+        <div class="flex flex-wrap min-w-full">
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+            Ich habe nur wenig künstlerisches Interesse.
+          </div>
+          <RadioBar name="BFI-5" @value="values.bfi5 = $event" />
         </div>
-        <RadioBar name="BFI-5" @value="values.bfi5 = $event" />
-      </div>
-      <hr class="my-6" />
-      <div class="flex flex-wrap min-w-full">
-        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
-          Ich gehe aus mir heraus, bin gesellig.
+        <hr class="my-6" />
+        <div class="flex flex-wrap min-w-full">
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+            Ich gehe aus mir heraus, bin gesellig.
+          </div>
+          <RadioBar name="BFI-6" @value="values.bfi6 = $event" />
         </div>
-        <RadioBar name="BFI-6" @value="values.bfi6 = $event" />
-      </div>
-      <hr class="my-6" />
-      <div class="flex flex-wrap min-w-full">
-        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
-          Ich neige dazu, andere zu kritisieren.
+        <hr class="my-6" />
+        <div class="flex flex-wrap min-w-full">
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+            Ich neige dazu, andere zu kritisieren.
+          </div>
+          <RadioBar name="BFI-7" @value="values.bfi7 = $event" />
         </div>
-        <RadioBar name="BFI-7" @value="values.bfi7 = $event" />
-      </div>
-      <hr class="my-6" />
-      <div class="flex flex-wrap min-w-full">
-        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
-          Ich erledige Aufgaben gründlich.
+        <hr class="my-6" />
+        <div class="flex flex-wrap min-w-full">
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+            Ich erledige Aufgaben gründlich.
+          </div>
+          <RadioBar name="BFI-8" @value="values.bfi8 = $event" />
         </div>
-        <RadioBar name="BFI-8" @value="values.bfi8 = $event" />
-      </div>
-      <hr class="my-6" />
-      <div class="flex flex-wrap min-w-full">
-        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
-          Ich werde leicht nervös und unsicher.
+        <hr class="my-6" />
+        <div class="flex flex-wrap min-w-full">
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+            Ich werde leicht nervös und unsicher.
+          </div>
+          <RadioBar name="BFI-9" @value="values.bfi9 = $event" />
         </div>
-        <RadioBar name="BFI-9" @value="values.bfi9 = $event" />
-      </div>
-      <hr class="my-6" />
-      <div class="flex flex-wrap min-w-full">
-        <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
-          Ich habe eine aktive Vorstellungskraft, bin phantasievoll.
+        <hr class="my-6" />
+        <div class="flex flex-wrap min-w-full">
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+            Ich habe eine aktive Vorstellungskraft, bin phantasievoll.
+          </div>
+          <RadioBar name="BFI-10" @value="values.bfi10 = $event" />
         </div>
-        <RadioBar name="BFI-10" @value="values.bfi10 = $event" />
+      </div>
+      <div
+        class="font-semibold text-gray-700 text-base sm:text-lg mt-24 md:text-xl xl:text-2xl"
+      >
+        Hast du noch Kommentare oder Hinweise?
+      </div>
+      <div class="text-gray-700 text-sm sm:text-base xl:text-lg mt-4 mb-12">
+        Was ist dir durch den Kopf gegangen, als du mit den verschiedenen
+        Szenarien konfrontiert wurdest? Was war für deine Entscheidungen
+        ausschlaggebend? Welche Parameter wurden im Design des FairCeptrons
+        missachtet? Hast du weitere Anmerkungen?
+      </div>
+      <textarea
+        v-model="values.comment"
+        class="form-textarea mt-1 block w-full text-gray-700 text-sm sm:text-base xl:text-lg"
+        rows="10"
+        placeholder="Text eingeben."
+      ></textarea>
+      <div class="w-full text-center my-16">
+        <nuxt-link
+          to="finish"
+          class="bg-green-600 hover:bg-green-700 text-white rounded px-4 py-2"
+          @click.native="finishSurvey()"
+        >
+          Absenden
+        </nuxt-link>
       </div>
     </div>
     <div
-      class="font-semibold text-gray-700 text-base sm:text-lg mt-24 md:text-xl xl:text-2xl"
+      v-else-if="language === 'en'"
+      class="max-w-6xl min-h-screen mx-auto p-4 sm:pt-6 lg:pt-8 xl:pt-16 sm:px-8"
     >
-      Hast du noch Kommentare oder Hinweise?
-    </div>
-    <div class="text-gray-700 text-sm sm:text-base xl:text-lg mt-4 mb-12">
-      Was ist dir durch den Kopf gegangen, als du mit den verschiedenen
-      Szenarien konfrontiert wurdest? Was war für deine Entscheidungen
-      ausschlaggebend? Welche Parameter wurden im Design des FairCeptrons
-      missachtet? Hast du weitere Anmerkungen?
-    </div>
-    <textarea
-      v-model="values.comment"
-      class="form-textarea mt-1 block w-full text-gray-700 text-sm sm:text-base xl:text-lg"
-      rows="10"
-      placeholder="Text eingeben."
-    ></textarea>
-    <div class="w-full text-center my-16">
-      <nuxt-link
-        to="finish"
-        class="bg-green-600 hover:bg-green-700 text-white rounded px-4 py-2"
-        @click.native="finishSurvey()"
+      <ProgressBar class="mb-4 sm:mb-6 lg:mb-8 xl:mb-16" :progress="progress" />
+
+      <div
+        class="font-semibold mb-0 lg:mb-6 text-gray-700 text-base sm:text-lg md:text-xl xl:text-2xl"
       >
-        Absenden
-      </nuxt-link>
+        Almost done! How well do the following statements describe your
+        personality?
+      </div>
+      <div class="flex flex-col text-gray-700 text-sm sm:text-base xl:text-lg">
+        <div class="flex flex-wrap min-w-full">
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">&nbsp;</div>
+          <div class="flex flex-grow items-start justify-center lg:max-w-3/5">
+            <div
+              v-for="n in levels.length"
+              :key="n"
+              class="text-center flex-grow flex-1"
+            >
+              <div
+                class="mx-1 sm:mx-2 lg:mx-3 mb-2 text-xs sm:text-sm cursor-pointer text-gray-700 leading-tight"
+                @click="ratingSelected = n"
+              >
+                {{ n }}: <br />
+                {{ levels[n - 1] }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="my-6" />
+        <div class="flex flex-wrap min-w-full">
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+            I see myself as someone who is reserved.
+          </div>
+          <RadioBar name="BFI-1" @value="values.bfi1 = $event" />
+        </div>
+        <hr class="my-6" />
+        <div class="flex flex-wrap min-w-full">
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+            I see myself as someone who is generally trusting.
+          </div>
+          <RadioBar name="BFI-2" @value="values.bfi2 = $event" />
+        </div>
+        <hr class="my-6" />
+        <div class="flex flex-wrap min-w-full">
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+            I see myself as someone who tends to be lazy
+          </div>
+          <RadioBar name="BFI-3" @value="values.bfi3 = $event" />
+        </div>
+        <hr class="my-6" />
+        <div class="flex flex-wrap min-w-full">
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+            I see myself as someone who is relaxed, handles stress well.
+          </div>
+          <RadioBar name="BFI-4" @value="values.bfi4 = $event" />
+        </div>
+        <hr class="my-6" />
+        <div class="flex flex-wrap min-w-full">
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+            I see myself as someone who has few artistic interests.
+          </div>
+          <RadioBar name="BFI-5" @value="values.bfi5 = $event" />
+        </div>
+        <hr class="my-6" />
+        <div class="flex flex-wrap min-w-full">
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+            I see myself as someone who is outgoing, sociable.
+          </div>
+          <RadioBar name="BFI-6" @value="values.bfi6 = $event" />
+        </div>
+        <hr class="my-6" />
+        <div class="flex flex-wrap min-w-full">
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+            I see myself as someone who tends to find fault in others.
+          </div>
+          <RadioBar name="BFI-7" @value="values.bfi7 = $event" />
+        </div>
+        <hr class="my-6" />
+        <div class="flex flex-wrap min-w-full">
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+            I see myself as someone who does a thorough job.
+          </div>
+          <RadioBar name="BFI-8" @value="values.bfi8 = $event" />
+        </div>
+        <hr class="my-6" />
+        <div class="flex flex-wrap min-w-full">
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+            I see myself as someone who gets nervous easily.
+          </div>
+          <RadioBar name="BFI-9" @value="values.bfi9 = $event" />
+        </div>
+        <hr class="my-6" />
+        <div class="flex flex-wrap min-w-full">
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+            I see myself as someone who has active imagination.
+          </div>
+          <RadioBar name="BFI-10" @value="values.bfi10 = $event" />
+        </div>
+      </div>
+      <div
+        class="font-semibold text-gray-700 text-base sm:text-lg mt-24 md:text-xl xl:text-2xl"
+      >
+        Do you have any comments or suggestions?
+      </div>
+      <div class="text-gray-700 text-sm sm:text-base xl:text-lg mt-4 mb-12">
+        What went through your mind when you were confronted with the different
+        scenarios? What was decisive for your decisions? Which parameters were
+        disregarded in the design of the FairCeptron? Do you have any other
+        comments?
+      </div>
+      <textarea
+        v-model="values.comment"
+        class="form-textarea mt-1 block w-full text-gray-700 text-sm sm:text-base xl:text-lg"
+        rows="10"
+        placeholder="Enter text."
+      ></textarea>
+      <div class="w-full text-center my-16">
+        <nuxt-link
+          to="finish"
+          class="bg-green-600 hover:bg-green-700 text-white rounded px-4 py-2"
+          @click.native="finishSurvey()"
+        >
+          Send
+        </nuxt-link>
+      </div>
     </div>
   </div>
 </template>
@@ -153,21 +287,32 @@ export default {
         bfi10: null,
         comment: null,
       },
-      levels: [
-        'Trifft überhaupt nicht zu',
-        'Trifft eher nicht zu',
-        'Weder noch',
-        'Eher zutreffend',
-        'Trifft voll und ganz zu',
-      ],
     }
   },
   computed: {
-    ...mapGetters(['totalQuestions']),
+    ...mapGetters(['totalQuestions', 'language']),
     progress() {
       return Math.round(
         ((this.totalQuestions + 2) / (this.totalQuestions + 3)) * 100 // + landingPage + 2xdemographics
       )
+    },
+    levels() {
+      if (this.language === 'de')
+        return [
+          'Trifft überhaupt nicht zu',
+          'Trifft eher nicht zu',
+          'Weder noch',
+          'Eher zutreffend',
+          'Trifft voll und ganz zu',
+        ]
+      else
+        return [
+          'Disagree strongly',
+          'Disagree a little',
+          'Neither agree nor disagree',
+          'Agree a little',
+          'Agree strongly',
+        ]
     },
   },
   beforeCreate() {

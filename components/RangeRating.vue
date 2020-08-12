@@ -2,8 +2,8 @@
   <form class="w-full mx-auto flex flex-wrap items-center justify-center">
     <Range
       class="my-4"
-      :label-left="ratingLabelsDE[0]"
-      :label-right="ratingLabelsDE[1]"
+      :label-left="language === 'de' ? ratingLabelsDE[0] : ratingLabelsEN[0]"
+      :label-right="language === 'de' ? ratingLabelsDE[1] : ratingLabelsEN[1]"
       :range-value.sync="ratingValue"
     />
     <nuxt-link
@@ -13,7 +13,7 @@
       class="px-2 py-1 my-4 mx-4 sm:ml-8 lg:ml-12 sm:mr-0 sm:px-4 sm:py-2 rounded text-white flex-none button"
       @click.native="handleSubmit()"
     >
-      {{ confirmLabelDE }}
+      {{ language === 'de' ? confirmLabelDE : confirmLabelEN }}
     </nuxt-link>
   </form>
 </template>
@@ -30,7 +30,9 @@ export default {
     return {
       localRatingValue: null,
       ratingLabelsDE: ['sehr unfair', 'sehr fair'],
+      ratingLabelsEN: ['very unfair', 'very fair'],
       confirmLabelDE: 'Nächstes Szenario',
+      confirmLabelEN: 'Next scenario',
     }
   },
   computed: {
@@ -49,6 +51,9 @@ export default {
       if (this.$store.getters.nextQuestion.questionType === 'demographics')
         return '/demographics'
       else return (this.$store.getters.currentNo + 2).toString()
+    },
+    language() {
+      return this.$store.getters.language
     },
   },
   watch: {

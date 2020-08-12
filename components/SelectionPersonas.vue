@@ -1,7 +1,7 @@
 <template>
   <div class="justify-center">
     <div
-      class="grid w-full gap-1 xs:gap-2 sm:gap-4 lg:gap-8 grid-cols-3 xs:grid-cols-4 md:grid-cols-5"
+      class="grid w-full gap-1 xs:gap-2 sm:gap-4 lg:gap-8 grid-cols-3 sm:grid-cols-4 md:grid-cols-5"
     >
       <div
         v-for="(p, index) in personas"

@@ -14,13 +14,22 @@
     <h1
       class="self-end text-4xl font-semibold text-gray-700 w-full text-center my-16"
     >
-      Vielen Dank für deine Teilnahme!
+      {{
+        language === 'de'
+          ? 'Vielen Dank für deine Teilnahme!'
+          : 'Thank you very much for your participation!'
+      }}
     </h1>
   </div>
 </template>
 
 <script>
 export default {
+  computed: {
+    language() {
+      return this.$store.language
+    },
+  },
   transition: 'slide-left',
 }
 </script>
