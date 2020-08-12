@@ -20,6 +20,7 @@ export const state = () => {
     timeElapsed: null,
     inconfidences: Array(100),
     answers: Array(100),
+    language: 'de',
   }
   const question = {
     questionType: '',
@@ -68,11 +69,15 @@ export const getters = {
   questionNumbers: (state) => state.questionNumbers,
   currentAnswer: (state) => state.answers[state.currentQuestion],
   inconfidences: (state) => state.inconfidences,
+  language: (state) => state.language,
 }
 
 export const mutations = {
   setUserID(state, id) {
     state.userID = id
+  },
+  setLanguage(state, language) {
+    state.language = language
   },
   setQuestionNumbers(state, numbers) {
     state.questionNumbers = numbers
@@ -146,9 +151,11 @@ export const actions = {
       })
   },
 
-  async registerUser({ commit, dispatch }, persistant) {
+  async registerUser({ commit, dispatch, getters }, persistant) {
     persistant = persistant || false
-    const response = await this.$axios.post('api/user')
+    const response = await this.$axios.post('api/user', {
+      language: getters.language,
+    })
     commit('setUserID', response.data.id)
     commit('setQuestionNumbers', response.data.questionNumbers)
     if (persistant) {
@@ -158,10 +165,13 @@ export const actions = {
   },
 
   async loadUser({ commit, dispatch, getters }, userID) {
-    const response = await this.$axios.get('api/user', { params: { userID } })
+    const response = await this.$axios.get('api/user', {
+      params: { userID, language: getters.language },
+    })
     commit('setQuestionNumbers', response.data.questionNumbers)
     commit('setAnswers', response.data.answers)
     commit('setInconfidences', response.data.inconfidences)
+    commit('setLanguage', response.data.language)
     // the server might answer with a different userID -> new user was created
     if (getters.userID !== response.data.userID) {
       commit('setUserID', response.data.userID)
@@ -184,7 +194,9 @@ export const actions = {
     answer.timeElapsed = getters.timeElapsed
     // get a new userID if unknown
     if (!getters.userID) {
-      const response = await this.$axios.post('api/user')
+      const response = await this.$axios.post('api/user', {
+        language: getters.language,
+      })
       commit('setUserID', response.data.id)
       commit('setQuestionNumbers', response.data.questionNumbers)
     }
@@ -204,5 +216,10 @@ export const actions = {
     commit('stopTimer')
     values.timeElapsed = getters.timeElapsed
     this.$axios.post('api/personality', values)
+  },
+
+  setLanguage({ getters, commit }, language) {
+    commit('setLanguage', language)
+    this.$axios.post('api/language', { userID: getters.userID, language })
   },
 }

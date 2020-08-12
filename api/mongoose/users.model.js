@@ -6,6 +6,7 @@ const AnswerModel = require('./answers.model')
 
 const userSchema = new Schema({
   questionNumbers: Array,
+  language: String,
   believe: Number,
   religious: Number,
   political: Number,
@@ -27,17 +28,21 @@ const userSchema = new Schema({
 // don't recompile model on hot reload
 const User = mongoose.models.User || mongoose.model('User', userSchema)
 
-exports.createUser = async () => {
+exports.createUser = async (language) => {
   const questionNumbers = await QuestionModel.randomQuestionEachCluster()
-  const user = new User({ questionNumbers })
+  if (!language) language = 'de'
+  const user = new User({ questionNumbers, language })
   return user.save()
 }
 
-exports.getUser = async (userID) => {
-  let user = await User.findOne({ _id: userID }).select('questionNumbers _id')
+exports.getUser = async (userID, language) => {
+  let user = await User.findOne({ _id: userID }).select(
+    'questionNumbers _id language'
+  )
   // user might have been deleted in the database
   if (user === null) {
-    user = await this.createUser()
+    if (!language) language = 'de'
+    user = await this.createUser(language)
     userID = user._id
   }
   const answersFromDB = await AnswerModel.getAnswers(userID)
@@ -65,7 +70,13 @@ exports.getUser = async (userID) => {
     questionNumbers: user.questionNumbers,
     answers,
     inconfidences,
+    language: user.language,
   }
+}
+
+exports.setLanguage = (userID, language) => {
+  const res = User.updateOne({ _id: userID }, { language })
+  return res
 }
 
 exports.addDemographics = (values) => {

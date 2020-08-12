@@ -9,13 +9,18 @@ const QuestionModel = require('./mongoose/questions.model')
 app.use(bodyParser.json())
 
 app.post('/user', async (req, res) => {
-  const user = await UserModel.createUser()
+  const user = await UserModel.createUser(req.body.language)
   res.status(201).send({ id: user._id, questionNumbers: user.questionNumbers })
 })
 
 app.get('/user', async (req, res) => {
-  const user = await UserModel.getUser(req.query.userID)
+  const user = await UserModel.getUser(req.query.userID, req.query.language)
   res.status(200).send(user)
+})
+
+app.post('/language', async (req, res) => {
+  await UserModel.setLanguage(req.body.userID, req.body.language)
+  res.status(201).send('Sucsess')
 })
 
 app.get('/questions', async (req, res) => {
