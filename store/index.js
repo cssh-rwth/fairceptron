@@ -189,7 +189,6 @@ export const actions = {
       commit('setQuestionNumbers', response.data.questionNumbers)
     }
     answer.userID = getters.userID
-    console.log(answer)
     this.$axios.post('api/answer', answer)
   },
 

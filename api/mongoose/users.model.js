@@ -27,20 +27,8 @@ const userSchema = new Schema({
 // don't recompile model on hot reload
 const User = mongoose.models.User || mongoose.model('User', userSchema)
 
-const shuffle = (array) => {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * i)
-    const temp = array[i]
-    array[i] = array[j]
-    array[j] = temp
-  }
-  return array
-}
-
 exports.createUser = async () => {
-  const questionNumbers = shuffle(
-    await QuestionModel.randomQuestionEachCluster()
-  )
+  const questionNumbers = await QuestionModel.randomQuestionEachCluster()
   const user = new User({ questionNumbers })
   return user.save()
 }
