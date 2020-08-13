@@ -3,7 +3,7 @@
     <div
       class="w-32 text-xs sm:text-sm text-gray-700 sm:whitespace-no-wrap text-right"
     >
-      {{ labelLeft }}
+      {{ left }}
     </div>
     <div class="mx-4 w-full relative">
       <div
@@ -26,7 +26,7 @@
       />
     </div>
     <div class="w-32 text-xs sm:text-sm text-gray-700 sm:whitespace-no-wrap">
-      {{ labelRight }}
+      {{ right }}
     </div>
   </div>
 </template>
@@ -37,11 +37,11 @@ export default {
   props: {
     labelLeft: {
       type: String,
-      default: 'Gar nicht',
+      default: '',
     },
     labelRight: {
       type: String,
-      default: 'Sehr',
+      default: '',
     },
     rangeValue: {
       type: Number,
@@ -65,6 +65,19 @@ export default {
           (this.rangeValue * 0.5 + 0.75) +
           'rem)',
       }
+    },
+    language() {
+      return this.$store.getters.language
+    },
+    left() {
+      if (this.labelLeft !== '') return this.labelLeft
+      if (this.language === 'de') return 'Gar Nicht'
+      else return 'Not at all'
+    },
+    right() {
+      if (this.labelRight !== '') return this.labelRight
+      if (this.language === 'de') return 'Sehr'
+      else return 'Very much'
     },
   },
 }

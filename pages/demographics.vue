@@ -17,30 +17,40 @@
         angewiesen.
       </div>
       <div class="flex flex-col text-sm sm:text-base xl:text-lg text-gray-700">
+        <div class="flex flex-wrap items-end min-w-full">
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+            Wie wichtig ist dir, dass der Algorithmus genauso viele Frauen wie
+            Männer auswählt bzw. Frauen und Männer abwechselnd in der Rangfolge
+            auflistet?
+          </div>
+          <Range class="mt-4" :range-value.sync="values.genderParity" />
+        </div>
+        <hr class="my-6" />
+        <div class="flex flex-wrap items-end min-w-full">
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+            Wie wichtig ist dir, dass der Algorithmus die am besten
+            qualifizierten Kandidat:innen auswählt bzw. am höchsten in der
+            Rangfolge auflistet?
+          </div>
+          <Range class="mt-4" :range-value.sync="values.accuracy" />
+        </div>
+        <hr class="my-6" />
+        <div class="flex flex-wrap items-end min-w-full">
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+            Wenn Kandidat:innen ausgewählt werden, die weniger qualifiziert sind
+            als andere: Wie wichtig ist dir, dass der Algorithmus dies in beiden
+            Gruppen in gleichem Maße tut?
+          </div>
+          <Range class="mt-4" :range-value.sync="values.comparativeAccuracy" />
+        </div>
+        <hr class="my-6" />
         <div class="flex flex-wrap items-center min-w-full">
           <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
-            Inwieweit glaubst du, dass deine Bewertungen aus dem Fairceptron für
+            Inwieweit glaubst du, dass deine Bewertungen aus dem FairCeptron für
             die Entwicklung fairer Entscheidungs-Algorithmen eingesetzt werden
             sollten?
           </div>
           <Range class="mt-4 lg:mt-0" :range-value.sync="values.believe" />
-        </div>
-        <hr class="my-6" />
-        <div class="flex flex-wrap items-end min-w-full">
-          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">Wie religiös bist du?</div>
-          <Range class="mt-4" :range-value.sync="values.religious" />
-        </div>
-        <hr class="my-6" />
-        <div class="flex flex-wrap items-end min-w-full">
-          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
-            Wie sind deine politischen Ansichten?
-          </div>
-          <Range
-            class="mt-4"
-            label-left="Konservativ"
-            label-right="Progressiv"
-            :range-value.sync="values.political"
-          />
         </div>
         <hr class="my-6" />
         <div class="flex flex-wrap items-center min-w-full">
@@ -74,6 +84,23 @@
             label-left="Sehr niedrig"
             label-right="Sehr hoch"
             :range-value.sync="values.will"
+          />
+        </div>
+        <hr class="my-6" />
+        <div class="flex flex-wrap items-end min-w-full">
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">Wie religiös bist du?</div>
+          <Range class="mt-4" :range-value.sync="values.religious" />
+        </div>
+        <hr class="my-6" />
+        <div class="flex flex-wrap items-end min-w-full">
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+            Wie sind deine politischen Ansichten?
+          </div>
+          <Range
+            class="mt-4"
+            label-left="Konservativ"
+            label-right="Progressiv"
+            :range-value.sync="values.political"
           />
         </div>
         <hr class="my-6" />
@@ -160,63 +187,81 @@
         I am dependent on information that is as complete as possible.
       </div>
       <div class="flex flex-col text-sm sm:text-base xl:text-lg text-gray-700">
+        <div class="flex flex-wrap items-end min-w-full">
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+            How important is it to you that the algorithm selects as many women
+            as men and alternately lists women and men in the ranking?
+          </div>
+          <Range class="mt-4" :range-value.sync="values.genderParity" />
+        </div>
+        <hr class="my-6" />
+        <div class="flex flex-wrap items-end min-w-full">
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+            How important is it to you that the algorithm selects the best
+            qualified candidates and lists them highest in the ranking?
+          </div>
+          <Range class="mt-4" :range-value.sync="values.accuracy" />
+        </div>
+        <hr class="my-6" />
+        <div class="flex flex-wrap items-end min-w-full">
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+            When candidates are selected who are less qualified than others: How
+            important is it to you that the algorithm does this equally in both
+            groups?
+          </div>
+          <Range class="mt-4" :range-value.sync="values.comparativeAccuracy" />
+        </div>
+        <hr class="my-6" />
         <div class="flex flex-wrap items-center min-w-full">
           <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
-            Inwieweit glaubst du, dass deine Bewertungen aus dem Fairceptron für
-            die Entwicklung fairer Entscheidungs-Algorithmen eingesetzt werden
-            sollten?
+            To what extent do you believe that your evaluations from the
+            FairCeptron should be used to develop fair decision algorithms?
           </div>
           <Range class="mt-4 lg:mt-0" :range-value.sync="values.believe" />
         </div>
         <hr class="my-6" />
-        <div class="flex flex-wrap items-end min-w-full">
-          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">Wie religiös bist du?</div>
-          <Range class="mt-4" :range-value.sync="values.religious" />
-        </div>
-        <hr class="my-6" />
-        <div class="flex flex-wrap items-end min-w-full">
-          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
-            Wie sind deine politischen Ansichten?
-          </div>
-          <Range
-            class="mt-4"
-            label-left="Konservativ"
-            label-right="Progressiv"
-            :range-value.sync="values.political"
-          />
-        </div>
-        <hr class="my-6" />
         <div class="flex flex-wrap items-center min-w-full">
           <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
-            Wie hoch ist dein Vertrauen in maschinell getroffene Entscheidungen?
+            How high is your confidence in machine-made decisions?
           </div>
           <Range
             class="mt-4 lg:mt-0"
-            label-left="Sehr niedrig"
-            label-right="Sehr hoch"
+            label-left="Very low"
+            label-right="Very high"
             :range-value.sync="values.confidence"
           />
         </div>
         <hr class="my-6" />
         <div class="flex flex-wrap items-center min-w-full">
           <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
-            Inwieweit befürchtest du, dass maschinell getroffene Entscheidungen
-            außer Kontrolle geraten könnten?
+            To what extent do you fear that machine-made decisions could get out
+            of control?
           </div>
           <Range class="mt-4 lg:mt-0" :range-value.sync="values.fear" />
         </div>
         <hr class="my-6" />
         <div class="flex flex-wrap items-center min-w-full">
           <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
-            Wie hoch ist deine Bereitschaft, an einem maschinell durchgeführten
-            Bewerbungsverfahren teilzunehmen, statt an einem Verfahren mit
-            menschlichen Entscheidern?
+            How willing are you to participate in an automated application
+            procedure instead of a procedure with human decision-makers?
+          </div>
+          <Range class="mt-4 xl:mt-0" :range-value.sync="values.will" />
+        </div>
+        <hr class="my-6" />
+        <div class="flex flex-wrap items-end min-w-full">
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">How religious are you?</div>
+          <Range class="mt-4" :range-value.sync="values.religious" />
+        </div>
+        <hr class="my-6" />
+        <div class="flex flex-wrap items-end min-w-full">
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
+            What are your political views
           </div>
           <Range
-            class="mt-4 xl:mt-0"
-            label-left="Sehr niedrig"
-            label-right="Sehr hoch"
-            :range-value.sync="values.will"
+            class="mt-4"
+            label-left="Conservative"
+            label-right="Progressive"
+            :range-value.sync="values.political"
           />
         </div>
         <hr class="my-6" />
@@ -315,6 +360,9 @@ export default {
         gender: null,
         screenHeight: null,
         screenWidth: null,
+        genderParity: null,
+        accuracy: null,
+        comparativeAccuracy: null,
       },
     }
   },

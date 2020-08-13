@@ -23,26 +23,47 @@
         </div>
         <div class="mb-2">
           Das Fai<span class="tracking-widest">r</span>Ceptron ist eine
-          Plattform zur Erfassung der menschlichen Perspektive auf solche
-          maschinell getroffenen Auswahl- und Rangfolge-Entscheidungen.
+          <span class="font-bold">
+            Plattform zur Erfassung der menschlichen Perspektive
+          </span>
+          auf solche maschinell getroffenen
+          <span class="font-bold">Auswahl- und Rangfolge-Entscheidungen</span>.
         </div>
         <h2 class="text-xl font-semibold mt-6 mb-2">Ablauf und Inhalt</h2>
         <div class="mb-2">
-          Im Kontext der Vergabe von Studienplätzen werden dir
-          {{ $store.getters.totalQuestions }} Szenarien mit unterschiedlichen
-          Auswahlen und Rangfolgen gezeigt. Jedes Szenario beinhaltet 10
-          Personen mit verschiedenen Eigenschaften, die sich alle jeweils auf
-          gleiche Studienplätze bewerben. In Auswahlszenarien werden jeweils
-          weniger als 10 Bewerber:innen ausgewählt. In Rangfolge-Szenarien
-          werden alle Bewerber:innen so sortiert, dass die ersten mit der
-          höchsten Wahrscheinlichkeit einen Studienplatz erhalten und die
-          letzten mit der geringsten.
+          Im Kontext der
+          <span class="font-bold">
+            Vergabe von Studienplätzen
+          </span>
+          werden dir
+          <span class="font-bold">
+            {{ $store.getters.totalQuestions }} Szenarien
+          </span>
+          mit unterschiedlichen Auswahlen und Rangfolgen gezeigt. Jedes Szenario
+          beinhaltet 10 Personen mit verschiedenen Eigenschaften, die sich alle
+          jeweils auf gleiche Studienplätze bewerben. In Auswahlszenarien werden
+          jeweils weniger als 10 Bewerber:innen ausgewählt. In
+          Rangfolge-Szenarien werden alle Bewerber:innen so sortiert, dass die
+          ersten mit der höchsten Wahrscheinlichkeit einen Studienplatz erhalten
+          und die letzten mit der geringsten.
         </div>
         <div class="mb-2">
-          Als außenstehender Beobachter bewertest du die verschiedenen
-          algorithmisch getroffenen Entscheidungen nach ihrer Fairness. Dabei
-          stehen dir genau dieselben anonymisierten Informationen über die
-          Bewerber:innen zur Verfügung, wie auch dem Algorithmus.
+          Als
+          <span class="font-bold">
+            außenstehender Beobachter
+          </span>
+          bewertest du die verschiedenen algorithmisch getroffenen
+          Entscheidungen nach ihrer Fairness. Dabei stehen dir genau
+          <span class="font-bold">
+            dieselben anonymisierten Informationen
+          </span>
+          über die Bewerber:innen zur Verfügung, wie auch dem Algorithmus.
+        </div>
+        <div class="mb-2">
+          Noch ein Hinweis: Das FairCeptron unterscheidet Bewerber:innen
+          ausschließlich hinsichtlich ihres Geschlechts. Dabei handelt es sich
+          um ein fiktives Szenario und eine starke Vereinfachung. Mir ist
+          bewusst, dass es mehr als die beiden dargestellten Geschlechter gibt.
         </div>
         <h2
           class="text-xl font-semibold mt-6 mb-2 cursor-pointer"
@@ -146,31 +167,48 @@
       <div class="text-gray-700 px-4">
         <div class="mb-2">
           Algorithms increasingly decide over humans &ndash; decisions
-          previously only made by humans. Such decisions include inter alia, the
-          granting of credit, the provision of bail or the ranking of possible
-          candidates for a job opening.
+          previously only made by humans. Such decisions include for example,
+          the granting of credit, the admission of bail or the ranking of
+          possible candidates for a job opening.
         </div>
         <div class="mb-2">
-          The Fai<span class="tracking-widest">r</span>Ceptron is a platform
-          capturing the human perspective on such automatic selection and
-          ranking decisions.
+          The Fai<span class="tracking-widest">r</span>Ceptron is a
+          <span class="font-bold">
+            platform capturing the human perspective
+          </span>
+          on such automated
+          <span class="font-bold"> selection and ranking decisions</span>.
         </div>
         <h2 class="text-xl font-semibold mt-6 mb-2">Procedure and content</h2>
         <div class="mb-2">
-          In the context of university admission,
-          {{ $store.getters.totalQuestions }} scenarios with different
-          selections and rankings are shown. Each scenario consists of 10
-          applicants with different characteristics, all of whom apply for the
-          same univerity. In each selection scenario less than 10 applicants are
-          selected. In ranking scenarios all applicants are sorted in such a way
-          that the first ones are most likely to be admitted to university and
-          last ones are least likely.
+          In the context of
+          <span class="font-bold"> university admission</span>,
+          <span class="font-bold">
+            {{ $store.getters.totalQuestions }} scenarios
+          </span>
+          with different selections and rankings are shown. Each scenario
+          consists of 10 applicants with different characteristics, all of whom
+          apply for the same university. In each selection scenario less than 10
+          applicants are selected. In ranking scenarios all applicants are
+          sorted in such a way that the first ones are most likely to be
+          admitted to university and last ones are least likely.
         </div>
         <div class="mb-2">
-          As an outside observer you evaluate the different algorithmic
-          decisions according to their fairness. You have access to exactly the
-          same anonymous information available about the applicants, as does the
-          algorithm.
+          As an
+          <span class="font-bold">
+            outside observer
+          </span>
+          you evaluate the different algorithmic decisions according to their
+          fairness. You have access to exactly
+          <span class="font-bold">
+            the same anonymous information
+          </span>
+          about the applicants, as does the algorithm.
+        </div>
+        <div class="mb-2">
+          One more thing: The FairCeptron distinguishes applicants only by their
+          gender. This is a fictitious scenario and a strong simplification. I
+          am aware that there are more than the two genders shown.
         </div>
         <h2
           class="text-xl font-semibold mt-6 mb-2 cursor-pointer"
