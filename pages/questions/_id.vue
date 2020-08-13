@@ -6,7 +6,7 @@
     <QuestionDescription class="flex-grow flex-initial flex items-center" />
     <SelectionPersonas
       v-if="questionType === 'selection'"
-      class="my-4 flex-grow flex-initial flex items-start self-center"
+      class="my-4 flex-grow flex-initial flex items-start"
     />
     <RankingPersonas v-if="questionType === 'ranking'" class="my-4 flex-grow" />
     <div v-if="questionType === 'ranking'" class="flex-grow"></div>
