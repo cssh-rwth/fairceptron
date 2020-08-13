@@ -31,8 +31,8 @@ module.exports = {
       whitelist: [
         'text-teal-400',
         'text-pink-400',
-        'bg-teal-400',
-        'bg-pink-400',
+        'bg-teal-100',
+        'bg-pink-100',
       ],
     },
   },
