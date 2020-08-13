@@ -27,7 +27,7 @@
 export default {
   computed: {
     language() {
-      return this.$store.language
+      return this.$store.getters.language
     },
   },
   transition: 'slide-left',
