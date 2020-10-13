@@ -1,0 +1,1 @@
+mongo --username "admin" --password "$MONGO_INITDB_ROOT_PASSWORD" --authenticationDatabase "admin" --eval "db = db.getSiblingDB('fairceptron'); db.createUser({ user: 'mongoose', pwd: '$MONGO_DB_PASS', roles: [{ role: 'readWrite', db: 'fairceptron' }] });"
