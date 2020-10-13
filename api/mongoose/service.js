@@ -6,9 +6,12 @@ const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 }
-mongoose.connect(
-  `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@fairceptron.ahnert.dev:27017/${process.env.DB_NAME}?authSource=${process.env.AUTH_SOURCE}`,
-  options
-)
+
+const connection =
+  `mongodb://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASS}@` +
+  `${process.env.MONGO_DOMAIN}:${process.env.MONGO_PORT}/${process.env.MONGO_DB_NAME}` +
+  `?authSource=${process.env.MONGO_AUTH_SOURCE}`
+
+mongoose.connect(connection, options)
 
 exports.mongoose = mongoose
