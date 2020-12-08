@@ -50,7 +50,7 @@ export default {
     nextPage() {
       if (this.$store.getters.nextQuestion.questionType === 'demographics')
         return '/demographics'
-      else return (this.$store.getters.currentNo + 2).toString()
+      else return '/questions/' + (this.$store.getters.currentNo + 2).toString()
     },
     language() {
       return this.$store.getters.language

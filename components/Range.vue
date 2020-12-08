@@ -9,7 +9,7 @@
       <div
         v-if="rangeValue !== null"
         :style="rangeValueCSS"
-        style="left: var(--range-value); bottom: 2.25rem;"
+        style="left: var(--range-value); bottom: 2.25rem"
         class="absolute bg-white text-gray-700 w-8 rounded-full text-center select-none"
       >
         {{ Math.round(rangeValue * 100) }}

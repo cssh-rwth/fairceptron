@@ -31,6 +31,23 @@ export default {
     QuestionDescription,
     ProgressBar,
   },
+  validate({ params }) {
+    // Must be a number
+    return /^\d+$/.test(params.id)
+  },
+  transition(to, from) {
+    if (!from) return 'slide-left'
+    if (from.name === 'index') return 'slide-left'
+    if (from.name === 'demographics' || from.name === 'finish')
+      return 'slide-right'
+    if (from.name === 'questions-id') {
+      if (parseInt(to.params.id) < parseInt(from.params.id)) {
+        return 'slide-right'
+      } else {
+        return 'slide-left'
+      }
+    }
+  },
   computed: {
     ...mapGetters(['questionType', 'totalQuestions', 'currentNo']),
     progress() {
@@ -39,10 +56,6 @@ export default {
         ((this.currentNo + 1) / (this.totalQuestions + 3)) * 100 // + landingPage + 2xdemographics
       )
     },
-  },
-  validate({ params }) {
-    // Must be a number
-    return /^\d+$/.test(params.id)
   },
   beforeCreate() {
     // point to the correct question
@@ -75,19 +88,6 @@ export default {
     // user known, but questions not loaded
     else if (!this.$store.getters.totalQuestions) {
       this.$store.dispatch('loadQuestions')
-    }
-  },
-  transition(to, from) {
-    if (!from) return 'slide-left'
-    if (from.name === 'index') return 'slide-left'
-    if (from.name === 'demographics' || from.name === 'finish')
-      return 'slide-right'
-    if (from.name === 'questions-id') {
-      if (parseInt(to.params.id) < parseInt(from.params.id)) {
-        return 'slide-right'
-      } else {
-        return 'slide-left'
-      }
     }
   },
 }

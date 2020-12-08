@@ -272,6 +272,11 @@ export default {
     RadioBar,
     ProgressBar,
   },
+  transition(to, from) {
+    if (!from) return 'slide-left'
+    if (from.name === 'demographics') return 'slide-left'
+    if (from.name === 'finish') return 'slide-right'
+  },
   data() {
     return {
       values: {
@@ -342,11 +347,6 @@ export default {
     finishSurvey() {
       this.$store.dispatch('sendPersonality', this.values)
     },
-  },
-  transition(to, from) {
-    if (!from) return 'slide-left'
-    if (from.name === 'demographics') return 'slide-left'
-    if (from.name === 'finish') return 'slide-right'
   },
 }
 </script>

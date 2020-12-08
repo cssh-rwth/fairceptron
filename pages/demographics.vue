@@ -275,9 +275,7 @@
               class="form-select block w-full sm:w-1/2 lg:w-2/5"
             >
               <option value="none">none</option>
-              <option value="realschule">
-                lower secondary education
-              </option>
+              <option value="realschule">lower secondary education</option>
               <option value="abitur">graduated highschool</option>
               <option value="ausbildung">vocational training</option>
               <option value="bachelor">bachelor</option>
@@ -307,9 +305,7 @@
         </div>
         <hr class="my-6" />
         <div class="flex flex-wrap min-w-full">
-          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">
-            What is your gender?
-          </div>
+          <div class="w-full lg:w-2/5 mb-4 lg:mb-0">What is your gender?</div>
           <div class="flex-grow lg:ml-8">
             <select
               v-model="values.gender"
@@ -344,6 +340,11 @@ export default {
   components: {
     Range,
     ProgressBar,
+  },
+  transition(to, from) {
+    if (!from) return 'slide-left'
+    if (from.name === 'questions-id') return 'slide-left'
+    if (from.name === 'personality') return 'slide-right'
   },
   data() {
     return {
@@ -404,11 +405,6 @@ export default {
     sendDemographics() {
       this.$store.dispatch('sendDemographics', this.values)
     },
-  },
-  transition(to, from) {
-    if (!from) return 'slide-left'
-    if (from.name === 'questions-id') return 'slide-left'
-    if (from.name === 'personality') return 'slide-right'
   },
 }
 </script>

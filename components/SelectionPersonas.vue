@@ -11,7 +11,7 @@
       >
         <svg
           :class="'text-' + colors[p.group] + '-400'"
-          style="max-height: 10vh;"
+          style="max-height: 10vh"
           class="fill-current mx-auto"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"

@@ -32,9 +32,7 @@
         <h2 class="text-xl font-semibold mt-6 mb-2">Ablauf und Inhalt</h2>
         <div class="mb-2">
           Im Kontext der
-          <span class="font-bold">
-            Vergabe von Studienplätzen
-          </span>
+          <span class="font-bold"> Vergabe von Studienplätzen </span>
           werden dir
           <span class="font-bold">
             {{ $store.getters.totalQuestions }} Szenarien
@@ -49,9 +47,7 @@
         </div>
         <div class="mb-2">
           Als
-          <span class="font-bold">
-            außenstehender Beobachter
-          </span>
+          <span class="font-bold"> außenstehender Beobachter </span>
           bewertest du die verschiedenen algorithmisch getroffenen
           Entscheidungen nach ihrer Fairness. Dabei stehen dir genau
           <span class="font-bold">
@@ -195,14 +191,10 @@
         </div>
         <div class="mb-2">
           As an
-          <span class="font-bold">
-            outside observer
-          </span>
+          <span class="font-bold"> outside observer </span>
           you evaluate the different algorithmic decisions according to their
           fairness. You have access to exactly
-          <span class="font-bold">
-            the same anonymous information
-          </span>
+          <span class="font-bold"> the same anonymous information </span>
           about the applicants, as does the algorithm.
         </div>
         <div class="mb-2">
@@ -293,6 +285,11 @@
 
 <script>
 export default {
+  transition(to, from) {
+    if (!from) return 'slide-left'
+    if (from.name === 'index') return 'slide-left'
+    if (to.name === 'index') return 'slide-right'
+  },
   data() {
     return {
       showPrivacyStatement: false,
@@ -332,11 +329,6 @@ export default {
     toggleAgreement() {
       this.showAgreement = !this.showAgreement
     },
-  },
-  transition(to, from) {
-    if (!from) return 'slide-left'
-    if (from.name === 'index') return 'slide-left'
-    if (to.name === 'index') return 'slide-right'
   },
 }
 </script>

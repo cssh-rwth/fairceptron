@@ -25,12 +25,12 @@
 
 <script>
 export default {
+  transition: 'slide-left',
   computed: {
     language() {
       return this.$store.getters.language
     },
   },
-  transition: 'slide-left',
 }
 </script>
 
