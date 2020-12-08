@@ -7,14 +7,9 @@
       <ProgressBar class="mb-4 sm:mb-6 lg:mb-8 xl:mb-16" :progress="progress" />
 
       <div
-        class="font-semibold text-gray-700 text-base sm:text-lg md:text-xl xl:text-2xl"
+        class="font-semibold text-gray-700 text-base sm:text-lg md:text-xl xl:text-2xl mb-12"
       >
         Bitte beantworte abschließend noch die folgenden Fragen:
-      </div>
-      <div class="text-gray-700 text-sm sm:text-base xl:text-lg mt-4 mb-12">
-        Alle Angaben sind selbstverständlich freiwillig. Für meine
-        Bachelorarbeit bin ich aber auf möglichst vollständige Angaben
-        angewiesen.
       </div>
       <div class="flex flex-col text-sm sm:text-base xl:text-lg text-gray-700">
         <div class="flex flex-wrap items-end min-w-full">
@@ -178,13 +173,9 @@
       <ProgressBar class="mb-4 sm:mb-6 lg:mb-8 xl:mb-16" :progress="progress" />
 
       <div
-        class="font-semibold text-gray-700 text-base sm:text-lg md:text-xl xl:text-2xl"
+        class="font-semibold text-gray-700 text-base sm:text-lg md:text-xl xl:text-2xl mb-12"
       >
         Finally, please answer the following questions:
-      </div>
-      <div class="text-gray-700 text-sm sm:text-base xl:text-lg mt-4 mb-12">
-        All information is of course voluntary. For my bachelor thesis, however,
-        I am dependent on information that is as complete as possible.
       </div>
       <div class="flex flex-col text-sm sm:text-base xl:text-lg text-gray-700">
         <div class="flex flex-wrap items-end min-w-full">

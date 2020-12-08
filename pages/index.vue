@@ -111,29 +111,10 @@
           Datenschutz
         </h2>
         <div v-if="showPrivacyStatement" class="mb-2">
-          Verantwortlich für die Erhebung, Verarbeitung und Nutzung deiner
-          personenbezogenen Daten Sinne von Art. 4 Nr. 7 DSGVO ist <br />
-          Georg Ahnert <br />
-          Jupp-Müller-Str. 5 <br />
-          52072 Aachen <br />
-          Germany
+          <!-- Add German Privacy Statement here -->
         </div>
         <div v-if="showPrivacyStatement" class="mb-2">
-          Du hast das Recht, auf Antrag unentgeltlich eine Auskunft über die
-          gespeicherten personenbezogenen Daten anzufordern und/oder eine
-          Berichtigung, Sperrung oder Löschung zu verlangen. Eine Sperrung oder
-          Löschung kann nicht erfolgen, wenn gesetzliche Regelungen dem
-          entgegenstehen. Bitte kontaktiere mich unter
-          georg.ahnert&nbsp;[ät]&nbsp;rwth-aachen.de .
-        </div>
-        <div v-if="showPrivacyStatement" class="mb-2">
-          Der Zugriff auf diese Webseite wird grundsätzlich nicht automatisiert
-          erfasst. Es werden keine IP-Adressen erfasst. Deine Eingaben im
-          Verlauf der Studie, sowie die Bearbeitungsdauer pro Frage und deine
-          Bildschirmgröße speichere ich auf meinem Server und stelle sie ggf.
-          anderen Forschern am Lehrstuhl für Computational Social Sciences der
-          RWTH Aachen für zur Verfügung. Alle Daten werden nur in anonymisierter
-          Form veröffentlicht.
+          <!-- Add another paragraph of the German Privacy Statement here -->
         </div>
       </div>
       <div class="w-full text-center my-16">
@@ -248,26 +229,10 @@
           Privacy policy
         </h2>
         <div v-if="showPrivacyStatement" class="mb-2">
-          Responsible for the collection, processing and use of your personal
-          data within the meaning of Art. 4 No. 7 DSGVO is <br />
-          Georg Ahnert <br />
-          Jupp-Müller-Str. 5 <br />
-          52072 Aachen <br />
-          Germany
+          <!-- Add English Privacy Statement here -->
         </div>
         <div v-if="showPrivacyStatement" class="mb-2">
-          You have the right to request free of charge about stored personal
-          data and/or to request rectification, blocking or erasure. A blocking
-          or deletion cannot take place if legal regulations are opposed to
-          this. Please contact me at georg.ahnert&nbsp;[ät]&nbsp;rwth-aachen.de.
-        </div>
-        <div v-if="showPrivacyStatement" class="mb-2">
-          Access to this website is not automatically recorded. No IP addresses
-          are recorded. Your entries during the course of the study, as well as
-          the processing time per question and your screen size are stored on my
-          server and can be made available to other researchers at the chair of
-          Computational Social Sciences at RWTH Aachen University. Data will be
-          anonymized before publishing.
+          <!-- Add another paragraph of the English Privacy Statement here -->
         </div>
       </div>
       <div class="w-full text-center my-16">
