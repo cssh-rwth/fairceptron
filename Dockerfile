@@ -9,4 +9,6 @@ ADD . ${APP_ROOT}
 RUN yarn install
 RUN yarn run build
 
+EXPOSE 3000
+
 ENV HOST 0.0.0.0
